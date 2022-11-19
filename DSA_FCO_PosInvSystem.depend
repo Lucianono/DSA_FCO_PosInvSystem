@@ -37,3 +37,53 @@
 
 1668868241 d:\personal\bryan\bulsu\dsa\dsa_fco_posinvsystem\securitysys.h
 
+1668875298 source:c:\users\jabo\programming files\dsa_fco_posinvsystem\aboutus.cpp
+	<iostream>
+	"AboutUs.h"
+
+1668875298 c:\users\jabo\programming files\dsa_fco_posinvsystem\aboutus.h
+
+1668879492 source:c:\users\jabo\programming files\dsa_fco_posinvsystem\booksys.cpp
+	<iostream>
+	"BookSys.h"
+	<string>
+
+1668879636 c:\users\jabo\programming files\dsa_fco_posinvsystem\booksys.h
+	"Book.h"
+	<string>
+	<vector>
+
+1668879322 source:c:\users\jabo\programming files\dsa_fco_posinvsystem\main.cpp
+	<iostream>
+	"UIDesign.h"
+	"AboutUs.h"
+	"BookSys.h"
+	"SecuritySys.h"
+	"OrderSys.h"
+
+1668875298 c:\users\jabo\programming files\dsa_fco_posinvsystem\uidesign.h
+
+1668875298 c:\users\jabo\programming files\dsa_fco_posinvsystem\securitysys.h
+
+1668875298 c:\users\jabo\programming files\dsa_fco_posinvsystem\ordersys.h
+
+1668875298 source:c:\users\jabo\programming files\dsa_fco_posinvsystem\ordersys.cpp
+	<iostream>
+	"OrderSys.h"
+
+1668875298 source:c:\users\jabo\programming files\dsa_fco_posinvsystem\securitysys.cpp
+	<iostream>
+	"SecuritySys.h"
+
+1668875298 source:c:\users\jabo\programming files\dsa_fco_posinvsystem\uidesign.cpp
+	<iostream>
+	"UIDesign.h"
+
+1668877616 source:c:\users\jabo\programming files\dsa_fco_posinvsystem\book.cpp
+	"Book.h"
+	"BookSys.h"
+	<string>
+
+1668876702 c:\users\jabo\programming files\dsa_fco_posinvsystem\book.h
+	<string>
+
