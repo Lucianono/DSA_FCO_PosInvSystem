@@ -38,6 +38,8 @@
 		<Unit filename="AboutUs.h" />
 		<Unit filename="BookSys.cpp" />
 		<Unit filename="BookSys.h" />
+		<Unit filename="Book.cpp" />
+		<Unit filename="Book.h" />
 		<Unit filename="OrderSys.cpp" />
 		<Unit filename="OrderSys.h" />
 		<Unit filename="SecuritySys.cpp" />

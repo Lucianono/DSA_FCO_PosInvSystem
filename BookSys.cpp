@@ -37,7 +37,7 @@ void BookSys::addBook(std::string _bookName, int _bookYear) {
     // set by the Book constructor. See implementation @ Book.cpp line 6 & 13
 }
 
-Book BookSys::getBook(int bookId) {
+Book *BookSys::getBook(int bookId) {
     // TODO: Get the book object from the books vector. See BookSys.books.
     // then change the return value @ line 44.
     // Note: The return value below is a placeholder to prevent compilation errors.
