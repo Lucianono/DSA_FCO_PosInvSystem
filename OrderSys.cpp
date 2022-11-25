@@ -4,7 +4,7 @@
 using namespace std;
 
 //this file is for POS or (Order/Sale) System
-
+//tite
 //create a blank database for the orders using linked list
 //should have the following attributes: OrderID, CustomerName, [BooksOrdered, QtyOrder] , UnitPrice, AmountPrice, VAT, DiscountPrice, TotalSales
 // ->>if the customer will pay by cash, add these attribute : Cash, Change
