@@ -37,3 +37,37 @@
 
 1668868241 d:\personal\bryan\bulsu\dsa\dsa_fco_posinvsystem\securitysys.h
 
+1669354890 source:d:\git\dsa_fco_posinvsystem\aboutus.cpp
+	<iostream>
+	"AboutUs.h"
+
+1669354890 d:\git\dsa_fco_posinvsystem\aboutus.h
+
+1669354890 source:d:\git\dsa_fco_posinvsystem\booksys.cpp
+	<iostream>
+	"BookSys.h"
+
+1669354890 d:\git\dsa_fco_posinvsystem\booksys.h
+
+1669354890 source:d:\git\dsa_fco_posinvsystem\main.cpp
+	<iostream>
+	"UIDesign.h"
+	"AboutUs.h"
+	"BookSys.h"
+	"SecuritySys.h"
+	"OrderSys.h"
+
+1669354890 d:\git\dsa_fco_posinvsystem\uidesign.h
+
+1669354890 d:\git\dsa_fco_posinvsystem\securitysys.h
+
+1669354890 d:\git\dsa_fco_posinvsystem\ordersys.h
+
+1669354890 source:d:\git\dsa_fco_posinvsystem\securitysys.cpp
+	<iostream>
+	"SecuritySys.h"
+
+1669354890 source:d:\git\dsa_fco_posinvsystem\uidesign.cpp
+	<iostream>
+	"UIDesign.h"
+
