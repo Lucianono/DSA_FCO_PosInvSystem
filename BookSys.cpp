@@ -65,6 +65,10 @@ void BookSys::updateBook(int bookId, int _bookQuantity) {
     }
     bookToUpdate->bookQuantity = _bookQuantity;
     books.at(bookToUpdateIndex) = bookToUpdate;
+
+    if (_bookQuantity < 5) {
+        std::cout << "NOTIF: Book with id \"" << bookId << "\" quantity is less than 5." << std::endl;
+    }
 }
 
 void BookSys::deleteBook(int bookId) {
