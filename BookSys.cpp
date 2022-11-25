@@ -31,10 +31,8 @@ int BookSys::getCurrentId() {
 }
 
 void BookSys::addBook(std::string _bookName, int _bookYear) {
-    // TODO: Create a book object. See Book.h & Book.cpp.
-    // TODO: Add the book object to the books vector. See BookSys.books.
-    // Note: You do not need to pass a bookId. The bookId is automatically
-    // set by the Book constructor. See implementation @ Book.cpp line 6 & 13
+    Book *bookToAdd = new Book(_bookName, _bookYear);
+    books.push_back(bookToAdd);
 }
 
 Book *BookSys::getBook(int bookId) {
