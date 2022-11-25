@@ -1,6 +1,7 @@
 #include <iostream>
 #include "BookSys.h"
 #include <string>
+#include <vector>
 
 //this file is for the CICT Books System
 
@@ -45,6 +46,10 @@ Book *BookSys::getBook(int bookId) {
         }
     }
     return bookToReturn;
+}
+
+std::vector<Book*> BookSys::getAllBooks() {
+    return books;
 }
 
 void BookSys::updateBook(int bookId, int _bookQuantity) {

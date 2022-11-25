@@ -14,6 +14,7 @@ class BookSys
 
         void addBook(std::string _bookName, int _bookYear);
         Book *getBook(int bookId);
+        std::vector<Book*> getAllBooks();
         void updateBook(int bookId, int _bookQuantity);
         void deleteBook(int bookId);
 
