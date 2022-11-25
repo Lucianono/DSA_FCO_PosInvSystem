@@ -7,8 +7,8 @@ class Book {
         Book(std::string _bookName, int _bookYear, int _bookQuantity);
         Book(int _bookId, std::string _bookName, int _bookYear, int _bookQuantity);
         int bookId;
+        int bookQuantity;
     private:
         std::string bookName;
         int bookYear;
-        int bookQuantity;
 };
