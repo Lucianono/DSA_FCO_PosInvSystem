@@ -49,15 +49,17 @@ Book *BookSys::getBook(int bookId) {
 
 void BookSys::updateBook(int bookId, int _bookQuantity) {
     Book *bookToUpdate;
+    int bookToUpdateIndex;
     for (int i = 0; i < books.size(), i++) {
         const Book *currentBook = books.at(i);
         if (currentBook.bookId == bookId) {
           bookToUpdate = currentBook;
+          bookToUpdateIndex = i;
           break;
         }
     }
     bookToUpdate.bookQuantity = _bookQuantity;
-    books.at(bookId) = bookToUpdate;
+    books.at(bookToUpdateIndex) = bookToUpdate;
 }
 
 void BookSys::deleteBook(int bookId) {
