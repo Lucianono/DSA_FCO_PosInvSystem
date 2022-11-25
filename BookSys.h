@@ -19,7 +19,7 @@ class BookSys
 
         BookSys();
     private:
-        std::vector<Book> books;
+        std::vector<Book*> books;
 
 };
 
