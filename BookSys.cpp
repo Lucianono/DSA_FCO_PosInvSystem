@@ -63,5 +63,13 @@ void BookSys::updateBook(int bookId, int _bookQuantity) {
 }
 
 void BookSys::deleteBook(int bookId) {
-    // TODO: Remove the book from the books vector. See BookSys.book.
+    int bookToDeleteIndex;
+    for (int i = 0; i < books.size(), i++) {
+        const Book *currentBook = books.at(i);
+        if (currentBook.bookId == bookId) {
+          bookToDeleteIndex = i;
+          break;
+        }
+    }
+    books.erase(books.begin() + bookToDeleteIndex);
 }
