@@ -36,10 +36,15 @@ void BookSys::addBook(std::string _bookName, int _bookYear) {
 }
 
 Book *BookSys::getBook(int bookId) {
-    // TODO: Get the book object from the books vector. See BookSys.books.
-    // then change the return value @ line 44.
-    // Note: The return value below is a placeholder to prevent compilation errors.
-    return new Book("Test", 2022);
+    Book *bookToReturn;
+    for (int i = 0; i < books.size(), i++) {
+        const Book *currentBook = books.at(i);
+        if (currentBook.bookId == bookId) {
+          bookToReturn = currentBook;
+          break;
+        }
+    }
+    return bookToReturn;
 }
 
 void BookSys::updateBook(int bookId, int _bookQuantity) {
