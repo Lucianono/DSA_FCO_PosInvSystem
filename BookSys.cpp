@@ -37,9 +37,9 @@ void BookSys::addBook(std::string _bookName, int _bookYear) {
 
 Book *BookSys::getBook(int bookId) {
     Book *bookToReturn;
-    for (int i = 0; i < books.size(), i++) {
-        const Book *currentBook = books.at(i);
-        if (currentBook.bookId == bookId) {
+    for (int i = 0; i < books.size(); i++) {
+        Book *currentBook = books.at(i);
+        if (currentBook->bookId == bookId) {
           bookToReturn = currentBook;
           break;
         }
