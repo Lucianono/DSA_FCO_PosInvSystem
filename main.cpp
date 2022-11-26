@@ -21,10 +21,9 @@ int main()
     OrderSys order;
 
     //
-    book.addBook("MMW101",1995);
-    book.addBook("MMW1d01",1995);
+    book.addBook("MMW101", "1995");
+    book.addBook("MMW1d01","1995");
     book.updateBook(0,77);
-    book.deleteBook(0);
     //
 
     cout << endl;
@@ -32,12 +31,7 @@ int main()
 
 
 
-    cout << "Book Content ==" << endl;
-    for (int i = 0; i < book.getAllBooks().size(); i++) {
-        Book *currentBook = book.getAllBooks().at(i);
-        cout << i + 1 << ". " << currentBook->bookId << " -- " << currentBook->bookName << " -- " << currentBook->bookQuantity << endl;
-    }
-    cout << "End Book Content ==" << endl;
+    book.printAllBooks();
 
     return 0;
 }

@@ -12,11 +12,16 @@ class BookSys
         static int currentId;
         static int getCurrentId();
 
+        // CRUD Methods
         void addBook(std::string _bookName, std::string _bookYear);
-        Book *getBook(int bookId);
         std::vector<Book*> getAllBooks();
+        Book *getBook(int bookId);
         void updateBook(int bookId, int _bookQuantity);
         void deleteBook(int bookId);
+
+        // Display Methods
+        void printAllBooks();
+        void displayBook(int bookId);;
 
         BookSys();
     private:

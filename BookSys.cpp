@@ -57,7 +57,7 @@ Book *BookSys::getBook(int bookId) {
     Book *bookToReturn;
     for (int i = 0; i < books.size(); i++) {
         Book *currentBook = books.at(i);
-        if (currentBook->bookId == bookId) {
+        if (currentBook->getBookId() == bookId) {
           bookToReturn = currentBook;
           break;
         }
@@ -74,16 +74,16 @@ void BookSys::updateBook(int bookId, int _bookQuantity) {
     int bookToUpdateIndex;
     for (int i = 0; i < books.size(); i++) {
         Book *currentBook = books.at(i);
-        if (currentBook->bookId == bookId) {
+        if (currentBook->getBookId() == bookId) {
           bookToUpdate = currentBook;
           bookToUpdateIndex = i;
           break;
         }
     }
-    bookToUpdate->bookQuantity = _bookQuantity;
+    bookToUpdate->setBookQuantity(_bookQuantity);
     books.at(bookToUpdateIndex) = bookToUpdate;
 
-    if (_bookQuantity < bookToUpdate->MAX_QUANTITY * 0.05) {
+    if (_bookQuantity < bookToUpdate->getMaxQuantity() * 0.05) {
         std::cout << "NOTIF: Book with id \"" << bookId << "\" quantity is less than 5%." << std::endl;
     }
 }
@@ -92,10 +92,29 @@ void BookSys::deleteBook(int bookId) {
     int bookToDeleteIndex;
     for (int i = 0; i < books.size(); i++) {
         Book *currentBook = books.at(i);
-        if (currentBook->bookId == bookId) {
+        if (currentBook->getBookId() == bookId) {
           bookToDeleteIndex = i;
           break;
         }
     }
     books.erase(books.begin() + bookToDeleteIndex);
+}
+
+void BookSys::printAllBooks() {
+    for (int i = 0; i < getAllBooks().size(); i++) {
+        Book *currentBook = getAllBooks().at(i);
+        std::cout << currentBook->getBookId() << " | " << currentBook->getBookName() << std::endl;
+    }
+}
+
+void BookSys::displayBook(int bookId) {
+    Book *bookToDisplay;
+    for (int i = 0; i < getAllBooks().size(); i++) {
+        Book *currentBook = getAllBooks().at(i);
+        if (currentBook->getBookId() == bookId) {
+            bookToDisplay = currentBook;
+            break;
+        }
+    }
+    std::cout << bookToDisplay->getBookName();
 }

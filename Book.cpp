@@ -25,3 +25,27 @@ Book::Book(int _bookId, std::string _bookName, std::string _bookYear, int _bookQ
     bookQuantity = _bookQuantity;
     MAX_QUANTITY = 20;
 }
+
+int Book::getBookId() {
+    return bookId;
+}
+
+int Book::getBookQuantity() {
+    return bookQuantity;
+}
+
+int Book::getMaxQuantity() {
+    return MAX_QUANTITY;
+}
+
+std::string Book::getBookName() {
+    return bookName;
+}
+
+std::string Book::getBookYear() {
+    return bookYear;
+}
+
+void Book::setBookQuantity(int _bookQuantity) {
+    bookQuantity = _bookQuantity;
+}
