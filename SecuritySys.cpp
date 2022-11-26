@@ -16,6 +16,17 @@ using namespace std;
 
 //assigned to : Darwin Alba, Ramil Rosal
 
+//ADDITIONAL COMMENTS
+//Syntax is working but not developer dynamic, should refer CLASS ON SEPERATE FILES on sololearn
+//over info display when login failed, should instead check first for username if exists, then check if password is correct. No need to display ONLY THE USERNAME is wrong.
+//password should re-input when changing password
+//logging out should RESETS the login attempts
+//theres variables that is unused
+//CreateAccount is NOT necessary, but still good so don't delete
+//the program itself should provide a username and password (ex. GlobeWifiAccount username:user password:tattoo@home)
+//the program is running but can be improve
+
+
 class Security
 {
     private:
@@ -114,7 +125,9 @@ class Security
                         Lpass=Mpass;
                         Modify();
                     }
-                case 3: system("CLS");Login(); break;
+                case 3: system("CLS");
+                Login();
+                break;
                 default: cout <<"\nError Input...\n";
             }
     }
@@ -125,14 +138,6 @@ class Security
     }
 };
 
-//this file is for Security (login) system
-//create a username and password (will be decided by you)
-//maximum of 3 tries ELSE terminates
-//can change username and password
-//should login first before changing the username and password
-//username and password variables SHOULD be  private(can't be accessed outside class)
-//create function to GET username
-//assigned to : Darwin Alba, Ramil Rosal
 
 SecuritySys::SecuritySys()
 {
