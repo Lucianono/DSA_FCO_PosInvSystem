@@ -4,7 +4,7 @@
 #include "BookSys.h"
 #include "SecuritySys.h"
 #include "OrderSys.h"
-
+#include "Book.h"
 
 using namespace std;
 
@@ -24,6 +24,14 @@ int main()
     cout << endl;
     cout << "Hello Dataists!" << endl;
 
+
+
+    cout << "Book Content ==" << endl;
+    for (int i = 0; i < book.getAllBooks().size(); i++) {
+        Book *currentBook = book.getAllBooks().at(i);
+        cout << i + 1 << ". " << currentBook->bookId << " -- " << currentBook->bookName << " -- " << currentBook->bookQuantity << endl;
+    }
+    cout << "End Book Content ==" << endl;
 
     return 0;
 }

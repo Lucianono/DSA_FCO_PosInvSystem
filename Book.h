@@ -3,12 +3,12 @@
 
 class Book {
     public:
-        Book(std::string _bookName, int _bookYear);
-        Book(std::string _bookName, int _bookYear, int _bookQuantity);
-        Book(int _bookId, std::string _bookName, int _bookYear, int _bookQuantity);
+        Book(std::string _bookName, std::string _bookYear);
+        Book(std::string _bookName, std::string _bookYear, int _bookQuantity);
+        Book(int _bookId, std::string _bookName, std::string _bookYear, int _bookQuantity);
         int bookId;
         int bookQuantity;
-    private:
+        int MAX_QUANTITY;
         std::string bookName;
-        int bookYear;
+        std::string bookYear;
 };

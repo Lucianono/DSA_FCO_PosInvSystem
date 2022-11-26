@@ -12,7 +12,7 @@ class BookSys
         static int currentId;
         static int getCurrentId();
 
-        void addBook(std::string _bookName, int _bookYear);
+        void addBook(std::string _bookName, std::string _bookYear);
         Book *getBook(int bookId);
         std::vector<Book*> getAllBooks();
         void updateBook(int bookId, int _bookQuantity);

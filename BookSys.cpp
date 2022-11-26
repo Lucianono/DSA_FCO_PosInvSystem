@@ -23,6 +23,24 @@ int BookSys::currentId = 0;
 
 BookSys::BookSys() {
     std::cout << "BookSys Class created" << std::endl;
+
+    addBook("Fundamentals of Information Technology", "First Year");
+    addBook("Integrated Computer Applications", "First Year");
+    addBook("Learning Guide in C Programming", "First Year");
+
+    addBook("Database Management System", "Second Year");
+    addBook("Networking", "Second Year");
+    addBook("Object Oriented Programming", "Second Year");
+    addBook("Assembly Language", "Second Year");
+
+    addBook("Software Engineering", "Third Year");
+    addBook("SQL", "Third Year");
+    addBook("Python", "Third Year");
+    addBook("Web Development", "Third Year");
+
+    addBook("Embedded Systems", "Fourth Year");
+    addBook("Wireless Technology", "Fourth Year");
+    addBook("Android Programming", "Fourth Year");
 }
 
 int BookSys::getCurrentId() {
@@ -31,7 +49,7 @@ int BookSys::getCurrentId() {
     return tempId;
 }
 
-void BookSys::addBook(std::string _bookName, int _bookYear) {
+void BookSys::addBook(std::string _bookName, std::string _bookYear) {
     Book *bookToAdd = new Book(_bookName, _bookYear);
     books.push_back(bookToAdd);
 }
@@ -66,8 +84,8 @@ void BookSys::updateBook(int bookId, int _bookQuantity) {
     bookToUpdate->bookQuantity = _bookQuantity;
     books.at(bookToUpdateIndex) = bookToUpdate;
 
-    if (_bookQuantity < 5) {
-        std::cout << "NOTIF: Book with id \"" << bookId << "\" quantity is less than 5." << std::endl;
+    if (_bookQuantity < bookToUpdate->MAX_QUANTITY * 0.05) {
+        std::cout << "NOTIF: Book with id \"" << bookId << "\" quantity is less than 5%." << std::endl;
     }
 }
 
