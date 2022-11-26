@@ -3,15 +3,20 @@
 
 using namespace std;
 //this file is for Security (login) system
+
+//List of Done
 //create a username and password (will be decided by you)
 //maximum of 3 tries ELSE terminates
+//create username and password
+//username and password variables SHOULD be  private(can't be accessed outside class)
+
+//List of work
 //can change username and password
 //should login first before changing the username and password
-//username and password variables SHOULD be  private(can't be accessed outside class)
 //create function to GET username
+
 //assigned to : Darwin Alba, Ramil Rosal
 
-//create username and password
 class Security
 {
     private:
@@ -33,7 +38,6 @@ class Security
         cin >> Cpass;
 
     }
-
     void Login()
     {
         cout << "\nLogin your account" << endl;
@@ -44,51 +48,46 @@ class Security
         attempt = attempt +1;
         cout << attempt;
 
-        if (Luser != Cuser && Lpass == Cpass)
-        {
-            cout << "your Username is incorrect."<< endl;
-            if (attempt == 3)
+        if(Luser == Cuser && Lpass == Cpass)
             {
-                cout << "\nInvalid login attempts for 3 times... closing program";
-                return;
+                cout<< "Welcome";
+                Security push;
+                push.Modify();
+            }
+        else
+            while(attempt < 3)
+            {
+                if (Luser != Cuser && Lpass == Cpass)
+                {
+                    cout << "your Username is incorrect."<< endl;
+                    Login();
+                }
+                else if (Luser == Cuser && Lpass != Cpass)
+                {
+                    cout << "your Password is incorrect."<< endl;
+                    Login();
+                }
+                else if (Luser != Cuser && Lpass != Cpass)
+                {
+                    cout << " This Account does not exist" << endl;
+                    Login();
+                }
+            }
+            if(attempt==3)
+            {
+                cout << "\nInvalid login attempts for 3 times... closing program"<< endl;
+                exit(0);
             }
 
-            else
-                Login();
-        }
-        else if (Luser == Cuser && Lpass != Cpass)
-        {
-            cout << "your Password is incorrect."<< endl;
-            if (attempt == 3)
-            {
-                cout << "\nInvalid login attempts for 3 times... closing program";
-                return;
-            }
-            else
-                Login();
-        }
-        else if (Luser != Cuser && Lpass != Cpass)
-        {
-            cout << " This Account does not exist" << endl;
-            Login();
-            if (attempt == 3)
-            {
-                cout << "\nInvalid login attempts for 3 times... closing program";
-                return;
-            }
-            else
-                Login();
-        }
-        else
-        {
-            cout<< "Welcome";
-        }
+
     }
     void Modify()
     {
         cout<< "Do you want to change your acc?" << endl;
         cout << "if yes, type Y or y and if no type N or n: ";
         cin >> Choice;
+
+
     }
 };
 
@@ -107,4 +106,8 @@ SecuritySys::SecuritySys()
     Security push;
     push.Create();
     push.Login();
+
+
+
+
 }
