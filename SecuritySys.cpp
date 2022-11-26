@@ -29,64 +29,72 @@ class Security
     public:
     void Create() //creating account
     {
-        cout<<"\nCreate an account"<< endl;
-
-        cout<<"Please create a Username: ";
+        cout<<"\nCREATE AN ACCOUNT"<< endl;
+        cout<<"\nCreate a Username: ";
         cin >> Cuser;
-        cout<<"Please create a Password: ";
+        cout<<"Create a Password: ";
         cin >> Cpass;
-
+        system ("CLS");
+        //end of create
     }
     void Login()
     {
-        cout << "\nLogin your account" << endl;
-        cout<<"Please Enter your Username: ";
+        cout << "LOG IN TO YOUR ACCOUNT" << endl;
+        cout<<"\nEnter your Username: ";
         cin >> Luser;
-        cout<<"Please Enter your Password: ";
+        cout<<"Enter your Password: ";
         cin >> Lpass;
-
+        //input ni user to log in
         if(Luser == Cuser && Lpass == Cpass||Luser == Muser && Lpass==Mpass)
             {
+                system ("CLS");
                 Content();
             }
         else
         {
             attempt = attempt +1;
+            int i = 3;
             while(attempt < 3)
             {
                 if (Luser != Cuser && Lpass == Cpass)
                 {
-                    cout << "your Username is incorrect."<< endl;
+                    system ("CLS");
+                    cout << "Incorrect Username. ";
+                    cout << "(" << i-attempt<< ")" << " Remaining Tries\n\n";
                     Login();
                 }
                 else if (Luser == Cuser && Lpass != Cpass)
                 {
-                    cout << "your Password is incorrect."<< endl;
+                    system ("CLS");
+                    cout << "Incorrect Password. ";
+                    cout << "(" << i-attempt<< ")" << " Remaining Tries\n\n";
                     Login();
                 }
                 else if (Luser != Cuser && Lpass != Cpass)
                 {
-                    cout << " This Account does not exist" << endl;
+                    system ("CLS");
+                    cout << "Account does not Exist. ";
+                    cout << "(" << i-attempt<< ")" << " Remaining Tries\n\n";
                     Login();
                 }
             }
         }
-        if(attempt==3)
+        if(attempt==3)//test how about if else here for certain incorrect inputs?? 2 dar
         {
-            cout << " This Account does not exist" << endl;
-            cout << "Reached Maximum Tries... Closing Program"<< endl;
+            cout << "\nReached Maximum Tries... Closing Program"<< endl;
             exit(0);
         }
     }
 
     void Modify() //modify condition
     {
-            cout<< "\n\nWELCOME\n"<< endl;
-            cout << "SELECT FROM [1-3]" << endl;
+            system ("CLS");
+            cout<< "WELCOME "<< Luser << endl;
+            cout << " " << endl;
             cout << "[1]Change Username" << endl;
             cout << "[2]Change Password" << endl;
-            cout << "[3]LOGOUT and LOGIN Again" << endl;
-            cout << "SO??: ";
+            cout << "[3]LOGOUT and LOGIN Again" << endl;// dar great idea!!
+            cout << "Enter Choice [1-3]: ";
             cin >> Choice;
             switch(Choice)
             {
@@ -106,7 +114,7 @@ class Security
                         Lpass=Mpass;
                         Modify();
                     }
-                case 3: Login(); break;
+                case 3: system("CLS");Login(); break;
                 default: cout <<"\nError Input...\n";
             }
     }
@@ -130,9 +138,9 @@ SecuritySys::SecuritySys()
 {
     int choice;
     cout<<"SecuritySys Class created"<<endl;
-    Security push;
-    push.Create();
-    push.Login();
+    Security sc;
+    sc.Create();
+    sc.Login();
 
     cout << "\n\n";
 }
