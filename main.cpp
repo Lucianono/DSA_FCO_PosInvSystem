@@ -20,6 +20,12 @@ int main()
     SecuritySys security;
     OrderSys order;
 
+    //
+    book.addBook("MMW101",1995);
+    book.addBook("MMW1d01",1995);
+    book.updateBook(0,77);
+    book.deleteBook(0);
+    //
 
     cout << endl;
     cout << "Hello Dataists!" << endl;
