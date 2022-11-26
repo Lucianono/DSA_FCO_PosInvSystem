@@ -24,14 +24,12 @@ class Security
     string Luser, Lpass;
     string Muser, Mpass;//modified user/pass
     int attempt = 0;
-    string Choice;
+    int Choice;
 
     public:
     void Create() //creating account
     {
-
         cout<<"\nCreate an account"<< endl;
-
 
         cout<<"Please create a Username: ";
         cin >> Cuser;
@@ -46,15 +44,14 @@ class Security
         cin >> Luser;
         cout<<"Please Enter your Password: ";
         cin >> Lpass;
-        attempt = attempt +1;
 
         if(Luser == Cuser && Lpass == Cpass)
             {
-                cout<< "Welcome"<< endl;
-                Security push;
-                push.Modify();
+                Content();
             }
         else
+        {
+            attempt = attempt +1;
             while(attempt < 3)
             {
                 if (Luser != Cuser && Lpass == Cpass)
@@ -73,83 +70,51 @@ class Security
                     Login();
                 }
             }
-            if(attempt==3)
-            {
-                cout << "\nInvalid login attempts for 3 times... closing program"<< endl;
-                exit(0);
-            }
-
-
-    }
-
-    void ModifyCon() //modify condition
-    {
-        if(Choice == "y"|| Choice=="Y")
-        {
-            int C; //choice
-            string MuserL, MpassL, Mpass2;
-            cout << "\nLogin your account" << endl;
-            cout<<"Please Enter your Username: ";
-            cin >> MuserL;
-            cout<<"Please Enter your Password: ";
-            cin >> MpassL;
-
-            if(MuserL == Cuser && MpassL == Cpass)
-            {
-                cout << "what do you want to Change";
-                cout << "[1]Username";
-                cout << "[2]Password";
-                switch(C)
-                {
-                    case 1:
-                        {
-                            cout<<"Enter new username: ";
-                            cin >> Muser;
-                            cout << "username modified";
-                            Luser==Muser;
-                            Modify();
-                        }
-                    case 2:
-                        {
-                            cout << "Enter new password";
-                            cin >> Mpass;
-                            cout << "verify new password";
-                            cin >>Mpass2;
-                            if(Mpass2 == Mpass)
-                            {
-                                cout << "password modified";
-                                Lpass==Mpass;
-                            }
-                            else
-                                {
-                                    cout << "password does not match... try again..." << endl;
-                                }
-                        }
-                }
-            }
-            else
-                cout <<"\nThis Account does not exist! try again...";
-
         }
-
-        else if(Choice == "N"|| Choice=="n")
+        if(attempt==3)
         {
-            cout << "So you already have an account bruh";
-            Login();
-        }
-        else
-        {
-            cout << "Invalid input... try again.";
-            Modify();
+            cout << " This Account does not exist" << endl;
+            cout << "Reached Maximum Tries... Closing Program"<< endl;
+            exit(0);
         }
     }
 
-    void Modify()
+    void Modify() //modify condition
     {
-        cout<< "Do you want to change your acc?" << endl;
-        cout << "if yes, type [Y] or [y] and if no type [N] or [n]: ";
-        cin >> Choice;
-        ModifyCon();
+            cout<< "\n\nWELCOME\n"<< endl;
+            string MuserL, MpassL, Mpass2; //modify
+            cout << "SELECT FROM [1-3]" << endl;
+            cout << "[1]Change Username" << endl;
+            cout << "[2]Change Password" << endl;
+            cout << "[3]LOGOUT and LOGIN Again" << endl;
+            cout << "SO??: ";
+            cin >> Choice;
+            switch(Choice)
+            {
+                case 1:
+                    {
+                        cout<<"Enter new username: ";
+                        cin >> Muser;
+                        cout << "\nUSERNAME MODIFIED!\n"<< endl;
+                        Luser=Muser;
+                        Modify();
+                    }
+                case 2:
+                    {
+                        cout << "Enter new password: ";
+                        cin >> Mpass;
+                        cout << "\npassword modified\n"<< endl;
+                        Lpass=Mpass;
+                        Modify();
+                    }
+                case 3: Login(); break;
+                default: cout <<"\nError Input...\n";
+            }
+    }
+
+    void Content()
+    {
+        Modify();
     }
 };
 
@@ -169,7 +134,6 @@ SecuritySys::SecuritySys()
     Security push;
     push.Create();
     push.Login();
-
 
     cout << "\n\n\n";
 
