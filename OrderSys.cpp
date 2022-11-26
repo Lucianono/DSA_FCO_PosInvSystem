@@ -3,7 +3,7 @@
 //this file is for POS or (Order/Sale) System
 //tite
 //create a blank database for the orders using linked list
-//should have the following attributes: OrderID, CustomerName, [BooksOrdered, QtyOrder] , UnitPrice, AmountPrice, VAT, DiscountPrice, TotalSales
+//should have the following attributes: OrderID, CustomerName, [BooksOrdered, QtyOrder] , UnitPrice, AmountPrice, VAT,
 
 
 
@@ -45,102 +45,225 @@
 
 using namespace std;
 
+	struct OrderSystem
+	{
+		int OrderID;
+		string CustomerName;
+		string Books;
+		int Price;
 
-void cashType();
-void installmentType();
+		OrderSystem *next;
+		OrderSystem *prev;
+		OrderSystem *temp;
+	};
 
-struct Osys
-{
-    int OrderID;
-    string CustomerName;
-    int UnitPrice;
-    int AmountPrice;
-    int Vat;
-    int DiscountPrice;
-    int TotalSales;
-    int Cash;
-    int Change;
-    int FirstInstallment;
-    int FirstChange;
-    int SecondFirstInstallment;
-    int SecondChange;
-    Osys *next;
-};
+OrderSystem *createOrder(OrderSystem *head, int OrderID, string CustomerName, int Price);
+void userRecords(OrderSystem *head);
+void editRecords(OrderSystem *head, int OrderID);
+OrderSystem *addDummyRecords(OrderSystem *head);
+OrderSystem *adminMenu(OrderSystem *head);
 
-    
 int main()
 {
 
+		OrderSystem *head;
+		head = NULL;
+
+		head = addDummyRecords(head);
+		head = adminMenu(head);
 
 
-    Osys *head;
-    head = NULL;
-
-    Osys *newOsys;
-
-    int orderType;
-    cout << "\n--------------------------------------------------------------\n";
-    cout << "\t-- POS or (Order/Sale) System --\t\t\n";
-    cout << "\t[1] Cash\t[2] Installment\t\n";
-    cout << "--------------------------------------------------------------\n";
-    cout << "\tEnter: "; cin >> orderType;
-
-    switch(orderType)
-    {
-
-    case 1:
-        cashType();
-        break;
-    case 2:
-        installmentType();
-        break;
-
-    }
-
-    newOsys = new Osys;
-    newOsys -> OrderID = 1;
-    newOsys->next=NULL;
-    head=newOsys;
-
-    newOsys = new Osys;
-    newOsys -> OrderID = 2;
-    newOsys->next=NULL;
-    head->next=newOsys;
-    
-    newOsys = new Osys;
-    newOsys -> OrderID = 3;
-    newOsys->next=NULL;
-    head->next=newOsys;
-
-    Osys *displayPointer;
-    displayPointer=head;
-
-    while(displayPointer)
-    {
-
-        cout << displayPointer -> OrderID;
-        displayPointer=displayPointer->next;    
-        getch();
-    }
-
-
-    cout<<"OrderSys Class created"<<endl;
-
-
-    getch();
-    return 0;
+	getch();
+	return 0;
 }
 
-
-
-void cashType()
-{
-    cout << "\nEnter Cash Amount: ";
-    
-}
-
-void installmentType()
+OrderSystem *adminMenu(OrderSystem *head)
 {
 
+	bool menu_active = true;
+	while(menu_active)
+	{
+
+
+		int choice;
+
+		cout << "\t--------------------------------------------\n";
+		cout << "\t\t    -- Admin Menu -- \n";
+		cout << "\t--------------------------------------------\n";
+		cout << "\t[1] Display Order Records\n";
+		cout << "\t[2] Edit Order Records\n";
+		cout << "\n\t--------------------------------------------\n";
+		cout << "\tEnter Choice: ";
+		cin >> choice;
+		cout << endl;
+
+		switch(choice)
+		{
+			case 1:
+				userRecords(head);
+				break;
+			case 2:
+				int editID;
+				cout << "\t--------------------------------------------\n";
+				cout << "\tEnter Desired OrderID to Edit: ";
+				cin >> editID;
+				cout << "\n\t--------------------------------------------\n";
+				editRecords(head, editID);
+				break;
+		}
+	}
+
+	return head;
 }
 
+void userRecords(OrderSystem *head)
+{
+
+		OrderSystem *displayPointer;
+		displayPointer=head;
+			cout << "\n\t--------------------------------------------\n";
+			cout << "\t\t\t User Records \t\t\n";
+			cout << "\t--------------------------------------------\n";
+		while(displayPointer)
+		{
+			cout << "\tOrderID: " << displayPointer->OrderID << endl;
+			cout << "\tCustomerName: " << displayPointer->CustomerName << endl;
+			cout << "\tPrice: " << displayPointer->Price << endl;
+			displayPointer=displayPointer->next;
+			cout << "\t--------------------------------------------\n";
+		}
+
+		int choice;
+		cout << "\t--------------------------------------------\n";
+		cout << "\t\t  -- User Records Menu --\n";
+		cout << "\t--------------------------------------------\n";
+		cout << "\t[1] Edit Records\n";
+		cout << "\t[2] Back\n";
+		cout << "\n\t--------------------------------------------\n";
+		cout << "\tEnter Choice: ";
+		cin >> choice;
+		cout << endl;
+
+		switch(choice)
+		{
+			case 1:
+				int editID;
+				cout << "\t--------------------------------------------\n";
+				cout << "\tEnter Desired OrderID to Edit: ";
+				cin >> editID;
+				cout << "\n\t--------------------------------------------\n";
+				editRecords(head, editID);
+				break;
+			case 2:
+				break;
+			case 4:
+				break;
+		}
+
+}
+
+OrderSystem *createOrder(OrderSystem *head, int OrderID, string CustomerName, int Price)
+{
+	if(head==NULL)
+	{
+		OrderSystem *newUser;
+		newUser = new OrderSystem;
+		newUser->OrderID = OrderID;
+		newUser->CustomerName = CustomerName;
+		newUser->Price = Price;
+		newUser->next=NULL;
+		newUser->prev=NULL;
+		head=newUser;
+		head->temp = head;
+
+		return head;
+
+	}else
+	{
+		OrderSystem *newUser;
+		newUser = new OrderSystem;
+		newUser->OrderID = OrderID;
+		newUser->CustomerName = CustomerName;
+		newUser->Price = Price;
+		newUser->next=NULL;
+		newUser->prev=head->temp;
+		head->temp->next = newUser;
+		head->temp = head->temp->next;
+		return head;
+	}
+
+}
+
+void editRecords(OrderSystem *head, int OrderID)
+{
+
+
+
+	OrderSystem *displayPointer;
+	displayPointer = head;
+
+	while(displayPointer)
+	{
+		if (displayPointer->OrderID == OrderID)
+		{
+			cout << "\t--------------------------------------------\n";
+			cout << "\t\t   -- Order Records Menu --\n";
+			cout << "\t--------------------------------------------\n";
+			cout << "\tCurrent OrderID: " << displayPointer->OrderID << "\tCurrent CustomerName: " << displayPointer->CustomerName<< endl;
+			cout << "\t--------------------------------------------\n";
+			cout << "\tOrderID: " << displayPointer->OrderID << endl;
+			cout << "\tCustomerName: " << displayPointer->CustomerName << endl;
+			cout << "\tPrice: " << displayPointer->Price << endl;
+			cout << "\t--------------------------------------------\n";
+			int choice;
+			cout << "\t\t\t-- Options --\n";
+			cout << "\t--------------------------------------------\n";
+			cout << "\t[1] Edit CustomerName\t [2] Edit Books\n";
+			cout << "\t[3] Edit Price \t [4] Exit\n";
+			cout << "\t--------------------------------------------\n";
+			cout << "\tAction: ";
+			cin >> choice;
+			cout << "\t--------------------------------------------\n";
+			switch(choice)
+			{
+				case 1:
+
+					cout << "\tCurrent CustomerName: " << displayPointer->CustomerName << endl;
+					cout << "\tDesired CustomerName: ";
+					getline(cin >> ws, displayPointer->CustomerName);
+					break;
+				case 2:
+					cout << "\tCurrent Books: " << displayPointer->Books << endl;
+					cout << "\tDesired Books: ";
+					getline(cin >> ws, displayPointer->Books);
+					break;
+				case 3:
+					cout << "\tCurrent Price: " << displayPointer->Price << endl;
+					cout << "\tDesired Price: ";
+					cin >> displayPointer->Price;
+					break;
+				case 4:
+					break;
+			}
+
+			break;
+			cout << "TEST";
+		}
+		displayPointer=displayPointer->next;
+	}
+
+	getch();
+
+}
+
+OrderSystem *addDummyRecords(OrderSystem *head)
+{
+		head = createOrder(head, 0, "Math", 0);
+		createOrder(head, 1, "Science", 1000);
+		createOrder(head, 2, "Calculus", 1000);
+		createOrder(head, 3, "General Math", 600);
+		createOrder(head, 4, "History", 500);
+		createOrder(head, 5, "Programming", 600);
+
+		return head;
+}
