@@ -8,18 +8,18 @@ using namespace std;
 //create a username and password (will be decided by you)
 //maximum of 3 tries ELSE terminates
 //username and password variables SHOULD be  private(can't be accessed outside class)
+//should login first before changing the username and password
+//can change username and password
 
 //List of work
-//can change username and password
-//should login first before changing the username and password
 //create function to GET username
-//create username and password
 
 //assigned to : Darwin Alba, Ramil Rosal
 
 class Security
 {
     private:
+    string MuserL, MpassL, Mpass2; //modify
     string Cuser, Cpass;
     string Luser, Lpass;
     string Muser, Mpass;//modified user/pass
@@ -45,7 +45,7 @@ class Security
         cout<<"Please Enter your Password: ";
         cin >> Lpass;
 
-        if(Luser == Cuser && Lpass == Cpass)
+        if(Luser == Cuser && Lpass == Cpass||Luser == Muser && Lpass==Mpass)
             {
                 Content();
             }
@@ -82,7 +82,6 @@ class Security
     void Modify() //modify condition
     {
             cout<< "\n\nWELCOME\n"<< endl;
-            string MuserL, MpassL, Mpass2; //modify
             cout << "SELECT FROM [1-3]" << endl;
             cout << "[1]Change Username" << endl;
             cout << "[2]Change Password" << endl;
@@ -135,7 +134,5 @@ SecuritySys::SecuritySys()
     push.Create();
     push.Login();
 
-    cout << "\n\n\n";
-
-
+    cout << "\n\n";
 }
