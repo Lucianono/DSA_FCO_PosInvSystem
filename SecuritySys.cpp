@@ -4,15 +4,14 @@
 
 using namespace std;
 
+//Constructor
 SecuritySys::SecuritySys()
 {
 
-        Login();
-        Modify();
-
 }
 
-SecuritySys::Login()
+//login method; return true if login success
+bool SecuritySys::Login()
     {
         cout <<"\nYour Default Username is: " << Duser << endl;
         cout <<"Your Default Password is: " << Dpass << endl;
@@ -32,7 +31,8 @@ SecuritySys::Login()
             {
                 system ("CLS");
                 attempt=0;
-                Modify();
+                cout<<"Permission granted! \n";
+                return true;
             }
             else
                 while (attempt < 3)
@@ -63,7 +63,8 @@ SecuritySys::Login()
                 }
     }
 
-SecuritySys::Modify()
+//change password function
+void SecuritySys::Modify()
     {
 
             cout<< "WELCOME "<< Luser << endl;

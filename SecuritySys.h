@@ -18,8 +18,8 @@ class SecuritySys
         int Choice;
     public:
         SecuritySys();
-        Login();
-        Modify();
+        bool Login();
+        void Modify();
 
 };
 

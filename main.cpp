@@ -24,6 +24,10 @@ int main()
     cout << endl;
     cout << "Hello Dataists!" << endl;
 
+    if(security.Login()){
+        security.Modify();
+    }
+
 
     return 0;
 }
