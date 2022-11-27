@@ -21,9 +21,7 @@ int main()
     OrderSys order;
 
     //
-    book.addBook("MMW101", "1995");
-    book.addBook("MMW1d01","1995");
-    book.updateBook(0,77);
+    cout<<book.getBook(5)->getBookId();
     //
 
     cout << endl;
