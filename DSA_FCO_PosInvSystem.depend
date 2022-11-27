@@ -97,7 +97,10 @@
 
 1669371266 c:\users\ryzen5 b450\downloads\dsa_fco_posinvsystem\uidesign.h
 
-1669371266 c:\users\ryzen5 b450\downloads\dsa_fco_posinvsystem\securitysys.h
+1669528742 c:\users\ryzen5 b450\downloads\dsa_fco_posinvsystem\securitysys.h
+	<string>
+	<iostream>
+	<conio.h>
 
 1669371266 c:\users\ryzen5 b450\downloads\dsa_fco_posinvsystem\ordersys.h
 
@@ -109,7 +112,8 @@
 	<iostream>
 	"UIDesign.h"
 
-1669455698 source:c:\users\ryzen5 b450\downloads\dsa_fco_posinvsystem\securitysys.cpp
+1669479235 source:c:\users\ryzen5 b450\downloads\dsa_fco_posinvsystem\securitysys.cpp
 	<iostream>
 	"SecuritySys.h"
+	<conio.h>
 
