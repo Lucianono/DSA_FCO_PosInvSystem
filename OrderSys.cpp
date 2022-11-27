@@ -3,9 +3,6 @@
 //this file is for POS or (Order/Sale) System
 //create a blank database for the orders using linked list
 //should have the following attributes: OrderID, CustomerName, [BooksOrdered, QtyOrder] , UnitPrice, AmountPrice, VAT,
-
-
-
 // ->>if the customer will pay by cash, add these attribute : Cash, Change
 // ->>if the customer will pay by installment, add these attribute : 1stInstallment, 1stChange, 2ndInstallment, 2ndChange
 //create your own OrderID format
@@ -34,10 +31,18 @@
 //order should not complete IF QtyOrder > Quantity in Book System
 //every order should decrement the Book quantity
 //create function to display the customer with remaining balance
-
-//void display;
 //create function to display the entire Order Database
 //create function to read or access every attributes given
+
+//ADDITIONAL COMMENTS
+//main function SHOULD NOT BE HERE
+//Syntax Structure is wrong(try building this project, it produces an errors)
+//make use of classes of SEPERATE FILES refer on sololearn
+//editRecords is not necessary
+//Linked list is correct but needs improvement
+//UI is not necessary
+//Attributes is incomplete
+//COMMENTING IS NECESSARY for others to read
 
 #include <iostream>
 #include <conio.h>
