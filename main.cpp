@@ -20,10 +20,6 @@ int main()
     SecuritySys security;
     OrderSys order;
 
-    //
-    cout<<book.getBook(5)->getBookId();
-    //
-
     cout << endl;
     cout << "Hello Dataists!" << endl;
 
