@@ -49,67 +49,143 @@
 
 using namespace std;
 
-	struct OrderSystem
-	{
-		int OrderID;
-		string CustomerName;
-		string Books;
-		int Price;
+struct OrderSystem
+{
+    int OrderID;
+    string CustomerName;
+    string Books;
+    int Price;
 
-		OrderSystem *next;
-		OrderSystem *prev;
-		OrderSystem *temp;
-	};
+    OrderSystem *next;
+    OrderSystem *prev;
+    OrderSystem *temp;
+};
+
+OrderSystem *createOrder(OrderSystem *head, int OrderID, string CustomerName, int Price);
+void userRecords(OrderSystem *head);
+void editRecords(OrderSystem *head, int OrderID);
+OrderSystem *addDummyRecords(OrderSystem *head);
+OrderSystem *adminMenu(OrderSystem *head);
+
+OrderSystem *adminMenu(OrderSystem *head)
+{
+    bool menu_active = true;
+    while (menu_active)
+    {
+        int choice;
+
+        cout << endl;
+        cout << "\t\t    -- Admin Menu -- \n";
+        cout << endl;
+        cout << "\t[1] Display Order Records\n";
+        cout << "\t[2] Edit Order Records\n";
+        cout << endl;
+        cout << "\tEnter Choice: ";
+        cin >> choice;
+        cout << endl;
+
+        switch (choice)
+        {
+        case 1:
+            userRecords(head);
+            break;
+        case 2:
+            int editID;
+            cout << endl;
+            cout << "\tEnter Desired OrderID to Edit: ";
+            cin >> editID;
+            cout << endl;
+            editRecords(head, editID);
+            break;
+        }
+    }
+
+    return head;
+}
+
+void userRecords(OrderSystem *head)
+{
+    OrderSystem *displayPointer;
+    displayPointer = head;
+    cout << endl;
+    cout << "\t\t\t User Records \t\t\n";
+    cout << endl;
+    while (displayPointer)
+    {
+        cout << "\tOrderID: " << displayPointer->OrderID << endl;
+        cout << "\tCustomerName: " << displayPointer->CustomerName << endl;
+        cout << "\tPrice: " << displayPointer->Price << endl;
+        displayPointer = displayPointer->next;
+        cout << endl;
+    }
+
+    int choice;
+    cout << endl;
+    cout << "\t\t  -- User Records Menu --\n";
+    cout << endl;
+    cout << "\t[1] Edit Records\n";
+    cout << "\t[2] Back\n";
+    cout << endl;
+    cout << "\tEnter Choice: ";
+    cin >> choice;
+    cout << endl;
+
+    switch (choice)
+    {
+    case 1:
+        int editID;
+        cout << endl;
+        cout << "\tEnter Desired OrderID to Edit: ";
+        cin >> editID;
+        cout << endl;
+        editRecords(head, editID);
+        break;
+    case 2:
+        break;
+    case 4:
+        break;
+    }
+}
 
 OrderSystem *createOrder(OrderSystem *head, int OrderID, string CustomerName, int Price)
 {
-	if(head==NULL)
-	{
-		OrderSystem *newUser;
-		newUser = new OrderSystem;
-		newUser->OrderID = OrderID;
-		newUser->CustomerName = CustomerName;
-		newUser->Price = Price;
-		newUser->next=NULL;
-		newUser->prev=NULL;
-		head=newUser;
-		head->temp = head;
+    if (head == NULL)
+    {
+        OrderSystem *newUser;
+        newUser = new OrderSystem;
+        newUser->OrderID = OrderID;
+        newUser->CustomerName = CustomerName;
+        newUser->Price = Price;
+        newUser->next = NULL;
+        newUser->prev = NULL;
+        head = newUser;
+        head->temp = head;
 
-		return head;
-
-	}else
-	{
-		OrderSystem *newUser;
-		newUser = new OrderSystem;
-		newUser->OrderID = OrderID;
-		newUser->CustomerName = CustomerName;
-		newUser->Price = Price;
-		newUser->next=NULL;
-		newUser->prev=head->temp;
-		head->temp->next = newUser;
-		head->temp = head->temp->next;
-		return head;
-	}
-
+        return head;
+    }
+    else
+    {
+        OrderSystem *newUser;
+        newUser = new OrderSystem;
+        newUser->OrderID = OrderID;
+        newUser->CustomerName = CustomerName;
+        newUser->Price = Price;
+        newUser->next = NULL;
+        newUser->prev = head->temp;
+        head->temp->next = newUser;
+        head->temp = head->temp->next;
+        return head;
+    }
 }
 
 OrderSystem *addDummyRecords(OrderSystem *head)
 {
-		head = createOrder(head, 0, "Math", 0);
-		createOrder(head, 1, "Science", 1000);
-		createOrder(head, 2, "Calculus", 1000);
-		createOrder(head, 3, "General Math", 600);
-		createOrder(head, 4, "History", 500);
-		createOrder(head, 5, "Programming", 600);
+    head = createOrder(head, 0, "Math", 0);
+    createOrder(head, 1, "Science", 1000);
+    createOrder(head, 2, "Calculus", 1000);
+    createOrder(head, 3, "General Math", 600);
+    createOrder(head, 4, "History", 500);
+    createOrder(head, 5, "Programming", 600);
 
-		return head;
-}
-
-
-int main()
-{
-
-
-	getch();
-	return 0;
+    return head;
 }
