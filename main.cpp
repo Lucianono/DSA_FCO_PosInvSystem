@@ -21,6 +21,19 @@ int main()
     OrderSys order;
 
 
+
+    //
+//    struct BooksOrdered{
+//        string a = "wao";
+//        int b = 12;
+//    };
+//
+//    BooksOrdered *arr = new BooksOrdered[2];
+//1
+    order.getOrder();
+    order.displayOrderRecords();
+    //
+
     cout << endl;
     cout << "Hello Dataists!" << endl;
 

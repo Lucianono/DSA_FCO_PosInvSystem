@@ -50,32 +50,74 @@
 
 using namespace std;
 
+//node for the BooksOrdered
+struct OrderSys::BooksOrdered
+{
+    int BookID;
+    int QtyOrdered;
+};
+
 //node for the Orders
-struct OrderSys::OrderSystem
+struct OrderSys::OrderByCash
 {
     int OrderID;
     string CustomerName;
-    string Books;
-    int Price;
+    BooksOrdered *BksQty;
+    int OrderCtr;
+    int UnitPrice = 200;
+    int AmountPrice;
+    double VAT = (AmountPrice *.12)+AmountPrice;
+    double Cash;
+    double Change;
 
-    OrderSystem *next;
+    OrderByCash *next;
 };
 
 //head declaration
-OrderSys::OrderSystem *head = NULL;
+OrderSys::OrderByCash *head = NULL;
+
+//OrderID ctr
+int OrderID = 0;
 
 //constructor
 OrderSys::OrderSys(){
 
 }
 
+bool OrderSys::getOrder(){
+    string custName;
+    int ctr=0;
+    bool isCustOrdering = true;
+    BooksOrdered *custBks = new BooksOrdered[20];
+
+    cin>>custName;
+    while(isCustOrdering){
+        int user_input;
+        cin>>user_input;
+        switch(user_input){
+        case 1:
+            cin>>custBks[ctr].BookID;
+            cin>>custBks[ctr].QtyOrdered;
+            ctr++;
+            break;
+        default:
+            isCustOrdering = false;
+            break;
+        }
+    }
+
+    createOrder(custName,custBks,ctr);
+}
+
 //add/create order
-OrderSys::OrderSystem* OrderSys::createOrder(OrderSys::OrderSystem *head, int OrderID, string CustomerName, int Price){
-    OrderSystem *orderPointer;
-    OrderSystem *newOrder = new OrderSystem;
-    newOrder->OrderID = OrderID;
+OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::BooksOrdered *CustBksOrder,int OrderCtr){
+    OrderByCash *orderPointer;
+    OrderByCash *newOrder = new OrderByCash;
+    newOrder->OrderID = OrderID++;
     newOrder->CustomerName = CustomerName;
-    newOrder->Price = Price;
+    newOrder->BksQty = CustBksOrder;
+    cout << newOrder->BksQty[0].BookID;
+    newOrder->OrderCtr = OrderCtr;
     newOrder->next = NULL;
     if (head == NULL){
         head = newOrder;
@@ -91,8 +133,8 @@ OrderSys::OrderSystem* OrderSys::createOrder(OrderSys::OrderSystem *head, int Or
 }
 
 //for displaying records
-void OrderSys::displayOrderRecords(OrderSys::OrderSystem *head){
-    OrderSystem *displayPointer;
+void OrderSys::displayOrderRecords(){
+    OrderByCash *displayPointer;
     displayPointer = head;
     cout << endl;
     cout << "\t\t\t User Records \t\t\n";
@@ -101,7 +143,11 @@ void OrderSys::displayOrderRecords(OrderSys::OrderSystem *head){
     {
         cout << "\tOrderID: " << displayPointer->OrderID << endl;
         cout << "\tCustomerName: " << displayPointer->CustomerName << endl;
-        cout << "\tPrice: " << displayPointer->Price << endl;
+        cout << "\Books Ordered: "<<endl;
+        for(int i = 0; i<displayPointer->OrderCtr; i++){
+            cout << displayPointer->BksQty[i].BookID << endl;
+            cout << displayPointer->BksQty[i].QtyOrdered << endl;
+        }
         displayPointer = displayPointer->next;
         cout << endl;
     }
@@ -127,14 +173,13 @@ void OrderSys::adminMenu(){
         switch (choice)
         {
         case 1:
-            displayOrderRecords(head);
+            displayOrderRecords();
             break;
         }
     }
 }
 
 //OrderSys::OrderSystem *addDummyRecords(OrderSys::OrderSystem *head);
-//OrderSys::OrderSystem *adminMenu(OrderSys::OrderSystem *head);
 
 
 

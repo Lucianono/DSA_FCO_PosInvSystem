@@ -5,17 +5,21 @@ using namespace std;
 
 class OrderSys
 {
+    private:
+
     protected:
 
 
     public:
-        struct OrderSystem;
+        struct OrderByCash;
+        struct BooksOrdered;
         OrderSys();
-        OrderSystem* createOrder(OrderSystem *head, int OrderID, string CustomerName, int Price);
-        void displayOrderRecords(OrderSystem *head);
+        OrderByCash* createOrder(string CustomerName, OrderSys::BooksOrdered *CustBksOrder,int OrderCtr);
+        void displayOrderRecords();
         void adminMenu();
+        bool getOrder();
 
-    private:
+
 
 
 };
