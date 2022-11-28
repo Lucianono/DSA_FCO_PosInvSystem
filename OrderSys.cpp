@@ -46,10 +46,12 @@
 
 #include <iostream>
 #include <conio.h>
+#include "OrderSys.h"
 
 using namespace std;
 
-struct OrderSystem
+//node for the Orders
+struct OrderSys::OrderSystem
 {
     int OrderID;
     string CustomerName;
@@ -57,54 +59,39 @@ struct OrderSystem
     int Price;
 
     OrderSystem *next;
-    OrderSystem *prev;
-    OrderSystem *temp;
 };
 
-OrderSystem *createOrder(OrderSystem *head, int OrderID, string CustomerName, int Price);
-void userRecords(OrderSystem *head);
-void editRecords(OrderSystem *head, int OrderID);
-OrderSystem *addDummyRecords(OrderSystem *head);
-OrderSystem *adminMenu(OrderSystem *head);
+//head declaration
+OrderSys::OrderSystem *head = NULL;
 
-OrderSystem *adminMenu(OrderSystem *head)
-{
-    bool menu_active = true;
-    while (menu_active)
-    {
-        int choice;
+//constructor
+OrderSys::OrderSys(){
 
-        cout << endl;
-        cout << "\t\t    -- Admin Menu -- \n";
-        cout << endl;
-        cout << "\t[1] Display Order Records\n";
-        cout << "\t[2] Edit Order Records\n";
-        cout << endl;
-        cout << "\tEnter Choice: ";
-        cin >> choice;
-        cout << endl;
-
-        switch (choice)
-        {
-        case 1:
-            userRecords(head);
-            break;
-        case 2:
-            int editID;
-            cout << endl;
-            cout << "\tEnter Desired OrderID to Edit: ";
-            cin >> editID;
-            cout << endl;
-            editRecords(head, editID);
-            break;
-        }
-    }
-
-    return head;
 }
 
-void userRecords(OrderSystem *head)
-{
+//add/create order
+OrderSys::OrderSystem* OrderSys::createOrder(OrderSys::OrderSystem *head, int OrderID, string CustomerName, int Price){
+    OrderSystem *orderPointer;
+    OrderSystem *newOrder = new OrderSystem;
+    newOrder->OrderID = OrderID;
+    newOrder->CustomerName = CustomerName;
+    newOrder->Price = Price;
+    newOrder->next = NULL;
+    if (head == NULL){
+        head = newOrder;
+    }else{
+        orderPointer = head;
+        while(orderPointer->next){
+            orderPointer = orderPointer->next;
+        }
+        orderPointer->next = newOrder;
+    }
+
+    return newOrder;
+}
+
+//for displaying records
+void OrderSys::displayOrderRecords(OrderSys::OrderSystem *head){
     OrderSystem *displayPointer;
     displayPointer = head;
     cout << endl;
@@ -118,74 +105,49 @@ void userRecords(OrderSystem *head)
         displayPointer = displayPointer->next;
         cout << endl;
     }
+}
 
-    int choice;
-    cout << endl;
-    cout << "\t\t  -- User Records Menu --\n";
-    cout << endl;
-    cout << "\t[1] Edit Records\n";
-    cout << "\t[2] Back\n";
-    cout << endl;
-    cout << "\tEnter Choice: ";
-    cin >> choice;
-    cout << endl;
-
-    switch (choice)
+//to display menu
+void OrderSys::adminMenu(){
+    bool menu_active = true;
+    while (menu_active)
     {
-    case 1:
-        int editID;
+        int choice;
+
         cout << endl;
-        cout << "\tEnter Desired OrderID to Edit: ";
-        cin >> editID;
+        cout << "\t\t    -- Admin Menu -- \n";
         cout << endl;
-        editRecords(head, editID);
-        break;
-    case 2:
-        break;
-    case 4:
-        break;
+        cout << "\t[1] Display Order Records\n";
+        cout << "\t[2] Add Order Records\n";
+        cout << endl;
+        cout << "\tEnter Choice: ";
+        cin >> choice;
+        cout << endl;
+
+        switch (choice)
+        {
+        case 1:
+            displayOrderRecords(head);
+            break;
+        }
     }
 }
 
-OrderSystem *createOrder(OrderSystem *head, int OrderID, string CustomerName, int Price)
-{
-    if (head == NULL)
-    {
-        OrderSystem *newUser;
-        newUser = new OrderSystem;
-        newUser->OrderID = OrderID;
-        newUser->CustomerName = CustomerName;
-        newUser->Price = Price;
-        newUser->next = NULL;
-        newUser->prev = NULL;
-        head = newUser;
-        head->temp = head;
+//OrderSys::OrderSystem *addDummyRecords(OrderSys::OrderSystem *head);
+//OrderSys::OrderSystem *adminMenu(OrderSys::OrderSystem *head);
 
-        return head;
-    }
-    else
-    {
-        OrderSystem *newUser;
-        newUser = new OrderSystem;
-        newUser->OrderID = OrderID;
-        newUser->CustomerName = CustomerName;
-        newUser->Price = Price;
-        newUser->next = NULL;
-        newUser->prev = head->temp;
-        head->temp->next = newUser;
-        head->temp = head->temp->next;
-        return head;
-    }
-}
 
-OrderSystem *addDummyRecords(OrderSystem *head)
-{
-    head = createOrder(head, 0, "Math", 0);
-    createOrder(head, 1, "Science", 1000);
-    createOrder(head, 2, "Calculus", 1000);
-    createOrder(head, 3, "General Math", 600);
-    createOrder(head, 4, "History", 500);
-    createOrder(head, 5, "Programming", 600);
 
-    return head;
-}
+
+
+//OrderSystem *addDummyRecords(OrderSystem *head)
+//{
+//    head = createOrder(head, 0, "Math", 0);
+//    createOrder(head, 1, "Science", 1000);
+//    createOrder(head, 2, "Calculus", 1000);
+//    createOrder(head, 3, "General Math", 600);
+//    createOrder(head, 4, "History", 500);
+//    createOrder(head, 5, "Programming", 600);
+//
+//    return head;
+//}
