@@ -66,9 +66,10 @@ struct OrderSys::OrderByCash
     int OrderCtr;
     int UnitPrice = 200;
     int AmountPrice;
-    double VAT = (AmountPrice *.12)+AmountPrice;
-    double Cash;
-    double Change;
+    float VAT ;
+    float TotalPrice;
+    float Cash;
+    float Change;
 
     OrderByCash *next;
 };
@@ -116,8 +117,17 @@ OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::Books
     newOrder->OrderID = OrderID++;
     newOrder->CustomerName = CustomerName;
     newOrder->BksQty = CustBksOrder;
-    cout << newOrder->BksQty[0].BookID;
     newOrder->OrderCtr = OrderCtr;
+    int TotalQty;
+    for(int i = 0; i<OrderCtr; i++){
+        TotalQty += newOrder->BksQty[i].QtyOrdered;
+    }
+    newOrder->AmountPrice = TotalQty * newOrder->UnitPrice;
+    newOrder->VAT = newOrder->AmountPrice * 0.12;
+    newOrder->TotalPrice = newOrder->VAT + newOrder->AmountPrice;
+
+    cout<<newOrder->TotalPrice;
+
     newOrder->next = NULL;
     if (head == NULL){
         head = newOrder;
