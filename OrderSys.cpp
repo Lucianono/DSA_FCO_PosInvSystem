@@ -87,6 +87,7 @@ struct OrderSys::OrderByCash
     int UnitPrice = 200;
     int AmountPrice;
     float VAT ;
+    float Discount;
     float TotalPrice;
     float Cash = 0;
     float Change = 0;
@@ -102,6 +103,7 @@ struct OrderSys::OrderByInstallment
     int UnitPrice = 200;
     int AmountPrice;
     float VAT ;
+    float Discount;
     float TotalPrice;
     float Installment_1 = 0;
     float Installment_1_change = 0;
@@ -152,7 +154,14 @@ bool OrderSys::getOrder(){
         }
     }
 
-    totaldue = (totalOrder * 200) * 1.12;
+    //condition if total is discounted
+    if(totalOrder >= 3){
+        cout<<"Discounted!"<<endl;
+        totaldue = (totalOrder * 200) * 1.07;
+    }
+    else{
+        totaldue = (totalOrder * 200) * 1.12;
+    }
     cout<<"Total due"<<totaldue<<endl;
 
     cout<<"Cash or Installment"<<endl;
@@ -204,11 +213,12 @@ OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::Books
     }
     newOrder->AmountPrice = TotalQty * newOrder->UnitPrice;
     newOrder->VAT = newOrder->AmountPrice * 0.12;
-    newOrder->TotalPrice = newOrder->VAT + newOrder->AmountPrice;
+    newOrder->Discount = newOrder->AmountPrice * 0.05;
+    newOrder->TotalPrice = (newOrder->AmountPrice + newOrder->VAT) - newOrder->Discount;
     newOrder->Cash = CustCash;
     newOrder->Change = newOrder->Cash - newOrder->TotalPrice;
 
-
+    cout<<newOrder->TotalPrice;
 
     newOrder->next = NULL;
     if (head == NULL){
@@ -236,7 +246,8 @@ OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerNa
     }
     newOrder->AmountPrice = TotalQty * newOrder->UnitPrice;
     newOrder->VAT = newOrder->AmountPrice * 0.12;
-    newOrder->TotalPrice = newOrder->VAT + newOrder->AmountPrice;
+    newOrder->Discount = newOrder->AmountPrice * 0.05;
+    newOrder->TotalPrice = (newOrder->AmountPrice + newOrder->VAT) - newOrder->Discount;
     newOrder->Installment_1 = CustInstall_1;
     newOrder->Installment_1_change = newOrder->Installment_1 - (newOrder->TotalPrice*.6);
     newOrder->RemainingBal = newOrder->TotalPrice - (newOrder->TotalPrice*.6);
@@ -259,6 +270,7 @@ OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerNa
 
 //for displaying records
 void OrderSys::displayOrderRecords(){
+    //display all Order By Cash
     OrderByCash *displayPointer;
     displayPointer = head;
     cout << endl;
@@ -268,12 +280,50 @@ void OrderSys::displayOrderRecords(){
     {
         cout << "\tOrderID: " << displayPointer->OrderID << endl;
         cout << "\tCustomerName: " << displayPointer->CustomerName << endl;
-        cout << "\Books Ordered: "<<endl;
+        cout << "\tBooks Ordered: "<<endl;
         for(int i = 0; i<displayPointer->OrderCtr; i++){
             cout << displayPointer->BksQty[i].BookID << endl;
             cout << displayPointer->BksQty[i].QtyOrdered << endl;
         }
+        cout << "\tUnitPrice: " << displayPointer->UnitPrice << endl;
+        cout << "\tAmountPrice: " << displayPointer->AmountPrice << endl;
+        cout << "\tVAT: " << displayPointer->VAT << endl;
+        cout << "\tDiscount: " << displayPointer->Discount << endl;
+        cout << "\tTotalPrice: " << displayPointer->TotalPrice << endl;
+        cout << "\tCash: " << displayPointer->Cash << endl;
+        cout << "\tChange: " << displayPointer->Change << endl;
+
+
         displayPointer = displayPointer->next;
+        cout << endl;
+    }
+
+    //display all Order By Installment
+    OrderByInstallment *displayPointer_2;
+    displayPointer_2 = head_2;
+    cout << endl;
+    cout << "\t\t\t User Records \t\t\n";
+    cout << endl;
+    while (displayPointer_2)
+    {
+        cout << "\tOrderID: " << displayPointer_2->OrderID << endl;
+        cout << "\tCustomerName: " << displayPointer_2->CustomerName << endl;
+        cout << "\Books Ordered: "<<endl;
+        for(int i = 0; i<displayPointer_2->OrderCtr; i++){
+            cout << displayPointer_2->BksQty[i].BookID << endl;
+            cout << displayPointer_2->BksQty[i].QtyOrdered << endl;
+        }
+        cout << "\tUnitPrice: " << displayPointer_2->UnitPrice << endl;
+        cout << "\tAmountPrice: " << displayPointer_2->AmountPrice << endl;
+        cout << "\tVAT: " << displayPointer_2->VAT << endl;
+        cout << "\tDiscount: " << displayPointer_2->Discount << endl;
+        cout << "\tTotalPrice: " << displayPointer_2->TotalPrice << endl;
+        cout << "\t1stInstallment: " << displayPointer_2->Installment_1 << endl;
+        cout << "\t1stInstallment Change: " << displayPointer_2->Installment_1_change << endl;
+        cout << "\tRemainingBal: " << displayPointer_2->RemainingBal << endl;
+        cout << "\t2nd Installment: " << displayPointer_2->Installment_2 << endl;
+        cout << "\t2nd Installment Change: " << displayPointer_2->Installment_2_change << endl;
+        displayPointer_2 = displayPointer_2->next;
         cout << endl;
     }
 }
@@ -304,20 +354,4 @@ void OrderSys::adminMenu(){
     }
 }
 
-//OrderSys::OrderSystem *addDummyRecords(OrderSys::OrderSystem *head);
 
-
-
-
-
-//OrderSystem *addDummyRecords(OrderSystem *head)
-//{
-//    head = createOrder(head, 0, "Math", 0);
-//    createOrder(head, 1, "Science", 1000);
-//    createOrder(head, 2, "Calculus", 1000);
-//    createOrder(head, 3, "General Math", 600);
-//    createOrder(head, 4, "History", 500);
-//    createOrder(head, 5, "Programming", 600);
-//
-//    return head;
-//}
