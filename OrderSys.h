@@ -12,9 +12,11 @@ class OrderSys
 
     public:
         struct OrderByCash;
+        struct OrderByInstallment;
         struct BooksOrdered;
         OrderSys();
-        OrderByCash* createOrder(string CustomerName, OrderSys::BooksOrdered *CustBksOrder,int OrderCtr);
+        OrderByCash* createOrder(string CustomerName, OrderSys::BooksOrdered *CustBksOrder,int OrderCtr,float CustCash);
+        OrderByInstallment* createOrderInstallment(string CustomerName, OrderSys::BooksOrdered *CustBksOrder,int OrderCtr,float CustInstall_1);
         void displayOrderRecords();
         void adminMenu();
         bool getOrder();

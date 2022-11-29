@@ -46,9 +46,29 @@
 
 #include <iostream>
 #include <conio.h>
+#include <limits>
 #include "OrderSys.h"
 
 using namespace std;
+
+//if input wrong this happens
+int intHandlerInput(string displayHint,int inputData){
+    while (cout << displayHint && !(cin >> inputData )) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "   -Invalid Input. Please try again.- \n";
+        }
+    return inputData;
+}
+int intHandlerInput(string displayHint,int inputData , int a, int b){
+    while (cout << displayHint && !(cin >> inputData) || (inputData>a || inputData<b)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "   -Invalid Input. Please try again.- \n";
+        }
+    return inputData;
+}
+
 
 //node for the BooksOrdered
 struct OrderSys::BooksOrdered
@@ -68,14 +88,34 @@ struct OrderSys::OrderByCash
     int AmountPrice;
     float VAT ;
     float TotalPrice;
-    float Cash;
-    float Change;
+    float Cash = 0;
+    float Change = 0;
 
     OrderByCash *next;
+};
+struct OrderSys::OrderByInstallment
+{
+    int OrderID;
+    string CustomerName;
+    BooksOrdered *BksQty;
+    int OrderCtr;
+    int UnitPrice = 200;
+    int AmountPrice;
+    float VAT ;
+    float TotalPrice;
+    float Installment_1 = 0;
+    float Installment_1_change = 0;
+    float RemainingBal = 0;
+    float Installment_2 = 0;
+    float Installment_2_change = 0;
+
+
+    OrderByInstallment *next;
 };
 
 //head declaration
 OrderSys::OrderByCash *head = NULL;
+OrderSys::OrderByInstallment *head_2 = NULL;
 
 //OrderID ctr
 int OrderID = 0;
@@ -87,52 +127,127 @@ OrderSys::OrderSys(){
 
 bool OrderSys::getOrder(){
     string custName;
-    int ctr=0;
+    int ctr=0,totalOrder=0 ;
+    float totaldue;
     bool isCustOrdering = true;
+    int user_input;
     BooksOrdered *custBks = new BooksOrdered[20];
 
+    cout<<"Customer Name";
     cin>>custName;
     while(isCustOrdering){
-        int user_input;
-        cin>>user_input;
+        user_input=0;
+        user_input = intHandlerInput("Enter Choice [1-2]",user_input,2,1);
         switch(user_input){
         case 1:
-            cin>>custBks[ctr].BookID;
-            cin>>custBks[ctr].QtyOrdered;
+            custBks[ctr].BookID = intHandlerInput("Enter Id",custBks[ctr].BookID);
+            custBks[ctr].QtyOrdered = intHandlerInput("Enter Quantity",custBks[ctr].QtyOrdered);
+            //TBA reject if quantity is not enough
+            totalOrder += custBks[ctr].QtyOrdered;
             ctr++;
             break;
-        default:
+        case 2:
             isCustOrdering = false;
             break;
         }
     }
 
-    createOrder(custName,custBks,ctr);
-}
+    totaldue = (totalOrder * 200) * 1.12;
+    cout<<"Total due"<<totaldue<<endl;
 
+    cout<<"Cash or Installment"<<endl;
+    user_input = intHandlerInput("Enter Choice [1-2]",user_input,2,1);
+    switch(user_input){
+    case 1:{
+        float custCash;
+        custCash = intHandlerInput("Enter Cash", custCash);
+        if (custCash >= totaldue){
+            createOrder(custName,custBks,ctr,custCash);
+            return true;
+        }else{
+            cout<<"Insufficient Amount"<<endl;
+            return false;
+        }
+        break;
+    }
+    case 2:{
+        cout<<"1st Installment : "<<totaldue * .6<<endl;
+        float custInstall;
+        custInstall = intHandlerInput("Enter Cash", custInstall);
+        if (custInstall >= totaldue * .6){
+            createOrderInstallment(custName,custBks,ctr,custInstall);
+            return true;
+        }else{
+            cout<<"Insufficient Amount"<<endl;
+            return false;
+        }
+        break;
+    }
+    }
+
+
+
+
+
+}
 //add/create order
-OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::BooksOrdered *CustBksOrder,int OrderCtr){
+OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::BooksOrdered *CustBksOrder,int OrderCtr, float CustCash){
     OrderByCash *orderPointer;
     OrderByCash *newOrder = new OrderByCash;
     newOrder->OrderID = OrderID++;
     newOrder->CustomerName = CustomerName;
     newOrder->BksQty = CustBksOrder;
     newOrder->OrderCtr = OrderCtr;
-    int TotalQty;
+    int TotalQty=0;
     for(int i = 0; i<OrderCtr; i++){
         TotalQty += newOrder->BksQty[i].QtyOrdered;
     }
     newOrder->AmountPrice = TotalQty * newOrder->UnitPrice;
     newOrder->VAT = newOrder->AmountPrice * 0.12;
     newOrder->TotalPrice = newOrder->VAT + newOrder->AmountPrice;
+    newOrder->Cash = CustCash;
+    newOrder->Change = newOrder->Cash - newOrder->TotalPrice;
 
-    cout<<newOrder->TotalPrice;
+
 
     newOrder->next = NULL;
     if (head == NULL){
         head = newOrder;
     }else{
         orderPointer = head;
+        while(orderPointer->next){
+            orderPointer = orderPointer->next;
+        }
+        orderPointer->next = newOrder;
+    }
+
+    return newOrder;
+}
+OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerName,OrderSys::BooksOrdered *CustBksOrder,int OrderCtr, float CustInstall_1){
+    OrderByInstallment *orderPointer;
+    OrderByInstallment *newOrder = new OrderByInstallment;
+    newOrder->OrderID = OrderID++;
+    newOrder->CustomerName = CustomerName;
+    newOrder->BksQty = CustBksOrder;
+    newOrder->OrderCtr = OrderCtr;
+    int TotalQty=0;
+    for(int i = 0; i<OrderCtr; i++){
+        TotalQty += newOrder->BksQty[i].QtyOrdered;
+    }
+    newOrder->AmountPrice = TotalQty * newOrder->UnitPrice;
+    newOrder->VAT = newOrder->AmountPrice * 0.12;
+    newOrder->TotalPrice = newOrder->VAT + newOrder->AmountPrice;
+    newOrder->Installment_1 = CustInstall_1;
+    newOrder->Installment_1_change = newOrder->Installment_1 - (newOrder->TotalPrice*.6);
+    newOrder->RemainingBal = newOrder->TotalPrice - (newOrder->TotalPrice*.6);
+
+    cout<<newOrder->Installment_1_change;
+
+    newOrder->next = NULL;
+    if (head_2 == NULL){
+        head_2 = newOrder;
+    }else{
+        orderPointer = head_2;
         while(orderPointer->next){
             orderPointer = orderPointer->next;
         }
