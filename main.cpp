@@ -23,14 +23,9 @@ int main()
 
 
     //
-//    struct BooksOrdered{
-//        string a = "wao";
-//        int b = 12;
-//    };
-//
-//    BooksOrdered *arr = new BooksOrdered[2];
-//1
     order.getOrder();
+    order.displayOrdersWithRemainingBal();
+    order.payRemainingBal();
     order.displayOrderRecords();
     //
 

@@ -1,48 +1,18 @@
 
 
 //this file is for POS or (Order/Sale) System
-//create a blank database for the orders using linked list
-//should have the following attributes: OrderID, CustomerName, [BooksOrdered, QtyOrder] , UnitPrice, AmountPrice, VAT,
-// ->>if the customer will pay by cash, add these attribute : Cash, Change
-// ->>if the customer will pay by installment, add these attribute : 1stInstallment, 1stChange, 2ndInstallment, 2ndChange
-//create your own OrderID format
-//OrderId should be automated, every order should increment ID by 1, example Ord-01 -> Ord-02 -> Ord-03 ->...
-//customer's first middle last name is NOT necessary, only the provided name, example Bryan Calulo, REYSAN, Luciano123, etc.
-//customer CAN order 1 or more books
+
 //BooksOrdered should linked to BookID in Book System
-//BooksOrdered should be in 2D array together with the QtyOrder
-//UnitPrice is 200.00
-//AmountPrice is UnitPrice*TotalQtyOrder
-//VAT is 12% of AmountPrice
-//DiscountPrice is 5% of AmountPrice IF TotalQtyOrder is >= 3 ELSE 0
-//TotalSales is AmountPrice + VAT - DiscountPrice
-//Cash will be given by an imaginary customer
-//Cash should decline IF Cash < TotalSales
-//Change = Cash - TotalSales
-//1stInstallment should be 60% of TotalSales ELSE decline
-//2ndInstallment should be the the remaining balance ELSE decline
 //assigned to : Vince Hernandez, Andrei Pascual
 
 
 //create a CRUD system for the Order Database
-//should create an Order Entry every transaction
-//Customer paying with cash should differ from customer paying with installment
-//ask if the customer will pay in cash or installment
+
 //order should not complete IF QtyOrder > Quantity in Book System
 //every order should decrement the Book quantity
 //create function to display the customer with remaining balance
-//create function to display the entire Order Database
-//create function to read or access every attributes given
+//create function to read or access every necessary attributes given
 
-//ADDITIONAL COMMENTS
-//main function SHOULD NOT BE HERE
-//Syntax Structure is wrong(try building this project, it produces an errors)
-//make use of classes of SEPERATE FILES refer on sololearn
-//editRecords is not necessary
-//Linked list is correct but needs improvement
-//UI is not necessary
-//Attributes is incomplete
-//COMMENTING IS NECESSARY for others to read
 
 #include <iostream>
 #include <conio.h>
@@ -127,31 +97,30 @@ OrderSys::OrderSys(){
 
 }
 
+// getting orders
 bool OrderSys::getOrder(){
     string custName;
     int ctr=0,totalOrder=0 ;
     float totaldue;
-    bool isCustOrdering = true;
-    int user_input;
+    int user_input = 1;
     BooksOrdered *custBks = new BooksOrdered[20];
 
-    cout<<"Customer Name";
+    cout<<"Customer Name : ";
     cin>>custName;
-    while(isCustOrdering){
-        user_input=0;
-        user_input = intHandlerInput("Enter Choice [1-2]",user_input,2,1);
+    while(user_input == 1){
         switch(user_input){
         case 1:
-            custBks[ctr].BookID = intHandlerInput("Enter Id",custBks[ctr].BookID);
-            custBks[ctr].QtyOrdered = intHandlerInput("Enter Quantity",custBks[ctr].QtyOrdered);
+            custBks[ctr].BookID = intHandlerInput("Enter Book Id : ",custBks[ctr].BookID);
+            custBks[ctr].QtyOrdered = intHandlerInput("Enter Quantity : ",custBks[ctr].QtyOrdered);
             //TBA reject if quantity is not enough
             totalOrder += custBks[ctr].QtyOrdered;
             ctr++;
             break;
         case 2:
-            isCustOrdering = false;
+
             break;
         }
+        user_input = intHandlerInput("[1] Order more [2] Not anymore",user_input,2,1);
     }
 
     //condition if total is discounted
@@ -164,12 +133,11 @@ bool OrderSys::getOrder(){
     }
     cout<<"Total due"<<totaldue<<endl;
 
-    cout<<"Cash or Installment"<<endl;
-    user_input = intHandlerInput("Enter Choice [1-2]",user_input,2,1);
+    user_input = intHandlerInput("[1]Cash or [2]Installment",user_input,2,1);
     switch(user_input){
     case 1:{
         float custCash;
-        custCash = intHandlerInput("Enter Cash", custCash);
+        custCash = intHandlerInput("Enter Cash ", custCash);
         if (custCash >= totaldue){
             createOrder(custName,custBks,ctr,custCash);
             return true;
@@ -199,6 +167,7 @@ bool OrderSys::getOrder(){
 
 
 }
+
 //add/create order
 OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::BooksOrdered *CustBksOrder,int OrderCtr, float CustCash){
     OrderByCash *orderPointer;
@@ -218,7 +187,6 @@ OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::Books
     newOrder->Cash = CustCash;
     newOrder->Change = newOrder->Cash - newOrder->TotalPrice;
 
-    cout<<newOrder->TotalPrice;
 
     newOrder->next = NULL;
     if (head == NULL){
@@ -252,7 +220,6 @@ OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerNa
     newOrder->Installment_1_change = newOrder->Installment_1 - (newOrder->TotalPrice*.6);
     newOrder->RemainingBal = newOrder->TotalPrice - (newOrder->TotalPrice*.6);
 
-    cout<<newOrder->Installment_1_change;
 
     newOrder->next = NULL;
     if (head_2 == NULL){
@@ -266,6 +233,36 @@ OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerNa
     }
 
     return newOrder;
+}
+
+//pay remaining balance
+void OrderSys::payRemainingBal(){
+    int user_input;
+    user_input = intHandlerInput("Enter ID : ",user_input,OrderID-1,0);
+
+
+    OrderByInstallment *orderPointer = head_2;
+    while (orderPointer)
+    {
+        if(orderPointer->OrderID == user_input){
+            cout << "\tOrderID: " << orderPointer->OrderID << endl;
+            cout << "\tCustomerName: " << orderPointer->CustomerName << endl;
+            cout << "\tRemainingBal: " << orderPointer->RemainingBal << endl;
+            int CustCash;
+            CustCash = intHandlerInput("Enter Cash ", CustCash);
+            if(CustCash >= orderPointer->RemainingBal){
+                orderPointer->Installment_2 = CustCash;
+                orderPointer->Installment_2_change = orderPointer->Installment_2 - orderPointer->RemainingBal;
+                orderPointer->RemainingBal = 0;
+            }else{
+                cout<<"Insufficient Amount"<<endl;
+            }
+            break;
+        }
+        orderPointer = orderPointer->next;
+        cout << endl;
+    }
+
 }
 
 //for displaying records
@@ -282,8 +279,8 @@ void OrderSys::displayOrderRecords(){
         cout << "\tCustomerName: " << displayPointer->CustomerName << endl;
         cout << "\tBooks Ordered: "<<endl;
         for(int i = 0; i<displayPointer->OrderCtr; i++){
-            cout << displayPointer->BksQty[i].BookID << endl;
-            cout << displayPointer->BksQty[i].QtyOrdered << endl;
+            cout <<"\t"<<displayPointer->BksQty[i].BookID << endl;
+            cout <<"\t"<< displayPointer->BksQty[i].QtyOrdered << endl;
         }
         cout << "\tUnitPrice: " << displayPointer->UnitPrice << endl;
         cout << "\tAmountPrice: " << displayPointer->AmountPrice << endl;
@@ -323,6 +320,25 @@ void OrderSys::displayOrderRecords(){
         cout << "\tRemainingBal: " << displayPointer_2->RemainingBal << endl;
         cout << "\t2nd Installment: " << displayPointer_2->Installment_2 << endl;
         cout << "\t2nd Installment Change: " << displayPointer_2->Installment_2_change << endl;
+        displayPointer_2 = displayPointer_2->next;
+        cout << endl;
+    }
+}
+
+//for displaying Orders With Remaining Balance
+void OrderSys::displayOrdersWithRemainingBal(){
+    OrderByInstallment *displayPointer_2;
+    displayPointer_2 = head_2;
+    cout << endl;
+    cout << "\t\t\t User Records \t\t\n";
+    cout << endl;
+    while (displayPointer_2)
+    {
+        if(displayPointer_2->RemainingBal != 0){
+            cout << "\tOrderID: " << displayPointer_2->OrderID << endl;
+            cout << "\tCustomerName: " << displayPointer_2->CustomerName << endl;
+            cout << "\tRemainingBal: " << displayPointer_2->RemainingBal << endl;
+        }
         displayPointer_2 = displayPointer_2->next;
         cout << endl;
     }
