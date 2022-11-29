@@ -14,6 +14,7 @@ class SecuritySys
         string Cuser, Cpass;
         string Luser, Lpass;
         string Muser, Mpass;
+        int i = 3; // tries
         int attempt = 0;
         int Choice;
     public:
