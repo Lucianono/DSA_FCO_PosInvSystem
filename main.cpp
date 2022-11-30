@@ -21,6 +21,14 @@ int main()
     OrderSys order;
 
 
+
+    //
+    order.getOrder();
+    order.displayOrdersWithRemainingBal();
+    order.payRemainingBal();
+    order.displayOrderRecords();
+    //
+
     cout << endl;
     cout << "Hello Dataists!" << endl;
 
