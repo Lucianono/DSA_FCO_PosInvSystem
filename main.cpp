@@ -4,7 +4,7 @@
 #include "BookSys.h"
 #include "SecuritySys.h"
 #include "OrderSys.h"
-
+#include "Book.h"
 
 using namespace std;
 
@@ -20,18 +20,12 @@ int main()
     SecuritySys security;
     OrderSys order;
 
-
-
-    //
-    order.getOrder();
-    order.displayOrdersWithRemainingBal();
-    order.payRemainingBal();
-    order.displayOrderRecords();
-    //
-
     cout << endl;
     cout << "Hello Dataists!" << endl;
 
+
+
+    book.printAllBooks();
 
     return 0;
 }
