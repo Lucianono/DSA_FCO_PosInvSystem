@@ -4,7 +4,6 @@
 #include <unistd.h>
 
 #include "UIDesign.h"
-
 using namespace std;
 
 //this file is responsible for the designs or UI
@@ -225,7 +224,7 @@ void UIDesign::ViewBook()
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
 
     //variable declarations
-    string bTitle[] = {"Harry Potter", "Lord of the Rings", "The Hobbit", "Hunger Games"};
+    /*string bTitle[] = {"Harry Potter", "Lord of the Rings", "The Hobbit", "Hunger Games"};
     string bAuthor[] = {"J.K. Rowling", "J.R.R. Tolkien", "J.R.R. Tolkien", "Suzanne Collins"};
     string bPubDate[] = {"Jan 1, 2020", "Nov 20,2022", "Nov 14, 2022", "March 15, 2015"};
     string bPublisher[] = {"Bloomsbury", "Allen & Unwin", "Allen & Unwin", "Scholastic"};
@@ -249,7 +248,7 @@ void UIDesign::ViewBook()
     }
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
     system("pause");
-    MainMenu();
+    MainMenu();*/
 }
 
 void UIDesign::DeleteBook()
@@ -270,7 +269,7 @@ void UIDesign::DeleteBook()
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
 
     //variable declarations
-    string bTitle[] = {"Harry Potter", "Lord of the Rings", "The Hobbit", "Hunger Games"};
+    /*string bTitle[] = {"Harry Potter", "Lord of the Rings", "The Hobbit", "Hunger Games"};
     string bAuthor[] = {"J.K. Rowling", "J.R.R. Tolkien", "J.R.R. Tolkien", "Suzanne Collins"};
     string bPubDate[] = {"Jan 1, 2020", "Nov 20,2022", "Nov 14, 2022", "March 15, 2015"};
     string bPublisher[] = {"Bloomsbury", "Allen & Unwin", "Allen & Unwin", "Scholastic"};
@@ -296,11 +295,11 @@ void UIDesign::DeleteBook()
 
     cout << "\nEnter ID of book to be deleted: ";
     cin >> bookID;
-    MainMenu();
+    MainMenu();*/
 }
 
 
-SearchByTitle(string searchTxt)
+/*SearchByTitle(string searchTxt)
 {
     cout << "Enter search by TITLE code here" << endl << endl;
     system("pause");
@@ -323,7 +322,7 @@ SearchByPublisher(string searchTxt)
     cout << "Enter search by PUBLISHER code here" << endl << endl;
     system("pause");
     MainMenu();
-}
+}*/
 void UIDesign::SearchBook()
 {
     system("CLS");
@@ -332,7 +331,7 @@ void UIDesign::SearchBook()
     PageTitle("Search Book");
 
     //variable declarations
-    string Opt;
+    /*string Opt;
     char searchTxt[255];
 
     SearchStart:
@@ -379,7 +378,21 @@ void UIDesign::SearchBook()
         cout << "Invalid option!";
         sleep(1);
         goto SearchStart;
-    }
+    }*/
+}
+
+void UIDesign::OrderBook()
+{
+    //variable declarations
+    string  h1 = "Book Title", h2 = "Quantity";
+    system("CLS");
+    TitleHeader();
+    setTxtColor(10);
+    PageTitle("Search Book");
+
+    cout << "+" << std::string(70-1, '-') << "+" << endl;
+    cout << "| " << h1 << setw((50 - 1) - h1.length()) << "|" << setw((20/2) + h2.length()/2) << h2 << setw((20/2) - h2.length()/2) << "|" << endl;
+    cout << "+" << std::string(70-1, '-') << "+" << endl;
 }
 
 
