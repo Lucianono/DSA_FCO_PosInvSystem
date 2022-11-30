@@ -24,6 +24,8 @@ int main()
     cout << endl;
     cout << "Hello Dataists!" << endl;
 
+    security.showHint();
+
     if(security.Login()){
         security.Modify();
     }
