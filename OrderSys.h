@@ -1,6 +1,8 @@
 #ifndef ORDERSYS_H
 #define ORDERSYS_H
 
+#include "BookSys.h"
+
 using namespace std;
 
 class OrderSys
@@ -19,9 +21,9 @@ class OrderSys
         OrderByCash* createOrder(string CustomerName, OrderSys::BooksOrdered *CustBksOrder,int OrderCtr,float CustCash);
         OrderByInstallment* createOrderInstallment(string CustomerName, OrderSys::BooksOrdered *CustBksOrder,int OrderCtr,float CustInstall_1);
         void payRemainingBal();
-        void displayOrderRecords();
+        void displayOrderRecords(BookSys bookSys);
         void displayOrdersWithRemainingBal();
-        void adminMenu();
+        void adminMenu(BookSys bookSys);
         void deleteOrder(int OrderID);
         void deleteOrderInstallment(int OrderId);
 

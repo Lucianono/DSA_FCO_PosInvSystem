@@ -18,6 +18,8 @@
 #include <conio.h>
 #include <limits>
 #include "OrderSys.h"
+#include "BookSys.h"
+#include "Book.h"
 
 using namespace std;
 
@@ -266,7 +268,7 @@ void OrderSys::payRemainingBal(){
 }
 
 //for displaying records
-void OrderSys::displayOrderRecords(){
+void OrderSys::displayOrderRecords(BookSys bookSys){
     //display all Order By Cash
     OrderByCash *displayPointer;
     displayPointer = head;
@@ -279,7 +281,9 @@ void OrderSys::displayOrderRecords(){
         cout << "\tCustomerName: " << displayPointer->CustomerName << endl;
         cout << "\tBooks Ordered: "<<endl;
         for(int i = 0; i<displayPointer->OrderCtr; i++){
+            Book *selectedBook = bookSys.getBook(displayPointer->BksQty[i].BookID);
             cout <<"\t"<<displayPointer->BksQty[i].BookID << endl;
+            cout << "\t" << selectedBook->getBookName() << endl;
             cout <<"\t"<< displayPointer->BksQty[i].QtyOrdered << endl;
         }
         cout << "\tUnitPrice: " << displayPointer->UnitPrice << endl;
@@ -307,7 +311,9 @@ void OrderSys::displayOrderRecords(){
         cout << "\tCustomerName: " << displayPointer_2->CustomerName << endl;
         cout << "\Books Ordered: "<<endl;
         for(int i = 0; i<displayPointer_2->OrderCtr; i++){
+            Book *selectedBook = bookSys.getBook(displayPointer_2->BksQty[i].BookID);
             cout << displayPointer_2->BksQty[i].BookID << endl;
+            cout << "\t" << selectedBook->getBookName() << endl;
             cout << displayPointer_2->BksQty[i].QtyOrdered << endl;
         }
         cout << "\tUnitPrice: " << displayPointer_2->UnitPrice << endl;
@@ -345,7 +351,7 @@ void OrderSys::displayOrdersWithRemainingBal(){
 }
 
 //to display menu
-void OrderSys::adminMenu(){
+void OrderSys::adminMenu(BookSys bookSys){
     bool menu_active = true;
     while (menu_active)
     {
@@ -364,7 +370,7 @@ void OrderSys::adminMenu(){
         switch (choice)
         {
         case 1:
-            displayOrderRecords();
+            displayOrderRecords(bookSys);
             break;
         }
     }
