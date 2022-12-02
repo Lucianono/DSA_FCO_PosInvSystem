@@ -22,6 +22,8 @@ class OrderSys
         void displayOrderRecords();
         void displayOrdersWithRemainingBal();
         void adminMenu();
+        void deleteOrder(int OrderID);
+        void deleteOrderInstallment(int OrderId);
 
 
 

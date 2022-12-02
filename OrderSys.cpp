@@ -370,4 +370,11 @@ void OrderSys::adminMenu(){
     }
 }
 
+void OrderSys::deleteOrder(int OrderID) {
+
+}
+
+void OrderSys::deleteOrder(int OrderID) {
+
+}
 
