@@ -12,6 +12,7 @@ class UIDesign
         void ViewBook();
         void DeleteBook();
         void SearchBook();
+        void OrderBook();
 
     protected:
 

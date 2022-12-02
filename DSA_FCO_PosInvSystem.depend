@@ -41,3 +41,38 @@
 
 1669691622 d:\personal\bryan\bulsu\dsa\dsa_fco_posinvsystem\securitysys.h
 
+1669959893 source:g:\bahay file\personal\bryan\dsa_fco_posinvsystem\aboutus.cpp
+	<iostream>
+	"AboutUs.h"
+
+1669959893 g:\bahay file\personal\bryan\dsa_fco_posinvsystem\aboutus.h
+
+1669959893 source:g:\bahay file\personal\bryan\dsa_fco_posinvsystem\booksys.cpp
+	<iostream>
+	"BookSys.h"
+
+1669959893 g:\bahay file\personal\bryan\dsa_fco_posinvsystem\booksys.h
+
+1669959976 source:g:\bahay file\personal\bryan\dsa_fco_posinvsystem\main.cpp
+	<iostream>
+	<windows.h>
+	"UIDesign.h"
+	"AboutUs.h"
+	"BookSys.h"
+	"SecuritySys.h"
+	"OrderSys.h"
+
+1669960065 g:\bahay file\personal\bryan\dsa_fco_posinvsystem\uidesign.h
+
+1669959893 g:\bahay file\personal\bryan\dsa_fco_posinvsystem\securitysys.h
+
+1669959893 g:\bahay file\personal\bryan\dsa_fco_posinvsystem\ordersys.h
+
+1669959893 source:g:\bahay file\personal\bryan\dsa_fco_posinvsystem\ordersys.cpp
+	<iostream>
+	"OrderSys.h"
+
+1669959893 source:g:\bahay file\personal\bryan\dsa_fco_posinvsystem\securitysys.cpp
+	<iostream>
+	"SecuritySys.h"
+
