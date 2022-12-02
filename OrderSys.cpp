@@ -371,10 +371,24 @@ void OrderSys::adminMenu(){
 }
 
 void OrderSys::deleteOrder(int OrderID) {
+    OrderByCash *orderIterator = head;
+    OrderByCash *previousOrder = NULL;
 
+    while (orderIterator) {
+        if (orderIterator->OrderID == OrderID) {
+            if (previousOrder) {
+                previousOrder->next = orderIterator->next;
+            } else {
+                head = orderIterator->next;
+            }
+            break;
+        }
+        previousOrder = orderIterator;
+        orderIterator = orderIterator->next;
+    }
 }
 
-void OrderSys::deleteOrder(int OrderID) {
+void OrderSys::deleteOrderInstallment(int OrderID) {
 
 }
 
