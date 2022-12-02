@@ -389,6 +389,20 @@ void OrderSys::deleteOrder(int OrderID) {
 }
 
 void OrderSys::deleteOrderInstallment(int OrderID) {
+    OrderByInstallment *orderIterator = head_2;
+    OrderByInstallment *previousOrder = NULL;
 
+    while (orderIterator) {
+        if (orderIterator->OrderID == OrderID) {
+            if (previousOrder) {
+                previousOrder->next = orderIterator->next;
+            } else {
+                head_2 = orderIterator->next;
+            }
+            break;
+        }
+        previousOrder = orderIterator;
+        orderIterator = orderIterator->next;
+    }
 }
 
