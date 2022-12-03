@@ -208,7 +208,6 @@ void UIDesign::ViewBook()
     }
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
     system("pause");
-    MainMenu();
 }
 //
 //void UIDesign::DeleteBook()

@@ -56,6 +56,7 @@ int main()
     //
 
     ui.ViewBook();
+    book.printAllBooks();
 
 
     //

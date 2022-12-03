@@ -1,6 +1,6 @@
 #ifndef BOOKSYS_H
 #define BOOKSYS_H
-
+#include "UIDesign.h"
 #include "Book.h"
 #include <string>
 #include <vector>
@@ -26,6 +26,7 @@ class BookSys
 
         BookSys();
     private:
+        UIDesign ui;
         std::vector<Book*> books;
 
 };
