@@ -54,15 +54,8 @@ int main()
 
 
     //
-    security.showHint();
 
-    if(security.Login()){
-        book.printAllBooks();
-        order.getOrder(book);
-        order.displayOrderRecords(book);
-        book.printStockStatus();
-        security.Modify();
-    }
+    ui.ViewBook();
 
 
     //

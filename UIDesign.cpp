@@ -78,183 +78,138 @@ UIDesign::UIDesign()
 
 }
 
-void UIDesign::Login()
+
+void UIDesign::MainMenu()
 {
-    TitleHeader();//
-    setTxtColor(2);//
-    PageTitle("Login");//
+    //variable declarations
+    MenuStart:
+    string opt;
 
-    string user="test";
-    string pass="testpass";
-    string tmp_user, tmp_pass;
-    int x=4;
 
-    attempt:
-    cout << "Username: ";
-    cin >> tmp_user;
-    cout << "Password: ";
-    cin >> tmp_pass;
+    system("CLS");
+    TitleHeader();
+    setTxtColor(11);
+    PageTitle("Main Menu");
+    string Menu[] = {"Add Books", "Search Books", "View Books", "Delete Book", "Exit"};
+    cout << "1. Add Books" << endl;
+    cout << "2. Search Books" << endl;
+    cout << "3. View Books" << endl;
+    cout << "4. Delete Books" << endl;
+    cout << "5. Print Receipt" << endl << endl;
+    cout << "0. Exit";
 
-    if(tmp_user == user)
+    cout << "\n\nEnter Option: ";
+    cin >> opt;
+
+    if(opt == "1")
     {
-        if(tmp_pass == pass) {
-            cout << "Login successful: " << user << endl;
-            sleep(2);//
-            MainMenu();
-        }
-        else {
-            x--;
-            if(x==0) {
-                cout << "Login failed!";
-                sleep(2);//
-                exit(0);
+        //BookFunc.AddBook();
+    }
+    else if(opt == "2")
+    {
+        //BookFunc.SearchBook();
+    }
+    else if(opt == "3")
+    {
+       // BookFunc.ViewBooks();
+    }
+    else if(opt == "4")
+    {
+        //BookFunc.DeleteBook();
+    }
+    else if(opt == "0")
+    {
+        for (int j = 0; j < 3; j++) {
+               cout << "\rLogging out, please wait   \rLogging out, please wait";
+               for (int i = 0; i < 3; i++) {
+                  cout << ".";
+                  sleep(1);
+               }
             }
-            else {
-                cout << "Login failed you have " << x << " left";
-                sleep(1);//
-                goto attempt;
-            }
-        }
+       // SecSysFunc.Login();
     }
     else
     {
-        cout << "User not found!" << endl;
-        sleep(1);//
-        goto attempt;
+        cout << "Invalid option!" << endl;
+        sleep(1);
+        goto MenuStart;
     }
 }
 
-//void UIDesign::MainMenu()
-//{
-//    //variable declarations
-//    MenuStart:
-//    string opt;
-//
-//
-//    system("CLS");
-//    TitleHeader();
-//    setTxtColor(11);
-//    PageTitle("Main Menu");
-//    string Menu[] = {"Add Books", "Search Books", "View Books", "Delete Book", "Exit"};
-//    cout << "1. Add Books" << endl;
-//    cout << "2. Search Books" << endl;
-//    cout << "3. View Books" << endl;
-//    cout << "4. Delete Books" << endl;
-//    cout << "5. Print Receipt" << endl << endl;
-//    cout << "0. Exit";
-//
-//    cout << "\n\nEnter Option: ";
-//    cin >> opt;
-//
-//    if(opt == "1")
-//    {
-//        //BookFunc.AddBook();
-//    }
-//    else if(opt == "2")
-//    {
-//        //BookFunc.SearchBook();
-//    }
-//    else if(opt == "3")
-//    {
-//       // BookFunc.ViewBooks();
-//    }
-//    else if(opt == "4")
-//    {
-//        //BookFunc.DeleteBook();
-//    }
-//    else if(opt == "0")
-//    {
-//        for (int j = 0; j < 3; j++) {
-//               cout << "\rLogging out, please wait   \rLogging out, please wait";
-//               for (int i = 0; i < 3; i++) {
-//                  cout << ".";
-//                  sleep(1);
-//               }
-//            }
-//       // SecSysFunc.Login();
-//    }
-//    else
-//    {
-//        cout << "Invalid option!" << endl;
-//        sleep(1);
-//        goto MenuStart;
-//    }
-//}
-//
-//void UIDesign::AddBook()
-//{
-//    TitleHeader();
-//    setTxtColor(8);
-//    PageTitle("Add Book");
-//
-//    //variable declarations
-//    char bookTitle[255], bookAuthor[255], bookPubDate[255], bookPublisher[255];
-//
-//    system("CLS");
-//
-//    cout << "Title: ";
-//    getchar();
-//    cin.getline(bookTitle,sizeof(bookTitle));
-//    cout << "Author: ";
-//    cin.getline(bookAuthor,sizeof(bookAuthor));
-//    cout << "Publication Date: ";
-//    cin.getline(bookPubDate,sizeof(bookPubDate));
-//    cout << "Publisher: ";
-//    cin.getline(bookPublisher,sizeof(bookPublisher));
-//
-//    //replace this code with function to add the book to database
-//    cout << "\n\nTitle: " << bookTitle
-//         << "\nAuthor: " << bookAuthor
-//         << "\nDate: " << bookPubDate
-//         << "\nPublisher: " << bookPublisher << endl << endl;
-//    system("pause");
-//    MainMenu();
-//}
-//
-//void UIDesign::ViewBook()
-//{
-//    //variable declarations
-//    string h0 = "ID", h1= "Title", h2 = "Author", h3 = "Date Published", h4 = "Publishing Company";
-//    int hc0 = h0.length(), hc1 = h1.length(), hc2 = h2.length(), hc3 = h3.length(), hc4 = h4.length();
-//
-//    system("CLS");
-//    TitleHeader();
-//    setTxtColor(8);
-//    PageTitle("Book List");
-//    cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
-//    cout << " " + h0 << setw(15 - hc0 - 1) << "|" << setw((50/2) + (hc1/2)) << h1 << setw((50/2) - (hc1/2)) << "|"
-//         << setw((40/2) + (hc2/2)) << h2 << setw((40/2) - (hc2/2)) << "|"
-//         << setw((20/2) + (hc3/2)) << h3 << setw((20/2) - (hc3/2)) << "|"
-//         << setw((30/2) + (hc4/2)) << h4 << setw((30/2) - (hc4/2)) << endl;
-//    cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
-//
-//    //variable declarations
-//    /*string bTitle[] = {"Harry Potter", "Lord of the Rings", "The Hobbit", "Hunger Games"};
-//    string bAuthor[] = {"J.K. Rowling", "J.R.R. Tolkien", "J.R.R. Tolkien", "Suzanne Collins"};
-//    string bPubDate[] = {"Jan 1, 2020", "Nov 20,2022", "Nov 14, 2022", "March 15, 2015"};
-//    string bPublisher[] = {"Bloomsbury", "Allen & Unwin", "Allen & Unwin", "Scholastic"};
-//    int bTitleSize = std::size(bTitle);
-//
-//    sort(bTitle, bTitle + bTitleSize, sortAsc);
-//
-//    for (int x=0; x<bTitleSize; x++)
-//    {
-//        int TitleStrSize = bTitle[x].length(),
-//            AuthorStrSize = bAuthor[x].length(),
-//            PubDateStrSize = bPubDate[x].length(),
-//            PublisherStrSize = bPublisher[x].length();
-//        long long n = x;
-//
-//        cout << " " << x << setw(15 - countDigit(n) - 1) << "|"
-//             << " " << bTitle[x] << setw(50 - TitleStrSize - 1) << "|"
-//             << " " << bAuthor[x] << setw(40 - AuthorStrSize - 1) << "|"
-//             << " " << bPubDate[x] << setw(20 - PubDateStrSize - 1) << "|"
-//             << " " << bPublisher[x] << endl;
-//    }
-//    cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
-//    system("pause");
-//    MainMenu();*/
-//}
+void UIDesign::AddBook()
+{
+    TitleHeader();
+    setTxtColor(8);
+    PageTitle("Add Book");
+
+    //variable declarations
+    char bookTitle[255], bookAuthor[255], bookPubDate[255], bookPublisher[255];
+
+    system("CLS");
+
+    cout << "Title: ";
+    getchar();
+    cin.getline(bookTitle,sizeof(bookTitle));
+    cout << "Author: ";
+    cin.getline(bookAuthor,sizeof(bookAuthor));
+    cout << "Publication Date: ";
+    cin.getline(bookPubDate,sizeof(bookPubDate));
+    cout << "Publisher: ";
+    cin.getline(bookPublisher,sizeof(bookPublisher));
+
+    //replace this code with function to add the book to database
+    cout << "\n\nTitle: " << bookTitle
+         << "\nAuthor: " << bookAuthor
+         << "\nDate: " << bookPubDate
+         << "\nPublisher: " << bookPublisher << endl << endl;
+    system("pause");
+    MainMenu();
+}
+
+void UIDesign::ViewBook()
+{
+    //variable declarations
+    string h0 = "ID", h1= "Title", h2 = "Book Year", h3 = "Quantity", h4 = "Publishing Company";
+    int hc0 = h0.length(), hc1 = h1.length(), hc2 = h2.length(), hc3 = h3.length(), hc4 = h4.length();
+
+    system("CLS");
+    TitleHeader();
+    setTxtColor(8);
+    PageTitle("Book List");
+    cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
+    cout << " " + h0 << setw(15 - hc0 - 1) << "|" << setw((50/2) + (hc1/2)) << h1 << setw((50/2) - (hc1/2)) << "|"
+         << setw((40/2) + (hc2/2)) << h2 << setw((40/2) - (hc2/2)) << "|"
+         << setw((20/2) + (hc3/2)) << h3 << setw((20/2) - (hc3/2)) << "|"
+         << setw((30/2) + (hc4/2)) << h4 << setw((30/2) - (hc4/2)) << endl;
+    cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
+
+    //variable declarations
+    string bTitle[] = {"Harry Potter", "Lord of the Rings", "The Hobbit", "Hunger Games"};
+    string bAuthor[] = {"J.K. Rowling", "J.R.R. Tolkien", "J.R.R. Tolkien", "Suzanne Collins"};
+    string bPubDate[] = {"Jan 1, 2020", "Nov 20,2022", "Nov 14, 2022", "March 15, 2015"};
+    string bPublisher[] = {"Bloomsbury", "Allen & Unwin", "Allen & Unwin", "Scholastic"};
+    int bTitleSize = sizeof(bTitle)/sizeof(bTitle[0]);
+
+    //sort(bTitle, bTitle + bTitleSize, sortAsc);
+
+    for (int x=0; x<bTitleSize; x++)
+    {
+        int TitleStrSize = bTitle[x].length(),
+            AuthorStrSize = bAuthor[x].length(),
+            PubDateStrSize = bPubDate[x].length(),
+            PublisherStrSize = bPublisher[x].length();
+        long long n = x;
+
+        cout << " " << x << setw(15 - countDigit(n) - 1) << "|"
+             << " " << bTitle[x] << setw(50 - TitleStrSize - 1) << "|"
+             << " " << bAuthor[x] << setw(40 - AuthorStrSize - 1) << "|"
+             << " " << bPubDate[x] << setw(20 - PubDateStrSize - 1) << "|"
+             << " " << bPublisher[x] << endl;
+    }
+    cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
+    system("pause");
+    MainMenu();
+}
 //
 //void UIDesign::DeleteBook()
 //{

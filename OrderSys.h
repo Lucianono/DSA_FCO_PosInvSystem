@@ -1,6 +1,7 @@
 #ifndef ORDERSYS_H
 #define ORDERSYS_H
 #include "IntHandler.h"
+#include "UIDesign.h"
 #include "BookSys.h"
 
 using namespace std;
@@ -28,6 +29,7 @@ class OrderSys
 
     private:
         IntHandler ih;
+        UIDesign ui;
         int OrderID = 0; //OrderID ctr
 
         //head declaration
