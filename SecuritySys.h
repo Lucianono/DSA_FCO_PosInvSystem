@@ -1,5 +1,6 @@
 #ifndef SECURITYSYS_H
 #define SECURITYSYS_H
+#include "IntHandler.h"
 #include <string>
 #include <iostream>
 #include <conio.h>
@@ -18,6 +19,7 @@ class SecuritySys
         int Choice;
     public:
         SecuritySys();
+        IntHandler ih;
         void showHint();
         bool Login();
         void Modify();

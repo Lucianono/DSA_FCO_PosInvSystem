@@ -21,20 +21,23 @@ int main()
     OrderSys order;
 
     //
-    book.printAllBooks();
-    order.getOrder(book);
-    order.displayOrderRecords(book);
-    book.printStockStatus();
+    security.showHint();
+
+    if(security.Login()){
+        book.printAllBooks();
+        order.getOrder(book);
+        order.displayOrderRecords(book);
+        book.printStockStatus();
+        security.Modify();
+    }
+
+
     //
 
     cout << endl;
     cout << "Hello Dataists!" << endl;
 
-    security.showHint();
 
-    if(security.Login()){
-        security.Modify();
-    }
 
 
 

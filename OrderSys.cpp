@@ -1,43 +1,12 @@
-
-
-//this file is for POS or (Order/Sale) System
-
-//BooksOrdered should linked to BookID in Book System
-//assigned to : Vince Hernandez, Andrei Pascual
-
-
-//create a CRUD system for the Order Database
-
-//order should not complete IF QtyOrder > Quantity in Book System
-//every order should decrement the Book quantity
-
-
-#include <iostream>
-#include <conio.h>
-#include <limits>
 #include "OrderSys.h"
 #include "BookSys.h"
 #include "Book.h"
+#include "IntHandler.h"
+#include <iostream>
+#include <conio.h>
+
 
 using namespace std;
-
-//if input wrong this happens
-int intHandlerInput(string displayHint,int inputData){
-    while (cout << displayHint && !(cin >> inputData )) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "   -Invalid Input. Please try again.- \n";
-        }
-    return inputData;
-}
-int intHandlerInput(string displayHint,int inputData , int a, int b){
-    while (cout << displayHint && !(cin >> inputData) || (inputData>a || inputData<b)) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "   -Invalid Input. Please try again.- \n";
-        }
-    return inputData;
-}
 
 
 //node for the BooksOrdered
@@ -85,12 +54,6 @@ struct OrderSys::OrderByInstallment
     OrderByInstallment *next;
 };
 
-//head declaration
-OrderSys::OrderByCash *head = NULL;
-OrderSys::OrderByInstallment *head_2 = NULL;
-
-//OrderID ctr
-int OrderID = 0;
 
 //constructor
 OrderSys::OrderSys(){
@@ -110,14 +73,14 @@ bool OrderSys::getOrder(BookSys booksys){
     while(user_input == 1){
         switch(user_input){
         case 1:
-            custBks[ctr].BookID = intHandlerInput("Enter Book Id : ",custBks[ctr].BookID);
+            custBks[ctr].BookID = ih.intHandlerInput("Enter Book Id : ",custBks[ctr].BookID);
             //check if book exists
             if(!booksys.getBook(custBks[ctr].BookID)){
                 cout<<"not foundsssss\n";
                 break;
             }
             //reject if quantity is not enough
-            custBks[ctr].QtyOrdered = intHandlerInput("Enter Quantity : ",custBks[ctr].QtyOrdered);
+            custBks[ctr].QtyOrdered = ih.intHandlerInput("Enter Quantity : ",custBks[ctr].QtyOrdered);
             if(!booksys.getBook(custBks[ctr].BookID)->getBookQuantity()>=custBks[ctr].QtyOrdered){
                 cout<<"stock is not enough";
                 break;
@@ -131,7 +94,7 @@ bool OrderSys::getOrder(BookSys booksys){
 
             break;
         }
-        user_input = intHandlerInput("[1] Order more [2] Not anymore",user_input,2,1);
+        user_input = ih.intHandlerInput("[1] Order more [2] Not anymore",user_input,2,1);
     }
 
     //condition if total is discounted
@@ -145,11 +108,11 @@ bool OrderSys::getOrder(BookSys booksys){
     cout<<"Total due"<<totaldue<<endl;
 
     //ask if pay by cash or installment
-    user_input = intHandlerInput("[1]Cash or [2]Installment",user_input,2,1);
+    user_input = ih.intHandlerInput("[1]Cash or [2]Installment",user_input,2,1);
     switch(user_input){
     case 1:{
         float custCash;
-        custCash = intHandlerInput("Enter Cash ", custCash);
+        custCash = ih.intHandlerInput("Enter Cash ", custCash);
         if (custCash >= totaldue){
             createOrder(custName,custBks,ctr,custCash);
             return true;
@@ -162,7 +125,7 @@ bool OrderSys::getOrder(BookSys booksys){
     case 2:{
         cout<<"1st Installment : "<<totaldue * .6<<endl;
         float custInstall;
-        custInstall = intHandlerInput("Enter Cash", custInstall);
+        custInstall = ih.intHandlerInput("Enter Cash", custInstall);
         if (custInstall >= totaldue * .6){
             createOrderInstallment(custName,custBks,ctr,custInstall);
             return true;
@@ -250,7 +213,7 @@ OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerNa
 //pay remaining balance
 void OrderSys::payRemainingBal(){
     int user_input;
-    user_input = intHandlerInput("Enter ID : ",user_input,OrderID-1,0);
+    user_input = ih.intHandlerInput("Enter ID : ",user_input,OrderID-1,0);
 
 
     OrderByInstallment *orderPointer = head_2;
@@ -261,7 +224,7 @@ void OrderSys::payRemainingBal(){
             cout << "\tCustomerName: " << orderPointer->CustomerName << endl;
             cout << "\tRemainingBal: " << orderPointer->RemainingBal << endl;
             int CustCash;
-            CustCash = intHandlerInput("Enter Cash ", CustCash);
+            CustCash = ih.intHandlerInput("Enter Cash ", CustCash);
             if(CustCash >= orderPointer->RemainingBal){
                 orderPointer->Installment_2 = CustCash;
                 orderPointer->Installment_2_change = orderPointer->Installment_2 - orderPointer->RemainingBal;

@@ -1,31 +1,10 @@
-#include <iostream>
 #include "SecuritySys.h"
+#include <iostream>
 #include <conio.h>
 #include <limits>
 
 using namespace std;
-//verify
-//if input wrong this happens
-int intHandlerInput(string displayHint,int inputData)
-{
-    while (cout << displayHint && !(cin >> inputData ))
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "   -Invalid Input. Please try again.- \n";
-        }
-    return inputData;
-}
-int intHandlerInput(string displayHint,int inputData , int a, int b)
-{
-    while (cout << displayHint && !(cin >> inputData) || (inputData>a || inputData<b))
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "\n -Invalid Input. Please try again.- \n";
-        }
-    return inputData;
-}
+
 
 
 //Constructor
@@ -116,7 +95,7 @@ void SecuritySys::Modify()
         cout << "\n[1]Change Username" << endl;
         cout << "[2]Change Password" << endl;
         cout << "[3]LOGOUT and LOGIN Again" << endl;
-        Choice = intHandlerInput("Enter Choice [1-3]: ", Choice, 3, 1);
+        Choice = ih.intHandlerInput("Enter Choice [1-3]: ", Choice, 3, 1);
 
         if (Choice == 1)
         {

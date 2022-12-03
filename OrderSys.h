@@ -1,13 +1,12 @@
 #ifndef ORDERSYS_H
 #define ORDERSYS_H
-
+#include "IntHandler.h"
 #include "BookSys.h"
 
 using namespace std;
 
 class OrderSys
 {
-    private:
 
     protected:
 
@@ -26,6 +25,16 @@ class OrderSys
         void adminMenu(BookSys bookSys);
         void deleteOrder(int OrderID);
         void deleteOrderInstallment(int OrderId);
+
+    private:
+        IntHandler ih;
+        int OrderID = 0; //OrderID ctr
+
+        //head declaration
+        OrderByCash *head = NULL;
+        OrderByInstallment *head_2 = NULL;
+
+
 
 
 
