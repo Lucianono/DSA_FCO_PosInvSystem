@@ -90,13 +90,9 @@ void BookSys::deleteBook(int bookId) {
 }
 
 void BookSys::printAllBooks() {
-    for (int i = 0; i < getAllBooks().size(); i++) {
-        Book *currentBook = getAllBooks().at(i);
-        std::cout << currentBook->getBookId() << " | " << currentBook->getBookName()<<std::endl;
-    }
 
     //variable declarations
-    std::string h0 = "ID", h1= "Title", h2 = "Book Year", h3 = "Quantity", h4 = "Publishing Company";
+    std::string h0 = "ID", h1= "Title", h2 = "Book Year", h3 = "Quantity", h4 = "Max Quantity";
     int hc0 = h0.length(), hc1 = h1.length(), hc2 = h2.length(), hc3 = h3.length(), hc4 = h4.length();
 
     system("CLS");
@@ -110,28 +106,24 @@ void BookSys::printAllBooks() {
          << setw((30/2) + (hc4/2)) << h4 << setw((30/2) - (hc4/2)) << endl;
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
 
-    //variable declarations
-    std::string bTitle[] = {"Harry Potter", "Lord of the Rings", "The Hobbit", "Hunger Games"};
-    std::string bAuthor[] = {"J.K. Rowling", "J.R.R. Tolkien", "J.R.R. Tolkien", "Suzanne Collins"};
-    std::string bPubDate[] = {"Jan 1, 2020", "Nov 20,2022", "Nov 14, 2022", "March 15, 2015"};
-    std::string bPublisher[] = {"Bloomsbury", "Allen & Unwin", "Allen & Unwin", "Scholastic"};
-    int bTitleSize = sizeof(bTitle)/sizeof(bTitle[0]);
 
-    //sort(bTitle, bTitle + bTitleSize, sortAsc);
-
-    for (int x=0; x<bTitleSize; x++)
+    for (int i = 0; i < getAllBooks().size(); i++)
     {
-        int TitleStrSize = bTitle[x].length(),
-            AuthorStrSize = bAuthor[x].length(),
-            PubDateStrSize = bPubDate[x].length(),
-            PublisherStrSize = bPublisher[x].length();
-        long long n = x;
+        Book *currentBook = getAllBooks().at(i);
 
-        cout << " " << x << setw(15 - ui.countDigit(n) - 1) << "|"
-             << " " << bTitle[x] << setw(50 - TitleStrSize - 1) << "|"
-             << " " << bAuthor[x] << setw(40 - AuthorStrSize - 1) << "|"
-             << " " << bPubDate[x] << setw(20 - PubDateStrSize - 1) << "|"
-             << " " << bPublisher[x] << endl;
+
+        int TitleStrSize = currentBook->getBookName().length(),
+            BookYrStrSize = currentBook->getBookYear().length();
+
+        long long BookIdIntSize = currentBook->getBookId(),
+                  BookQtyIntSize = currentBook->getBookQuantity();
+
+
+        cout << " " << currentBook->getBookId() << setw(15 - ui.countDigit(BookIdIntSize) - 1) << "|"
+             << " " << currentBook->getBookName() << setw(50 - TitleStrSize - 1) << "|"
+             << " " << currentBook->getBookYear() << setw(40 - BookYrStrSize - 1) << "|"
+             << " " << currentBook->getBookQuantity() << setw(20 - ui.countDigit(BookQtyIntSize) - 1) << "|"
+             << " " << currentBook->getMaxQuantity() << endl;
     }
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
     system("pause");
