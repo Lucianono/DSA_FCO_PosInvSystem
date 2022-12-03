@@ -4,6 +4,10 @@
 #include <unistd.h>
 
 #include "UIDesign.h"
+#include "BookSys.h"
+#include "SecuritySys.h"
+#include "OrderSys.h"
+
 using namespace std;
 
 //this file is responsible for the designs or UI
@@ -28,7 +32,7 @@ void TitleHeader()
 {
     string Title = "Book Store";
     system("CLS");
-    setTxtColor(9);
+    setTxtColor(48);
     cout << std::string(155,'=') << endl;
     cout << setw((155/2) + (Title.length()/2)) << Title << endl;
     cout << std::string(155,'=') << endl << endl;
@@ -77,7 +81,7 @@ UIDesign::UIDesign()
 void UIDesign::Login()
 {
     TitleHeader();
-    setTxtColor(10);
+    setTxtColor(2);
     PageTitle("Login");
 
     string user="test";
@@ -129,13 +133,14 @@ void UIDesign::MainMenu()
 
     system("CLS");
     TitleHeader();
-    setTxtColor(10);
+    setTxtColor(11);
     PageTitle("Main Menu");
     string Menu[] = {"Add Books", "Search Books", "View Books", "Delete Book", "Exit"};
     cout << "1. Add Books" << endl;
     cout << "2. Search Books" << endl;
     cout << "3. View Books" << endl;
-    cout << "4. Delete Books" << endl << endl;
+    cout << "4. Delete Books" << endl;
+    cout << "5. Print Receipt" << endl << endl;
     cout << "0. Exit";
 
     cout << "\n\nEnter Option: ";
@@ -160,7 +165,7 @@ void UIDesign::MainMenu()
     else if(opt == "0")
     {
         for (int j = 0; j < 3; j++) {
-               cout << "\rLoging out, please wait   \rLoging out, please wait";
+               cout << "\rLogging out, please wait   \rLogging out, please wait";
                for (int i = 0; i < 3; i++) {
                   cout << ".";
                   sleep(1);
@@ -179,7 +184,7 @@ void UIDesign::MainMenu()
 void UIDesign::AddBook()
 {
     TitleHeader();
-    setTxtColor(10);
+    setTxtColor(8);
     PageTitle("Add Book");
 
     //variable declarations
@@ -214,7 +219,7 @@ void UIDesign::ViewBook()
 
     system("CLS");
     TitleHeader();
-    setTxtColor(10);
+    setTxtColor(8);
     PageTitle("Book List");
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
     cout << " " + h0 << setw(15 - hc0 - 1) << "|" << setw((50/2) + (hc1/2)) << h1 << setw((50/2) - (hc1/2)) << "|"
@@ -259,7 +264,7 @@ void UIDesign::DeleteBook()
 
     system("CLS");
     TitleHeader();
-    setTxtColor(10);
+    setTxtColor(8);
     PageTitle("Delete Book");
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
     cout << " " + h0 << setw(15 - hc0 - 1) << "|" << setw((50/2) + (hc1/2)) << h1 << setw((50/2) - (hc1/2)) << "|"
@@ -327,7 +332,7 @@ void UIDesign::SearchBook()
 {
     system("CLS");
     TitleHeader();
-    setTxtColor(10);
+    setTxtColor(8);
     PageTitle("Search Book");
 
     //variable declarations
@@ -387,7 +392,7 @@ void UIDesign::OrderBook()
     string  h1 = "Book Title", h2 = "Quantity";
     system("CLS");
     TitleHeader();
-    setTxtColor(10);
+    setTxtColor(8);
     PageTitle("Search Book");
 
     cout << "+" << std::string(70-1, '-') << "+" << endl;
@@ -395,7 +400,35 @@ void UIDesign::OrderBook()
     cout << "+" << std::string(70-1, '-') << "+" << endl;
 }
 
+void UIDesign::PrintReceipt()
+{
 
+    getData(OrderID);
+    system("CLS");
+    TitleHeader();
+    setTxtColor(8);
+    PageTitle("Receipt");
+
+cout << "Enter Order ID: " << OrderID << endl;
+cin >> OrderID;
+
+if(OrderID == NULL) //Invalid receipt code
+	{
+		cout << "\t\t\tThere is no Order to show\n\t\t\tSo The List is Empty\n\n\n";
+	}
+	else
+	{
+		cout<<"\n";
+		cout<<"======================================================================="<<endl;
+		cout <<" \t\tHere is the Daily Summary of All Orders \n"; //print all receipt
+		cout<<"======================================================================="<<endl;
+
+		while(OrderId!=NULL)
+		{
+		      displayOrderRecords();
+		}
+	}
+}
 
 
 

@@ -13,7 +13,7 @@ class UIDesign
         void DeleteBook();
         void SearchBook();
         void OrderBook();
-
+        void PrintReceipt();
     protected:
 
     private:
