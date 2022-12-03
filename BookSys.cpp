@@ -42,14 +42,16 @@ void BookSys::addBook(std::string _bookName, std::string _bookYear) {
 }
 
 Book *BookSys::getBook(int bookId) {
-    Book *bookToReturn;
+    Book *bookToReturn = NULL;
     for (int i = 0; i < books.size(); i++) {
         Book *currentBook = books.at(i);
         if (currentBook->getBookId() == bookId) {
           bookToReturn = currentBook;
+          return bookToReturn;
           break;
         }
     }
+    std::cout<<"not found\n";
     return bookToReturn;
 }
 
@@ -91,7 +93,7 @@ void BookSys::deleteBook(int bookId) {
 void BookSys::printAllBooks() {
     for (int i = 0; i < getAllBooks().size(); i++) {
         Book *currentBook = getAllBooks().at(i);
-        std::cout << currentBook->getBookId() << " | " << currentBook->getBookName() << std::endl;
+        std::cout << currentBook->getBookId() << " | " << currentBook->getBookName() << " | " << currentBook->getBookQuantity()<<std::endl;
     }
 }
 

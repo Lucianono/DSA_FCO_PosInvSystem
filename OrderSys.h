@@ -16,7 +16,7 @@ class OrderSys
         struct OrderByCash;
         struct OrderByInstallment;
         struct BooksOrdered;
-        bool getOrder();
+        bool getOrder(BookSys booksys);
         OrderSys();
         OrderByCash* createOrder(string CustomerName, OrderSys::BooksOrdered *CustBksOrder,int OrderCtr,float CustCash);
         OrderByInstallment* createOrderInstallment(string CustomerName, OrderSys::BooksOrdered *CustBksOrder,int OrderCtr,float CustInstall_1);

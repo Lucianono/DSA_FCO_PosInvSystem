@@ -10,8 +10,6 @@
 
 //order should not complete IF QtyOrder > Quantity in Book System
 //every order should decrement the Book quantity
-//create function to display the customer with remaining balance
-//create function to read or access every necessary attributes given
 
 
 #include <iostream>
@@ -100,7 +98,7 @@ OrderSys::OrderSys(){
 }
 
 // getting orders
-bool OrderSys::getOrder(){
+bool OrderSys::getOrder(BookSys booksys){
     string custName;
     int ctr=0,totalOrder=0 ;
     float totaldue;
@@ -113,8 +111,20 @@ bool OrderSys::getOrder(){
         switch(user_input){
         case 1:
             custBks[ctr].BookID = intHandlerInput("Enter Book Id : ",custBks[ctr].BookID);
+            //check if book exists
+            if(!booksys.getBook(custBks[ctr].BookID)){
+                cout<<"not foundsssss\n";
+                break;
+            }
+
+            //reject if quantity is not enough
             custBks[ctr].QtyOrdered = intHandlerInput("Enter Quantity : ",custBks[ctr].QtyOrdered);
-            //TBA reject if quantity is not enough
+            if(!booksys.getBook(custBks[ctr].BookID)->getBookQuantity()>=custBks[ctr].QtyOrdered){
+                cout<<"stock is not enough";
+                break;
+            }
+
+            booksys.getBook(custBks[ctr].BookID)->setBookQuantity(booksys.getBook(custBks[ctr].BookID)->getBookQuantity() - custBks[ctr].QtyOrdered);
             totalOrder += custBks[ctr].QtyOrdered;
             ctr++;
             break;
@@ -135,6 +145,7 @@ bool OrderSys::getOrder(){
     }
     cout<<"Total due"<<totaldue<<endl;
 
+    //ask if pay by cash or installment
     user_input = intHandlerInput("[1]Cash or [2]Installment",user_input,2,1);
     switch(user_input){
     case 1:{

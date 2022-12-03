@@ -20,12 +20,19 @@ int main()
     SecuritySys security;
     OrderSys order;
 
+    //
+    book.printAllBooks();
+    order.getOrder(book);
+    order.displayOrderRecords(book);
+     book.printAllBooks();
+    //
+
     cout << endl;
     cout << "Hello Dataists!" << endl;
 
 
 
-    book.printAllBooks();
+
 
     return 0;
 }
