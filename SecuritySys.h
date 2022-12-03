@@ -10,8 +10,8 @@ using namespace std;
 class SecuritySys
 {
     private:
-        string Duser= "user1";
-        string Dpass= "pw123";
+        string Duser= "a";
+        string Dpass= "a";
         string Cuser, Cpass;
         string Luser, Lpass;
         string Muser, Mpass;

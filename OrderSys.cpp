@@ -81,7 +81,7 @@ bool OrderSys::getOrder(BookSys booksys){
             }
             //reject if quantity is not enough
             custBks[ctr].QtyOrdered = ih.intHandlerInput("Enter Quantity : ",custBks[ctr].QtyOrdered);
-            if(!booksys.getBook(custBks[ctr].BookID)->getBookQuantity()>=custBks[ctr].QtyOrdered){
+            if(!(booksys.getBook(custBks[ctr].BookID)->getBookQuantity()>=custBks[ctr].QtyOrdered)){
                 cout<<"stock is not enough";
                 break;
             }
@@ -157,7 +157,11 @@ OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::Books
     }
     newOrder->AmountPrice = TotalQty * newOrder->UnitPrice;
     newOrder->VAT = newOrder->AmountPrice * 0.12;
-    newOrder->Discount = newOrder->AmountPrice * 0.05;
+    if(TotalQty>=3){
+        newOrder->Discount = newOrder->AmountPrice * 0.05;
+    }else{
+        newOrder->Discount = 0;
+    }
     newOrder->TotalPrice = (newOrder->AmountPrice + newOrder->VAT) - newOrder->Discount;
     newOrder->Cash = CustCash;
     newOrder->Change = newOrder->Cash - newOrder->TotalPrice;
@@ -189,7 +193,11 @@ OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerNa
     }
     newOrder->AmountPrice = TotalQty * newOrder->UnitPrice;
     newOrder->VAT = newOrder->AmountPrice * 0.12;
-    newOrder->Discount = newOrder->AmountPrice * 0.05;
+    if(TotalQty>=3){
+        newOrder->Discount = newOrder->AmountPrice * 0.05;
+    }else{
+        newOrder->Discount = 0;
+    }
     newOrder->TotalPrice = (newOrder->AmountPrice + newOrder->VAT) - newOrder->Discount;
     newOrder->Installment_1 = CustInstall_1;
     newOrder->Installment_1_change = newOrder->Installment_1 - (newOrder->TotalPrice*.6);
