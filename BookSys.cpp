@@ -3,8 +3,6 @@
 #include <string>
 #include <vector>
 
-//this file is for the CICT Books System
-//assigned to : Joel-Vincent Bernardo, Jocelyn Rebato, Liah Baculi
 
 int BookSys::currentId = 0;
 

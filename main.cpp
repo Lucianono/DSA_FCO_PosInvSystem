@@ -35,9 +35,6 @@ using namespace std;
 
 int main()
 {
-    //this is the main file/class
-    //all methods and features will be call here
-    //Assigned to: Bryan Calulo
 
     UIDesign ui;
     AboutUs abt_us;
@@ -48,8 +45,6 @@ int main()
     // Set console window height & width
     const int width = 1280;
     const int height = 720;
-    //
-    security.showHint();
 
     HWND hWnd=GetConsoleWindowNT();
     //resize window and center to screen
@@ -58,6 +53,8 @@ int main()
     SetConsoleTitle("CICT Book Store");
 
 
+    //
+    security.showHint();
 
     if(security.Login()){
         book.printAllBooks();
