@@ -116,7 +116,6 @@ bool OrderSys::getOrder(BookSys booksys){
                 cout<<"not foundsssss\n";
                 break;
             }
-
             //reject if quantity is not enough
             custBks[ctr].QtyOrdered = intHandlerInput("Enter Quantity : ",custBks[ctr].QtyOrdered);
             if(!booksys.getBook(custBks[ctr].BookID)->getBookQuantity()>=custBks[ctr].QtyOrdered){
@@ -284,7 +283,7 @@ void OrderSys::displayOrderRecords(BookSys bookSys){
     OrderByCash *displayPointer;
     displayPointer = head;
     cout << endl;
-    cout << "\t\t\t User Records \t\t\n";
+    cout << "\t\t\t Order by Cash Records\n";
     cout << endl;
     while (displayPointer)
     {
@@ -314,7 +313,7 @@ void OrderSys::displayOrderRecords(BookSys bookSys){
     OrderByInstallment *displayPointer_2;
     displayPointer_2 = head_2;
     cout << endl;
-    cout << "\t\t\t User Records \t\t\n";
+    cout << "\t\t\t Order by Installment Records \t\t\n";
     cout << endl;
     while (displayPointer_2)
     {

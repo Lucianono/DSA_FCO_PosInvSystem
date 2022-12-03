@@ -93,7 +93,14 @@ void BookSys::deleteBook(int bookId) {
 void BookSys::printAllBooks() {
     for (int i = 0; i < getAllBooks().size(); i++) {
         Book *currentBook = getAllBooks().at(i);
-        std::cout << currentBook->getBookId() << " | " << currentBook->getBookName() << " | " << currentBook->getBookQuantity()<<std::endl;
+        std::cout << currentBook->getBookId() << " | " << currentBook->getBookName()<<std::endl;
+    }
+}
+
+void BookSys::printStockStatus(){
+    for (int i = 0; i < getAllBooks().size(); i++) {
+        Book *currentBook = getAllBooks().at(i);
+        std::cout << currentBook->getBookId() << " | " << currentBook->getBookName() << " | " << currentBook->getBookQuantity()<<" | "<<currentBook->getMaxQuantity()<<std::endl;
     }
 }
 

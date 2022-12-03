@@ -21,6 +21,7 @@ class BookSys
 
         // Display Methods
         void printAllBooks();
+        void printStockStatus();
         void displayBook(int bookId);;
 
         BookSys();

@@ -24,7 +24,7 @@ int main()
     book.printAllBooks();
     order.getOrder(book);
     order.displayOrderRecords(book);
-     book.printAllBooks();
+    book.printStockStatus();
     //
 
     cout << endl;
