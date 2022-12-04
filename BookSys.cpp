@@ -159,6 +159,49 @@ void BookSys::addBookUI(){
 
 }
 
+void BookSys::deleteBookUI(){
+    system("CLS");
+    ui.TitleHeader();
+    ui.setTxtColor(7);
+    ui.PageTitle("Delete Book");
+
+    printAllBooks();
+
+    int bookID;
+
+    bookID = ih.intHandlerInput("Enter ID : ",bookID);
+
+    deleteBook(bookID);
+
+}
+
+void BookSys::updateBookUI(){
+    system("CLS");
+    ui.TitleHeader();
+    ui.setTxtColor(7);
+    ui.PageTitle("Update Book");
+
+    printAllBooks();
+
+    int bookID, bookQty, opt;
+
+    bookID = ih.intHandlerInput("Enter ID : ",bookID);
+    int currentBookQty = getBook(bookID)->getBookQuantity();
+
+    opt = ih.intHandlerInput("[1] Add or [2] Remove: ", opt,2,1);
+    switch (opt){
+        case 1:
+            bookQty = ih.intHandlerInput("Quantity to be added (20 Max) : ",bookQty,20-currentBookQty,1);
+            updateBook(bookID,currentBookQty+bookQty);
+            break;
+        case 2:
+            bookQty = ih.intHandlerInput("Quantity to be removed (20 Max) : ",bookQty,currentBookQty,1);
+            updateBook(bookID,currentBookQty-bookQty);
+            break;
+    }
+
+}
+
 void BookSys::bookMenu(){
     bool menu_active = true;
     while(menu_active){
@@ -184,14 +227,15 @@ void BookSys::bookMenu(){
                 printAllBooks();
                 break;
             case 2:
-                //update qty
+                updateBookUI();
                 break;
             case 3:
                 system("CLS");
                 addBookUI();
                 break;
             case 4:
-
+                system("CLS");
+                deleteBookUI();
                 break;
         }
     }

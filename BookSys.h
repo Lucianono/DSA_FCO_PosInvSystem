@@ -25,6 +25,8 @@ class BookSys
         void printStockStatus();
         void displayBook(int bookId);
         void addBookUI();
+        void deleteBookUI();
+        void updateBookUI();
 
         void bookMenu();
         BookSys();

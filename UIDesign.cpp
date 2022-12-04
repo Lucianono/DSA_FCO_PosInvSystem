@@ -82,53 +82,6 @@ UIDesign::UIDesign()
 
 
 
-void UIDesign::DeleteBook()
-{
-    //variable declarations
-    string h0 = "ID", h1= "Title", h2 = "Author", h3 = "Date Published", h4 = "Publishing Company";
-    int hc0 = h0.length(), hc1 = h1.length(), hc2 = h2.length(), hc3 = h3.length(), hc4 = h4.length();
-
-    system("CLS");
-    TitleHeader();
-    setTxtColor(8);
-    PageTitle("Delete Book");
-    cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
-    cout << " " + h0 << setw(15 - hc0 - 1) << "|" << setw((50/2) + (hc1/2)) << h1 << setw((50/2) - (hc1/2)) << "|"
-         << setw((40/2) + (hc2/2)) << h2 << setw((40/2) - (hc2/2)) << "|"
-         << setw((20/2) + (hc3/2)) << h3 << setw((20/2) - (hc3/2)) << "|"
-         << setw((30/2) + (hc4/2)) << h4 << setw((30/2) - (hc4/2)) << endl;
-    cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
-
-    //variable declarations
-    /*string bTitle[] = {"Harry Potter", "Lord of the Rings", "The Hobbit", "Hunger Games"};
-    string bAuthor[] = {"J.K. Rowling", "J.R.R. Tolkien", "J.R.R. Tolkien", "Suzanne Collins"};
-    string bPubDate[] = {"Jan 1, 2020", "Nov 20,2022", "Nov 14, 2022", "March 15, 2015"};
-    string bPublisher[] = {"Bloomsbury", "Allen & Unwin", "Allen & Unwin", "Scholastic"};
-    int bTitleSize = std::size(bTitle), bookID;
-
-    sort(bTitle, bTitle + bTitleSize, sortAsc);
-
-    for (int x=0; x<bTitleSize; x++)
-    {
-        int TitleStrSize = bTitle[x].length(),
-            AuthorStrSize = bAuthor[x].length(),
-            PubDateStrSize = bPubDate[x].length(),
-            PublisherStrSize = bPublisher[x].length();
-        long long n = x;
-
-        cout << " " << x << setw(15 - countDigit(n) - 1) << "|"
-             << " " << bTitle[x] << setw(50 - TitleStrSize - 1) << "|"
-             << " " << bAuthor[x] << setw(40 - AuthorStrSize - 1) << "|"
-             << " " << bPubDate[x] << setw(20 - PubDateStrSize - 1) << "|"
-             << " " << bPublisher[x] << endl;
-    }
-    cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
-
-    cout << "\nEnter ID of book to be deleted: ";
-    cin >> bookID;
-    MainMenu();*/
-}
-
 
 
 
