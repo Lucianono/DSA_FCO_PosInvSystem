@@ -1,7 +1,6 @@
 #include "OrderSys.h"
 #include "BookSys.h"
 #include "Book.h"
-#include "IntHandler.h"
 #include <iostream>
 #include <conio.h>
 
@@ -61,28 +60,38 @@ OrderSys::OrderSys(){
 }
 
 // getting orders
-bool OrderSys::getOrder(BookSys booksys){
+int OrderSys::getOrder(BookSys booksys){
+
+    system("CLS");
+    ui.TitleHeader();
+    ui.setTxtColor(7);
+    ui.PageTitle("Order Books");
+
     string custName;
     int ctr=0,totalOrder=0 ;
     float totaldue;
     int user_input = 1;
     BooksOrdered *custBks = new BooksOrdered[20];
 
-    cout<<"Customer Name : ";
+    cout<<"\t Customer Name : ";
     cin>>custName;
+
+    booksys.printAllBooks();
+    cout<<endl;
+
     while(user_input == 1){
         switch(user_input){
         case 1:
-            custBks[ctr].BookID = ih.intHandlerInput("Enter Book Id : ",custBks[ctr].BookID);
+            custBks[ctr].BookID = ih.intHandlerInput("\t Enter Book Id : ",custBks[ctr].BookID);
             //check if book exists
             if(!booksys.getBook(custBks[ctr].BookID)){
-                cout<<"not foundsssss\n";
+                cout<<"\t --Book not found!--\n";
                 break;
             }
             //reject if quantity is not enough
-            custBks[ctr].QtyOrdered = ih.intHandlerInput("Enter Quantity : ",custBks[ctr].QtyOrdered);
+            custBks[ctr].QtyOrdered = ih.intHandlerInput("\t Enter Quantity : ",custBks[ctr].QtyOrdered);
             if(!(booksys.getBook(custBks[ctr].BookID)->getBookQuantity()>=custBks[ctr].QtyOrdered)){
-                cout<<"stock is not enough";
+                cout<<"\t --Stock is not enough!--";
                 break;
             }
 
@@ -94,44 +103,46 @@ bool OrderSys::getOrder(BookSys booksys){
 
             break;
         }
-        user_input = ih.intHandlerInput("[1] Order more [2] Not anymore",user_input,2,1);
+        user_input = ih.intHandlerInput("\t [1] Order more [2] Not anymore : ",user_input,2,1);
+        cout<<endl;
     }
 
     //condition if total is discounted
     if(totalOrder >= 3){
-        cout<<"Discounted!"<<endl;
+        cout<<"\t Discounted!"<<endl;
         totaldue = (totalOrder * 200) * 1.07;
     }
     else{
         totaldue = (totalOrder * 200) * 1.12;
     }
-    cout<<"Total due"<<totaldue<<endl;
+    cout<<"\t Total due : ||  "<<totaldue<<" ||"<<endl;
+    cout<<endl;
 
     //ask if pay by cash or installment
-    user_input = ih.intHandlerInput("[1]Cash or [2]Installment",user_input,2,1);
+    user_input = ih.intHandlerInput("\t [1]Pay by Cash or [2]Pay by Installment : ",user_input,2,1);
     switch(user_input){
     case 1:{
         float custCash;
-        custCash = ih.intHandlerInput("Enter Cash ", custCash);
+        custCash = ih.intHandlerInput("\t Enter Cash : ", custCash);
         if (custCash >= totaldue){
-            createOrder(custName,custBks,ctr,custCash);
-            return true;
+            createOrder(custName,custBks,ctr,custCash,booksys);
+            return OrderID-1;
         }else{
-            cout<<"Insufficient Amount"<<endl;
-            return false;
+            cout<<"\t --Insufficient Amount! Order failed.--"<<endl;
+            return -1;
         }
         break;
     }
     case 2:{
-        cout<<"1st Installment : "<<totaldue * .6<<endl;
+        cout<<"\t 1st Installment : "<<totaldue * .6<<endl;
         float custInstall;
-        custInstall = ih.intHandlerInput("Enter Cash", custInstall);
+        custInstall = ih.intHandlerInput("\t Enter Cash : ", custInstall);
         if (custInstall >= totaldue * .6){
-            createOrderInstallment(custName,custBks,ctr,custInstall);
-            return true;
+            createOrderInstallment(custName,custBks,ctr,custInstall,booksys);
+            return OrderID-1;
         }else{
-            cout<<"Insufficient Amount"<<endl;
-            return false;
+            cout<<"\t --Insufficient Amount! Order failed.--"<<endl;
+            return -1;
         }
         break;
     }
@@ -144,7 +155,7 @@ bool OrderSys::getOrder(BookSys booksys){
 }
 
 //add/create order
-OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::BooksOrdered *CustBksOrder,int OrderCtr, float CustCash){
+OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::BooksOrdered *CustBksOrder,int OrderCtr, float CustCash, BookSys booksys){
     OrderByCash *orderPointer;
     OrderByCash *newOrder = new OrderByCash;
     newOrder->OrderID = OrderID++;
@@ -178,9 +189,11 @@ OrderSys::OrderByCash* OrderSys::createOrder(string CustomerName,OrderSys::Books
         orderPointer->next = newOrder;
     }
 
+    displayOrderByCashReceipt(newOrder,booksys);
+
     return newOrder;
 }
-OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerName,OrderSys::BooksOrdered *CustBksOrder,int OrderCtr, float CustInstall_1){
+OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerName,OrderSys::BooksOrdered *CustBksOrder,int OrderCtr, float CustInstall_1,BookSys booksys){
     OrderByInstallment *orderPointer;
     OrderByInstallment *newOrder = new OrderByInstallment;
     newOrder->OrderID = OrderID++;
@@ -214,6 +227,8 @@ OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerNa
         }
         orderPointer->next = newOrder;
     }
+
+    displayOrderByInstallmentReceipt(newOrder,booksys);
 
     return newOrder;
 }
@@ -250,6 +265,9 @@ void OrderSys::payRemainingBal(){
 
 //for displaying records
 void OrderSys::displayOrderRecords(BookSys bookSys){
+
+
+
     //display all Order By Cash
     OrderByCash *displayPointer;
     displayPointer = head;
@@ -311,7 +329,6 @@ void OrderSys::displayOrderRecords(BookSys bookSys){
         cout << endl;
     }
 }
-
 //for displaying Orders With Remaining Balance
 void OrderSys::displayOrdersWithRemainingBal(){
     OrderByInstallment *displayPointer_2;
@@ -330,6 +347,60 @@ void OrderSys::displayOrdersWithRemainingBal(){
         cout << endl;
     }
 }
+//for displaying a single receipt
+void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
+    system("CLS");
+    ui.TitleHeader();
+    ui.setTxtColor(8);
+    ui.PageTitle("Receipt");
+
+    cout << "\tOrderID: " << oc->OrderID << endl;
+        cout << "\tCustomerName: " << oc->CustomerName << endl;
+        cout << "\tBooks Ordered: "<<endl;
+        for(int i = 0; i<oc->OrderCtr; i++){
+            Book *selectedBook = bookSys.getBook(oc->BksQty[i].BookID);
+            cout <<"\t"<<oc->BksQty[i].BookID << endl;
+            cout << "\t" << selectedBook->getBookName() << endl;
+            cout <<"\t"<< oc->BksQty[i].QtyOrdered << endl;
+        }
+        cout << "\tUnitPrice: " << oc->UnitPrice << endl;
+        cout << "\tAmountPrice: " << oc->AmountPrice << endl;
+        cout << "\tVAT: " << oc->VAT << endl;
+        cout << "\tDiscount: " << oc->Discount << endl;
+        cout << "\tTotalPrice: " << oc->TotalPrice << endl;
+        cout << "\tCash: " << oc->Cash << endl;
+        cout << "\tChange: " << oc->Change << endl;
+
+}
+void OrderSys::displayOrderByInstallmentReceipt(OrderByInstallment *oc, BookSys bookSys){
+    system("CLS");
+    ui.TitleHeader();
+    ui.setTxtColor(8);
+    ui.PageTitle("Receipt");
+
+    cout << "\tOrderID: " << oc->OrderID << endl;
+        cout << "\tCustomerName: " << oc->CustomerName << endl;
+        cout << "\Books Ordered: "<<endl;
+        for(int i = 0; i<oc->OrderCtr; i++){
+            Book *selectedBook = bookSys.getBook(oc->BksQty[i].BookID);
+            cout << oc->BksQty[i].BookID << endl;
+            cout << "\t" << selectedBook->getBookName() << endl;
+            cout << oc->BksQty[i].QtyOrdered << endl;
+        }
+        cout << "\tUnitPrice: " << oc->UnitPrice << endl;
+        cout << "\tAmountPrice: " << oc->AmountPrice << endl;
+        cout << "\tVAT: " << oc->VAT << endl;
+        cout << "\tDiscount: " << oc->Discount << endl;
+        cout << "\tTotalPrice: " << oc->TotalPrice << endl;
+        cout << "\t1stInstallment: " << oc->Installment_1 << endl;
+        cout << "\t1stInstallment Change: " << oc->Installment_1_change << endl;
+        cout << "\tRemainingBal: " << oc->RemainingBal << endl;
+        cout << "\t2nd Installment: " << oc->Installment_2 << endl;
+        cout << "\t2nd Installment Change: " << oc->Installment_2_change << endl;
+
+        cout << endl;
+}
+
 
 //to display menu
 void OrderSys::adminMenu(BookSys bookSys){

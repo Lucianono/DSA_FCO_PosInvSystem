@@ -50,7 +50,6 @@ Book *BookSys::getBook(int bookId) {
           break;
         }
     }
-    std::cout<<"not found\n";
     return bookToReturn;
 }
 
@@ -95,9 +94,7 @@ void BookSys::printAllBooks() {
     std::string h0 = "ID", h1= "Title", h2 = "Book Year", h3 = "Quantity", h4 = "Max Quantity";
     int hc0 = h0.length(), hc1 = h1.length(), hc2 = h2.length(), hc3 = h3.length(), hc4 = h4.length();
 
-    system("CLS");
-    ui.TitleHeader();
-    ui.setTxtColor(8);
+    ui.setTxtColor(7);
     ui.PageTitle("Book List");
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
     cout << " " + h0 << setw(15 - hc0 - 1) << "|" << setw((50/2) + (hc1/2)) << h1 << setw((50/2) - (hc1/2)) << "|"
@@ -126,7 +123,6 @@ void BookSys::printAllBooks() {
              << " " << currentBook->getMaxQuantity() << endl;
     }
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
-    system("pause");
 
 }
 
