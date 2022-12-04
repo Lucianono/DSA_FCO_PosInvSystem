@@ -20,12 +20,12 @@ class OrderSys
         OrderSys();
         OrderByCash* createOrder(string CustomerName, OrderSys::BooksOrdered *CustBksOrder,int OrderCtr,float CustCash,BookSys booksys);
         OrderByInstallment* createOrderInstallment(string CustomerName, OrderSys::BooksOrdered *CustBksOrder,int OrderCtr,float CustInstall_1,BookSys booksys);
-        void payRemainingBal();
+        void payRemainingBal(BookSys booksys);
         void displayOrderRecords(BookSys bookSys);
-        void displayOrdersWithRemainingBal();
+        bool displayOrdersWithRemainingBal();
         void displayOrderByCashReceipt(OrderByCash *oc,BookSys booksys);
         void displayOrderByInstallmentReceipt(OrderByInstallment *oc,BookSys booksys);
-        void adminMenu(BookSys bookSys);
+        void orderMenu(BookSys bookSys);
         void deleteOrder(int OrderID);
         void deleteOrderInstallment(int OrderId);
 

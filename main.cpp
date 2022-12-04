@@ -58,7 +58,7 @@ void MainMenu()
 
     switch (opt){
         case 1:
-            order.getOrder(book);
+            order.orderMenu(book);
             break;
         case 2:
             book.printAllBooks();
@@ -95,8 +95,9 @@ int main()
     //
 
 
-    MainMenu();
-
+    while(true){
+        MainMenu();
+    }
 
     //
 
