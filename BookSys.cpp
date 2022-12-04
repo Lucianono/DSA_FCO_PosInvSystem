@@ -8,7 +8,6 @@
 int BookSys::currentId = 0;
 
 BookSys::BookSys() {
-    std::cout << "BookSys Class created" << std::endl;
 
     addBook("Fundamentals of Information Technology", "First Year");
     addBook("Integrated Computer Applications", "First Year");

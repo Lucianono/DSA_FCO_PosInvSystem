@@ -1,7 +1,7 @@
 #include "SecuritySys.h"
 #include <iostream>
 #include <conio.h>
-#include <limits>
+#include <unistd.h>
 
 using namespace std;
 
@@ -144,6 +144,13 @@ void SecuritySys::Modify()
         else if (Choice == 3)
         {
             system("CLS");
+            for (int j = 0; j < 3; j++) {
+               cout << "\rLogging out, please wait   \rLogging out, please wait";
+               for (int i = 0; i < 3; i++) {
+                  cout << ".";
+                  sleep(1);
+               }
+            }
             Login ();
         }
 

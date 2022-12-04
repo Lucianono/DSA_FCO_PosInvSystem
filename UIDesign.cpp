@@ -79,62 +79,6 @@ UIDesign::UIDesign()
 }
 
 
-void UIDesign::MainMenu()
-{
-    //variable declarations
-    MenuStart:
-    string opt;
-
-
-    system("CLS");
-    TitleHeader();
-    setTxtColor(11);
-    PageTitle("Main Menu");
-    string Menu[] = {"Add Books", "Search Books", "View Books", "Delete Book", "Exit"};
-    cout << "1. Add Books" << endl;
-    cout << "2. Search Books" << endl;
-    cout << "3. View Books" << endl;
-    cout << "4. Delete Books" << endl;
-    cout << "5. Print Receipt" << endl << endl;
-    cout << "0. Exit";
-
-    cout << "\n\nEnter Option: ";
-    cin >> opt;
-
-    if(opt == "1")
-    {
-        //BookFunc.AddBook();
-    }
-    else if(opt == "2")
-    {
-        //BookFunc.SearchBook();
-    }
-    else if(opt == "3")
-    {
-       // BookFunc.ViewBooks();
-    }
-    else if(opt == "4")
-    {
-        //BookFunc.DeleteBook();
-    }
-    else if(opt == "0")
-    {
-        for (int j = 0; j < 3; j++) {
-               cout << "\rLogging out, please wait   \rLogging out, please wait";
-               for (int i = 0; i < 3; i++) {
-                  cout << ".";
-                  sleep(1);
-               }
-            }
-       // SecSysFunc.Login();
-    }
-    else
-    {
-        cout << "Invalid option!" << endl;
-        sleep(1);
-        goto MenuStart;
-    }
-}
 
 void UIDesign::AddBook()
 {
@@ -163,7 +107,6 @@ void UIDesign::AddBook()
          << "\nDate: " << bookPubDate
          << "\nPublisher: " << bookPublisher << endl << endl;
     system("pause");
-    MainMenu();
 }
 
 
