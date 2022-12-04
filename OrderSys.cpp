@@ -89,7 +89,7 @@ int OrderSys::getOrder(BookSys booksys){
             //reject if quantity is not enough
             custBks[ctr].QtyOrdered = ih.intHandlerInput("\t Enter Quantity : ",custBks[ctr].QtyOrdered);
             if(!(booksys.getBook(custBks[ctr].BookID)->getBookQuantity()>=custBks[ctr].QtyOrdered)){
-                cout<<"\t --Stock is not enough!--";
+                cout<<"\t --Stock is not enough!--\n";
                 break;
             }
 

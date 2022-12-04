@@ -124,7 +124,6 @@ void BookSys::printAllBooks() {
     }
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
 
-    system("pause");
 }
 
 void BookSys::displayBook(int bookId) {
@@ -157,6 +156,8 @@ void BookSys::addBookUI(){
 
     addBook(bookTitle,bookYear,bookQty);
 
+    cout << "\t --Book Added!--" << endl <<endl;
+    system("pause");
 }
 
 void BookSys::deleteBookUI(){
@@ -171,8 +172,16 @@ void BookSys::deleteBookUI(){
 
     bookID = ih.intHandlerInput("Enter ID : ",bookID);
 
-    deleteBook(bookID);
+    if(getBook(bookID)){
+        deleteBook(bookID);
+        cout << "\t --Book Deleted!--" << endl;
+    }else{
+        cout << "\t --Book Not Found!--" << endl;
 
+    }
+
+    cout<<endl;
+    system("pause");
 }
 
 void BookSys::updateBookUI(){
@@ -185,20 +194,39 @@ void BookSys::updateBookUI(){
 
     int bookID, bookQty, opt;
 
-    bookID = ih.intHandlerInput("Enter ID : ",bookID);
-    int currentBookQty = getBook(bookID)->getBookQuantity();
+    bookID = ih.intHandlerInput("\t Enter ID : ",bookID);
 
-    opt = ih.intHandlerInput("[1] Add or [2] Remove: ", opt,2,1);
-    switch (opt){
-        case 1:
-            bookQty = ih.intHandlerInput("Quantity to be added (20 Max) : ",bookQty,20-currentBookQty,1);
-            updateBook(bookID,currentBookQty+bookQty);
-            break;
-        case 2:
-            bookQty = ih.intHandlerInput("Quantity to be removed (20 Max) : ",bookQty,currentBookQty,1);
-            updateBook(bookID,currentBookQty-bookQty);
-            break;
+    if(getBook(bookID)){
+        int currentBookQty = getBook(bookID)->getBookQuantity();
+        opt = ih.intHandlerInput("\t [1] Add or [2] Remove: ", opt,2,1);
+        switch (opt){
+            case 1:
+                if(currentBookQty<20){
+                    bookQty = ih.intHandlerInput("\t Quantity to be added : ",bookQty,20-currentBookQty,1);
+                    updateBook(bookID,currentBookQty+bookQty);
+                    cout << "\t --Book Updated!--" << endl;
+                }else{
+                    cout << "\t --Book already Full!--" << endl;
+                }
+                break;
+            case 2:
+                if(currentBookQty>0){
+                    bookQty = ih.intHandlerInput("\t Quantity to be removed : ",bookQty,currentBookQty,1);
+                    updateBook(bookID,currentBookQty-bookQty);
+                    cout << "\t --Book Updated!--" << endl;
+                }else{
+                    cout << "\t --Book already Empty!--" << endl;
+                }
+                break;
+        }
+    }else{
+        cout << "\t --Book Not Found!--" << endl;
     }
+
+
+    cout<<endl;
+    system("pause");
+
 
 }
 
@@ -225,8 +253,10 @@ void BookSys::bookMenu(){
             case 1:
                 system("CLS");
                 printAllBooks();
+                system("pause");
                 break;
             case 2:
+                system("CLS");
                 updateBookUI();
                 break;
             case 3:
@@ -240,3 +270,8 @@ void BookSys::bookMenu(){
         }
     }
 }
+
+
+//check book id
+//proper hints
+//proper input handling
