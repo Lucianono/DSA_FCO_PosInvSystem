@@ -20,6 +20,10 @@ void SecuritySys::showHint(){
 //login method; return true if login success
 bool SecuritySys::Login()
 {
+    ui.TitleHeader();
+    ui.setTxtColor(2);
+    ui.PageTitle("Login");
+
     int attempt = 0;
 
     for(int j = 0; j<i ; j++){
