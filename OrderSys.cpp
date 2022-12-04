@@ -3,6 +3,7 @@
 #include "Book.h"
 #include <iostream>
 #include <conio.h>
+#include <iomanip>
 
 
 using namespace std;
@@ -351,7 +352,7 @@ void OrderSys::displayOrdersWithRemainingBal(){
 void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
     system("CLS");
     ui.TitleHeader();
-    ui.setTxtColor(8);
+    ui.setTxtColor(7);
     ui.PageTitle("Receipt");
 
     cout << "\tOrderID: " << oc->OrderID << endl;

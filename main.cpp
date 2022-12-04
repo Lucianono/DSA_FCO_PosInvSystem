@@ -55,7 +55,8 @@ int main()
 
     //
 
-    order.getOrder(book);
+    ui.AddBook();
+
 
 
     //
