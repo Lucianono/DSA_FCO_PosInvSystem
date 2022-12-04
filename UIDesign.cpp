@@ -80,34 +80,6 @@ UIDesign::UIDesign()
 
 
 
-void UIDesign::AddBook()
-{
-    TitleHeader();
-    setTxtColor(8);
-    PageTitle("Add Book");
-
-    //variable declarations
-    char bookTitle[255], bookAuthor[255], bookPubDate[255], bookPublisher[255];
-
-    system("CLS");
-
-    cout << "Title: ";
-    getchar();
-    cin.getline(bookTitle,sizeof(bookTitle));
-    cout << "Author: ";
-    cin.getline(bookAuthor,sizeof(bookAuthor));
-    cout << "Publication Date: ";
-    cin.getline(bookPubDate,sizeof(bookPubDate));
-    cout << "Publisher: ";
-    cin.getline(bookPublisher,sizeof(bookPublisher));
-
-    //replace this code with function to add the book to database
-    cout << "\n\nTitle: " << bookTitle
-         << "\nAuthor: " << bookAuthor
-         << "\nDate: " << bookPubDate
-         << "\nPublisher: " << bookPublisher << endl << endl;
-    system("pause");
-}
 
 
 void UIDesign::DeleteBook()

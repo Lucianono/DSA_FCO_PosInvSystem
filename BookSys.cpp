@@ -1,6 +1,7 @@
 #include <iostream>
 #include "BookSys.h"
 #include <string>
+#include <string>
 #include <vector>
 #include <iomanip>
 
@@ -9,23 +10,23 @@ int BookSys::currentId = 0;
 
 BookSys::BookSys() {
 
-    addBook("Fundamentals of Information Technology", "First Year");
-    addBook("Integrated Computer Applications", "First Year");
-    addBook("Learning Guide in C Programming", "First Year");
+    addBook("Fundamentals of Information Technology", "First Year",20);
+    addBook("Integrated Computer Applications", "First Year",20);
+    addBook("Learning Guide in C Programming", "First Year",20);
 
-    addBook("Database Management System", "Second Year");
-    addBook("Networking", "Second Year");
-    addBook("Object Oriented Programming", "Second Year");
-    addBook("Assembly Language", "Second Year");
+    addBook("Database Management System", "Second Year",20);
+    addBook("Networking", "Second Year",20);
+    addBook("Object Oriented Programming", "Second Year",20);
+    addBook("Assembly Language", "Second Year",20);
 
-    addBook("Software Engineering", "Third Year");
-    addBook("SQL", "Third Year");
-    addBook("Python", "Third Year");
-    addBook("Web Development", "Third Year");
+    addBook("Software Engineering", "Third Year",20);
+    addBook("SQL", "Third Year",20);
+    addBook("Python", "Third Year",20);
+    addBook("Web Development", "Third Year",20);
 
-    addBook("Embedded Systems", "Fourth Year");
-    addBook("Wireless Technology", "Fourth Year");
-    addBook("Android Programming", "Fourth Year");
+    addBook("Embedded Systems", "Fourth Year",20);
+    addBook("Wireless Technology", "Fourth Year",20);
+    addBook("Android Programming", "Fourth Year",20);
 }
 
 int BookSys::getCurrentId() {
@@ -34,8 +35,8 @@ int BookSys::getCurrentId() {
     return tempId;
 }
 
-void BookSys::addBook(std::string _bookName, std::string _bookYear) {
-    Book *bookToAdd = new Book(_bookName, _bookYear);
+void BookSys::addBook(std::string _bookName, std::string _bookYear, int _bookQty) {
+    Book *bookToAdd = new Book(_bookName, _bookYear,_bookQty);
     books.push_back(bookToAdd);
 }
 
@@ -123,13 +124,7 @@ void BookSys::printAllBooks() {
     }
     cout << std::string(15 - 1, '-') << "+" << std::string(50 - 1, '-') << "+" << std::string(40 -1, '-') << "+" << std::string(20 - 1, '-') << "+" << std::string(30, '-') << endl;
 
-}
-
-void BookSys::printStockStatus(){
-    for (int i = 0; i < getAllBooks().size(); i++) {
-        Book *currentBook = getAllBooks().at(i);
-        std::cout << currentBook->getBookId() << " | " << currentBook->getBookName() << " | " << currentBook->getBookQuantity()<<" | "<<currentBook->getMaxQuantity()<<std::endl;
-    }
+    system("pause");
 }
 
 void BookSys::displayBook(int bookId) {
@@ -142,4 +137,62 @@ void BookSys::displayBook(int bookId) {
         }
     }
     std::cout << bookToDisplay->getBookName();
+}
+
+void BookSys::addBookUI(){
+    system("CLS");
+    ui.TitleHeader();
+    ui.setTxtColor(7);
+    ui.PageTitle("Add Book");
+
+    string bookTitle, bookYear;
+    int bookQty;
+
+    cout << "Title : ";
+    getchar();
+    getline(cin,bookTitle);
+    cout << "Book Year : ";
+    getline(cin,bookYear);
+    bookQty = ih.intHandlerInput("Quantity (20 Max) : ",bookQty,20,1);
+
+    addBook(bookTitle,bookYear,bookQty);
+
+}
+
+void BookSys::bookMenu(){
+    bool menu_active = true;
+    while(menu_active){
+        system("CLS");
+        ui.TitleHeader();
+        ui.setTxtColor(7);
+        ui.PageTitle("Book Inventory Menu");
+        cout << "[1] Display Books Inventory" << endl;
+        cout << "[2] Update Stocks" << endl;
+        cout << "[3] Add New Book" << endl ;
+        cout << "[4] Delete Existing Book" << endl << endl;
+        cout << "[0] Back" << endl;
+
+        int opt;
+        opt = ih.intHandlerInput("\n\nEnter Option: ", opt,4,0);
+
+        switch (opt){
+            case 0:
+                menu_active = false;
+                break;
+            case 1:
+                system("CLS");
+                printAllBooks();
+                break;
+            case 2:
+                //update qty
+                break;
+            case 3:
+                system("CLS");
+                addBookUI();
+                break;
+            case 4:
+
+                break;
+        }
+    }
 }

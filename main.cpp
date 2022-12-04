@@ -61,7 +61,7 @@ void MainMenu()
             order.orderMenu(book);
             break;
         case 2:
-            book.printAllBooks();
+            book.bookMenu();
             break;
         case 3:
             //about func

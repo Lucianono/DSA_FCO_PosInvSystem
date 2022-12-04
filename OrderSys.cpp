@@ -427,7 +427,7 @@ void OrderSys::orderMenu(BookSys bookSys){
     system("CLS");
     ui.TitleHeader();
     ui.setTxtColor(7);
-    ui.PageTitle("Main Menu");
+    ui.PageTitle("Order Menu");
     cout << "[1] Add Order" << endl;
     cout << "[2] Pay Remaining Balance" << endl;
     cout << "[3] Display All Order Records" << endl << endl;
