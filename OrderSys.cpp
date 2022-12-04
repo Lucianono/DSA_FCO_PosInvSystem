@@ -72,7 +72,8 @@ int OrderSys::getOrder(BookSys booksys){
     BooksOrdered *custBks = new BooksOrdered[20];
 
     cout<<"\t Customer Name : ";
-    cin>>custName;
+    getchar();
+    getline(cin,custName);
 
     booksys.printAllBooks();
     cout<<endl;
@@ -490,5 +491,4 @@ void OrderSys::deleteOrderInstallment(int OrderID) {
     }
 }
 
-//notify when 5%
-//
+//stock issue when order failed

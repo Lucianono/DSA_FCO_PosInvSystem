@@ -44,6 +44,7 @@ bool SecuritySys::Login()
                 if(Lpass == Cpass||Lpass==Dpass)//correct pass
                 {
                     cout<<"\nPermission granted! \n";
+                    system("pause");
                     return true;
                 }
                 else //incorrect pass
@@ -68,6 +69,7 @@ bool SecuritySys::Login()
                 if(Lpass == Cpass||Lpass==Dpass)//correct pass
                 {
                     cout<<"\nPermission granted! \n";
+                    system("pause");
                     return true;
                 }
                 else //incorrect pass
