@@ -93,7 +93,7 @@ int OrderSys::getOrder(BookSys booksys){
                 break;
             }
 
-            booksys.getBook(custBks[ctr].BookID)->setBookQuantity(booksys.getBook(custBks[ctr].BookID)->getBookQuantity() - custBks[ctr].QtyOrdered);
+            booksys.updateBook(custBks[ctr].BookID,booksys.getBook(custBks[ctr].BookID)->getBookQuantity() - custBks[ctr].QtyOrdered);
             totalOrder += custBks[ctr].QtyOrdered;
             ctr++;
             break;
@@ -490,3 +490,5 @@ void OrderSys::deleteOrderInstallment(int OrderID) {
     }
 }
 
+//notify when 5%
+//

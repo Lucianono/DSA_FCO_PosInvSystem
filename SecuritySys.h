@@ -24,7 +24,7 @@ class SecuritySys
         UIDesign ui;
         void showHint();
         bool Login();
-        void Modify();
+        void securityMenu();
 
 };
 

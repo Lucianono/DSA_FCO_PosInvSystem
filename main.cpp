@@ -67,7 +67,7 @@ void MainMenu()
             //about func
             break;
         case 4:
-            security.Modify();
+            security.securityMenu();
             break;
     }
 
@@ -92,14 +92,12 @@ int main()
     SetConsoleTitle("CICT Book Store");
 
 
-    //
 
-
-    while(true){
+    bool isUserAuthorized = security.Login();
+    while(isUserAuthorized){
         MainMenu();
     }
 
-    //
 
     cout << endl;
     cout << "Hello Dataists!" << endl;

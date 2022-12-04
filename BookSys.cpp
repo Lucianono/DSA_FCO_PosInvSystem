@@ -72,7 +72,7 @@ void BookSys::updateBook(int bookId, int _bookQuantity) {
     books.at(bookToUpdateIndex) = bookToUpdate;
 
     if (_bookQuantity < bookToUpdate->getMaxQuantity() * 0.05) {
-        std::cout << "NOTIF: Book with id \"" << bookId << "\" quantity is less than 5%." << std::endl;
+        std::cout << "\t\t -- Book with id \"" << bookId << "\" is low in stock! --" << std::endl;
     }
 }
 
@@ -270,8 +270,3 @@ void BookSys::bookMenu(){
         }
     }
 }
-
-
-//check book id
-//proper hints
-//proper input handling

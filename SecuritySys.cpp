@@ -20,13 +20,15 @@ void SecuritySys::showHint(){
 //login method; return true if login success
 bool SecuritySys::Login()
 {
-    ui.TitleHeader();
-    ui.setTxtColor(2);
-    ui.PageTitle("Login");
+
+    ui.setTxtColor(7);
 
     int attempt = 0;
 
     for(int j = 0; j<i ; j++){
+        system("CLS");
+        ui.PageTitle("Login");
+
         cout << "\nLOG IN TO YOUR ACCOUNT" << endl;
         cout<<"\nEnter your Username: ";
         cin >> Luser;
@@ -41,22 +43,21 @@ bool SecuritySys::Login()
             {
                 if(Lpass == Cpass||Lpass==Dpass)//correct pass
                 {
-                    system ("CLS");
-                    cout<<"Permission granted! \n";
+                    cout<<"\nPermission granted! \n";
                     return true;
                 }
                 else //incorrect pass
                 {
-                    system ("CLS");
                     cout << "Incorrect Password. ";
                     cout << "(" << i-attempt<< ")" << " Remaining Tries\n\n";
+                    system("pause");
                 }
             }
             else// wrong username
             {
-                system ("CLS");
                 cout << "Account does not Exist. ";
                 cout << "(" << i-attempt<< ")" << " Remaining Tries\n\n";
+                system("pause");
             }
         }
 
@@ -66,8 +67,7 @@ bool SecuritySys::Login()
             {
                 if(Lpass == Cpass||Lpass==Dpass)//correct pass
                 {
-                    system ("CLS");
-                    cout<<"Permission granted! \n";
+                    cout<<"\nPermission granted! \n";
                     return true;
                 }
                 else //incorrect pass
@@ -91,15 +91,23 @@ bool SecuritySys::Login()
 
 }
 //change password function
-void SecuritySys::Modify()
+void SecuritySys::securityMenu()
 {
+    bool menu_active = true;
+    while(menu_active){
 
-        cout<< "\nWELCOME "<< Luser << endl;
+        system("CLS");
+        ui.TitleHeader();
+        ui.setTxtColor(7);
+        ui.PageTitle("Security Menu");
+
+        cout<< "\t WELCOME "<< Luser << endl;
         cout << endl;
-        cout << "\n[1]Change Username" << endl;
-        cout << "[2]Change Password" << endl;
-        cout << "[3]LOGOUT and LOGIN Again" << endl;
-        Choice = ih.intHandlerInput("Enter Choice [1-3]: ", Choice, 3, 1);
+        cout << "[1] Change Username" << endl;
+        cout << "[2] Change Password" << endl;
+        cout << "[3] Logout Account" << endl << endl;
+        cout << "[0] Back" << endl << endl;
+        Choice = ih.intHandlerInput("Enter Choice [1-3]: ", Choice, 3, 0);
 
         if (Choice == 1)
         {
@@ -109,16 +117,12 @@ void SecuritySys::Modify()
             {
                 cout<<"Enter new username: ";
                 cin >> Luser;
-                system ("CLS");
                 cout << "USERNAME MODIFIED!\n"<< endl;
                 Duser = Luser;
-                Modify();
             }
             else
             {
-                system("CLS");
                 cout << "This is not your Current Username.\n\n";
-                Modify();
             }
         }
         else if (Choice == 2)
@@ -129,21 +133,16 @@ void SecuritySys::Modify()
             {
                 cout << "Enter new Password: ";
                 cin >> Lpass;
-                system ("CLS");
                 cout << "PASSWORD MODIFIED!\n\n";
                 Dpass=Lpass;
-                Modify();
             }
             else
             {
-                system ("CLS");
                 cout << "This is not your Current Password.\n\n";
-                Modify();
             }
         }
         else if (Choice == 3)
         {
-            system("CLS");
             for (int j = 0; j < 3; j++) {
                cout << "\rLogging out, please wait   \rLogging out, please wait";
                for (int i = 0; i < 3; i++) {
@@ -151,7 +150,17 @@ void SecuritySys::Modify()
                   sleep(1);
                }
             }
+            menu_active = false;
             Login ();
         }
+        else if (Choice == 0)
+        {
+            menu_active = false;
+            break;
+        }
+
+        system("pause");
 
     }
+
+}

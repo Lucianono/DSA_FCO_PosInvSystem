@@ -30,7 +30,7 @@ void UIDesign::setTxtColor(int ColorValue)
 //main header of app
 void UIDesign::TitleHeader()
 {
-    string Title = "Book Store";
+    string Title = "CICT Book Store";
     system("CLS");
     setTxtColor(48);
     cout << std::string(155,'=') << endl;
