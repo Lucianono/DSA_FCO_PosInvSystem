@@ -353,9 +353,16 @@ void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
     ui.setTxtColor(7);
     ui.PageTitle("Receipt");
 
-    cout << "\tOrderID: " << oc->OrderID << endl;
+        cout << "==================================\n";
+        cout << "        \tCICT BOOKSTORE" << endl;
+        cout << "   \tBulacan State University" << endl;
+        cout << "       \tMalolos, Bulacan" << endl;
+        cout << "         \t0999-123-4567" << endl;
+        cout << "==================================\n"<< endl;
+        cout << "\tOrderID: " << oc->OrderID << endl;
         cout << "\tCustomerName: " << oc->CustomerName << endl;
         cout << "\tBooks Ordered: "<<endl;
+
         for(int i = 0; i<oc->OrderCtr; i++){
             Book *selectedBook = bookSys.getBook(oc->BksQty[i].BookID);
             cout <<"\t"<<oc->BksQty[i].BookID << endl;
@@ -363,14 +370,11 @@ void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
             cout <<"\t"<< oc->BksQty[i].QtyOrdered << endl;
         }
 
-          cout << "\tCICT BOOKSTORE" << endl;
-	      cout << "\tBulacan State University" << endl;
-	      cout << "\tMalolos, Bulacan" << endl;
-	      cout << "\t0999-123-4567" << endl;
         cout << "\tUnitPrice: " << oc->UnitPrice << endl;
         cout << "\tAmountPrice: " << oc->AmountPrice << endl;
         cout << "\tVAT: " << oc->VAT << endl;
-        cout << "\tDiscount: " << oc->Discount << endl;
+        cout << "\tDiscount: " << oc->Discount << endl << endl;
+        cout << "----------------------------------\n" << endl;
         cout << "\tTotalPrice: " << oc->TotalPrice << endl;
         cout << "\tCash: " << oc->Cash << endl;
         cout << "\tChange: " << oc->Change << endl;
@@ -384,9 +388,14 @@ void OrderSys::displayOrderByInstallmentReceipt(OrderByInstallment *oc, BookSys 
     system("CLS");
     ui.TitleHeader();
     ui.setTxtColor(8);
-    ui.PageTitle("Receipt");
-
-    cout << "\tOrderID: " << oc->OrderID << endl;
+    ui.PageTitle("Installment Receipt");
+        cout << "==================================\n";
+        cout << "        \tCICT BOOKSTORE" << endl;
+        cout << "   \tBulacan State University" << endl;
+        cout << "       \tMalolos, Bulacan" << endl;
+        cout << "         \t0999-123-4567" << endl;
+        cout << "==================================\n"<< endl;
+        cout << "\tOrderID: " << oc->OrderID << endl;
         cout << "\tCustomerName: " << oc->CustomerName << endl;
         cout << "\Books Ordered: "<<endl;
         for(int i = 0; i<oc->OrderCtr; i++){
@@ -399,7 +408,8 @@ void OrderSys::displayOrderByInstallmentReceipt(OrderByInstallment *oc, BookSys 
         cout << "\tAmountPrice: " << oc->AmountPrice << endl;
         cout << "\tVAT: " << oc->VAT << endl;
         cout << "\tDiscount: " << oc->Discount << endl;
-        cout << "\tTotalPrice: " << oc->TotalPrice << endl;
+        cout << "\tTotalPrice: " << oc->TotalPrice << endl << endl;
+        cout << "----------------------------------\n" << endl;
         cout << "\t1stInstallment: " << oc->Installment_1 << endl;
         cout << "\t1stInstallment Change: " << oc->Installment_1_change << endl;
         cout << "\tRemainingBal: " << oc->RemainingBal << endl;
