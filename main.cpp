@@ -82,11 +82,8 @@ int main()
 
 
     // Set console window height & width
-    //const int width = 1280;
-    //const int height = 720;
-
-    const int width = 1100;
-    const int height = 600;
+    const int width = 1280;
+    const int height = 720;
 
     HWND hWnd=GetConsoleWindowNT();
     //resize window and center to screen
