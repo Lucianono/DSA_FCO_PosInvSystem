@@ -150,9 +150,6 @@ int OrderSys::getOrder(BookSys booksys){
     }
 
 
-
-
-
 }
 
 //add/create order
@@ -349,6 +346,7 @@ void OrderSys::displayOrdersWithRemainingBal(){
     }
 }
 //for displaying a single receipt
+
 void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
     system("CLS");
     ui.TitleHeader();
@@ -364,6 +362,11 @@ void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
             cout << "\t" << selectedBook->getBookName() << endl;
             cout <<"\t"<< oc->BksQty[i].QtyOrdered << endl;
         }
+
+          cout << "\tCICT BOOKSTORE" << endl;
+	      cout << "\tBulacan State University" << endl;
+	      cout << "\tMalolos, Bulacan" << endl;
+	      cout << "\t0999-123-4567" << endl;
         cout << "\tUnitPrice: " << oc->UnitPrice << endl;
         cout << "\tAmountPrice: " << oc->AmountPrice << endl;
         cout << "\tVAT: " << oc->VAT << endl;
@@ -371,6 +374,10 @@ void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
         cout << "\tTotalPrice: " << oc->TotalPrice << endl;
         cout << "\tCash: " << oc->Cash << endl;
         cout << "\tChange: " << oc->Change << endl;
+
+
+
+
 
 }
 void OrderSys::displayOrderByInstallmentReceipt(OrderByInstallment *oc, BookSys bookSys){

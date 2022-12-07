@@ -43,8 +43,11 @@ int main()
     OrderSys order;
 
     // Set console window height & width
-    const int width = 1280;
-    const int height = 720;
+    //const int width = 1280;
+    //const int height = 720;
+
+    const int width = 1100;
+    const int height = 600;
 
     HWND hWnd=GetConsoleWindowNT();
     //resize window and center to screen
@@ -55,20 +58,13 @@ int main()
 
     //
 
-    ui.AddBook();
-
-
+    ui.MainMenu();
+    //ui.AddBook();
 
     //
 
-    cout << endl;
-    cout << "Hello Dataists!" << endl;
-
-
-
-
-
-
+    //cout << endl;
+    //cout << "Hello Dataists, TESTING!" << endl;
 
     return 0;
 }

@@ -93,9 +93,10 @@ void UIDesign::MainMenu()
     string Menu[] = {"Add Books", "Search Books", "View Books", "Delete Book", "Exit"};
     cout << "1. Add Books" << endl;
     cout << "2. Search Books" << endl;
-    cout << "3. View Books" << endl;
+    cout << "3. View Books (INVENTORY)" << endl;
     cout << "4. Delete Books" << endl;
-    cout << "5. Print Receipt" << endl << endl;
+  //cout << "5. Print Receipt" << endl << endl;
+    cout << "5. Print Receipt" << endl;
     cout << "0. Exit";
 
     cout << "\n\nEnter Option: ";
@@ -104,18 +105,25 @@ void UIDesign::MainMenu()
     if(opt == "1")
     {
         //BookFunc.AddBook();
+        AddBook();
+        //addBook();
     }
     else if(opt == "2")
     {
         //BookFunc.SearchBook();
+
     }
     else if(opt == "3")
     {
        // BookFunc.ViewBooks();
+       //printAllBooks();
+       //book();
+       //Book.printAllBooks();
     }
     else if(opt == "4")
     {
         //BookFunc.DeleteBook();
+        DeleteBook();
     }
     else if(opt == "0")
     {
@@ -213,11 +221,5 @@ void UIDesign::DeleteBook()
     cin >> bookID;
     MainMenu();*/
 }
-
-
-
-
-
-
 
 
