@@ -252,6 +252,7 @@ void BookSys::bookMenu(){
                 break;
             case 1:
                 system("CLS");
+                ui.TitleHeader();
                 printAllBooks();
                 system("pause");
                 break;

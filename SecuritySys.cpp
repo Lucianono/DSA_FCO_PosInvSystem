@@ -154,6 +154,7 @@ void SecuritySys::securityMenu()
             }
             menu_active = false;
             Login ();
+            break;
         }
         else if (Choice == 0)
         {

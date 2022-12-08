@@ -280,34 +280,37 @@ void OrderSys::payRemainingBal(BookSys bookSys){
 
 }
 
-//for displaying records
+//for displaying ALL records
 void OrderSys::displayOrderRecords(BookSys bookSys){
+    system("CLS");
+    ui.TitleHeader();
+    ui.setTxtColor(7);
 
-    //display all Order By Cash
     OrderByCash *displayPointer;
     displayPointer = head;
-    cout << endl;
-    cout << "\t\t\t Order by Cash Records\n";
-    cout << endl;
+    ui.PageTitle("Order by Cash Records");
     while (displayPointer)
     {
-        cout << "\tOrderID: " << displayPointer->OrderID << endl;
-        cout << "\tCustomerName: " << displayPointer->CustomerName << endl;
-        cout << "\tBooks Ordered: "<<endl;
+
+        cout << string(receiptWidth,'=')<<endl;
+        cout << "OrderID: " << displayPointer->OrderID << endl;
+        cout << "CustomerName: " << displayPointer->CustomerName << endl;
+        cout << "Books Ordered: " << setw(receiptWidth-17) << "PHP" << endl;
         for(int i = 0; i<displayPointer->OrderCtr; i++){
             Book *selectedBook = bookSys.getBook(displayPointer->BksQty[i].BookID);
-            cout <<"\t"<<displayPointer->BksQty[i].BookID << endl;
-            cout << "\t" << selectedBook->getBookName() << endl;
-            cout <<"\t"<< displayPointer->BksQty[i].QtyOrdered << endl;
+            cout << "Book ID :"<<displayPointer->BksQty[i].BookID << endl;
+            cout << "  "<<selectedBook->getBookName() << "   x" << displayPointer->BksQty[i].QtyOrdered <<endl;
+            cout << string(receiptWidth/2,' ') << "@200 " << string((receiptWidth/2)-11,'-') <<" "<< displayPointer->BksQty[i].QtyOrdered*200<<endl;
         }
-        cout << "\tUnitPrice: " << displayPointer->UnitPrice << endl;
-        cout << "\tAmountPrice: " << displayPointer->AmountPrice << endl;
-        cout << "\tVAT: " << displayPointer->VAT << endl;
-        cout << "\tDiscount: " << displayPointer->Discount << endl;
-        cout << "\tTotalPrice: " << displayPointer->TotalPrice << endl;
-        cout << "\tCash: " << displayPointer->Cash << endl;
-        cout << "\tChange: " << displayPointer->Change << endl;
 
+        cout<<endl;
+        cout << "AMOUNT" << string(receiptWidth-11,' ')<< displayPointer->AmountPrice << endl;
+        cout << "VAT" << string(receiptWidth-8,' ')<< displayPointer->VAT << endl;
+        cout << "DISCOUNT" << string(receiptWidth-13,' ') << displayPointer->Discount << endl;
+        cout << "T O T A L" << string(receiptWidth-14,' ') << displayPointer->TotalPrice<< endl;
+        cout << "CASH" << string(receiptWidth-9,' ')<< displayPointer->Cash  << endl;
+        cout << "CHANGE" << string(receiptWidth-11,' ')<< displayPointer->Change  << endl;
+        cout << string(receiptWidth,'=')<<endl<<endl;
 
         displayPointer = displayPointer->next;
         cout << endl;
@@ -316,30 +319,33 @@ void OrderSys::displayOrderRecords(BookSys bookSys){
     //display all Order By Installment
     OrderByInstallment *displayPointer_2;
     displayPointer_2 = head_2;
-    cout << endl;
-    cout << "\t\t\t Order by Installment Records \t\t\n";
-    cout << endl;
+    ui.PageTitle("Order by Installment Records");
     while (displayPointer_2)
     {
-        cout << "\tOrderID: " << displayPointer_2->OrderID << endl;
-        cout << "\tCustomerName: " << displayPointer_2->CustomerName << endl;
-        cout << "\tBooks Ordered: "<<endl;
+
+        cout << string(receiptWidth,'=')<<endl;
+        cout << "OrderID: " << displayPointer_2->OrderID << endl;
+        cout << "CustomerName: " << displayPointer_2->CustomerName << endl;
+        cout << "Books Ordered: " << setw(receiptWidth-17) << "PHP" << endl;
         for(int i = 0; i<displayPointer_2->OrderCtr; i++){
             Book *selectedBook = bookSys.getBook(displayPointer_2->BksQty[i].BookID);
-            cout << displayPointer_2->BksQty[i].BookID << endl;
-            cout << "\t" << selectedBook->getBookName() << endl;
-            cout << displayPointer_2->BksQty[i].QtyOrdered << endl;
+            cout << "Book ID :"<<displayPointer_2->BksQty[i].BookID << endl;
+            cout << "  "<<selectedBook->getBookName() << "   x" << displayPointer_2->BksQty[i].QtyOrdered <<endl;
+            cout << string(receiptWidth/2,' ') << "@200 " << string((receiptWidth/2)-11,'-') <<" "<< displayPointer_2->BksQty[i].QtyOrdered*200<<endl;
         }
-        cout << "\tUnitPrice: " << displayPointer_2->UnitPrice << endl;
-        cout << "\tAmountPrice: " << displayPointer_2->AmountPrice << endl;
-        cout << "\tVAT: " << displayPointer_2->VAT << endl;
-        cout << "\tDiscount: " << displayPointer_2->Discount << endl;
-        cout << "\tTotalPrice: " << displayPointer_2->TotalPrice << endl;
-        cout << "\t1stInstallment: " << displayPointer_2->Installment_1 << endl;
-        cout << "\t1stInstallment Change: " << displayPointer_2->Installment_1_change << endl;
-        cout << "\tRemainingBal: " << displayPointer_2->RemainingBal << endl;
-        cout << "\t2nd Installment: " << displayPointer_2->Installment_2 << endl;
-        cout << "\t2nd Installment Change: " << displayPointer_2->Installment_2_change << endl;
+
+        cout<<endl;
+        cout << "AMOUNT" << string(receiptWidth-11,' ')<< displayPointer_2->AmountPrice << endl;
+        cout << "VAT" << string(receiptWidth-8,' ')<< displayPointer_2->VAT << endl;
+        cout << "DISCOUNT" << string(receiptWidth-13,' ') << displayPointer_2->Discount << endl;
+        cout << "T O T A L" << string(receiptWidth-14,' ') << displayPointer_2->TotalPrice<< endl;
+        cout << "1ST INSTALLMENT" << string(receiptWidth-20,' ') << displayPointer_2->Installment_1 << endl;
+        cout << "1ST INSTALLMENT CHANGE" << string(receiptWidth-27,' ') << displayPointer_2->Installment_1_change << endl;
+        cout << "2ND INSTALLMENT" << string(receiptWidth-20,' ') << displayPointer_2->Installment_2 << endl;
+        cout << "2ND INSTALLMENT CHANGE" << string(receiptWidth-27,' ') << displayPointer_2->Installment_2_change << endl;
+        cout << "REMAINING BALANCE" << string(receiptWidth-22,' ') << displayPointer_2->RemainingBal << endl;
+        cout << string(receiptWidth,'=')<<endl<<endl;
+
         displayPointer_2 = displayPointer_2->next;
         cout << endl;
     }
@@ -370,7 +376,6 @@ bool OrderSys::displayOrdersWithRemainingBal(){
     return hasPendingBal;
 }
 //for displaying a single receipt
-
 void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
     system("CLS");
     ui.TitleHeader();
@@ -445,17 +450,15 @@ void OrderSys::displayOrderByInstallmentReceipt(OrderByInstallment *oc, BookSys 
         cout << string(receiptWidth,'-')<<endl;
         cout << "1ST INSTALLMENT" << string(receiptWidth-20,' ') << oc->Installment_1 << endl;
         cout << "1ST INSTALLMENT CHANGE" << string(receiptWidth-27,' ') << oc->Installment_1_change << endl;
-        cout << "REMAINING BALANCE" << string(receiptWidth-22,' ') << oc->RemainingBal << endl;
         cout << "2ND INSTALLMENT" << string(receiptWidth-20,' ') << oc->Installment_2 << endl;
         cout << "2ND INSTALLMENT CHANGE" << string(receiptWidth-27,' ') << oc->Installment_2_change << endl;
+        cout << "REMAINING BALANCE" << string(receiptWidth-22,' ') << oc->RemainingBal << endl;
         cout << string(receiptWidth,'=')<<endl<<endl;
 
     cout << endl;
 
     system("pause");
 }
-
-
 //to display menu
 void OrderSys::orderMenu(BookSys bookSys){
 
@@ -491,6 +494,7 @@ void OrderSys::orderMenu(BookSys bookSys){
 
 }
 
+//deleting an order record
 void OrderSys::deleteOrder(int OrderID) {
     OrderByCash *orderIterator = head;
     OrderByCash *previousOrder = NULL;
@@ -508,7 +512,6 @@ void OrderSys::deleteOrder(int OrderID) {
         orderIterator = orderIterator->next;
     }
 }
-
 void OrderSys::deleteOrderInstallment(int OrderID) {
     OrderByInstallment *orderIterator = head_2;
     OrderByInstallment *previousOrder = NULL;
