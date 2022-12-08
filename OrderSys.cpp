@@ -233,16 +233,24 @@ OrderSys::OrderByInstallment* OrderSys::createOrderInstallment(string CustomerNa
 //pay remaining balance
 void OrderSys::payRemainingBal(BookSys bookSys){
 
+    system("CLS");
+    ui.TitleHeader();
+    ui.setTxtColor(7);
+    ui.PageTitle("Pay Balance");
+
     if(displayOrdersWithRemainingBal()){
 
         int user_input;
-        user_input = ih.intHandlerInput("Enter ID : ",user_input,OrderID-1,0);
+        user_input = ih.intHandlerInput("Enter ID : ",user_input);
+        bool isOrderFound = false;
 
 
         OrderByInstallment *orderPointer = head_2;
         while (orderPointer)
         {
-            if(orderPointer->OrderID == user_input){
+            if(orderPointer->OrderID == user_input && orderPointer->RemainingBal != 0){
+                isOrderFound = true;
+                cout << endl;
                 cout << "\tOrderID: " << orderPointer->OrderID << endl;
                 cout << "\tCustomerName: " << orderPointer->CustomerName << endl;
                 cout << "\tRemainingBal: " << orderPointer->RemainingBal << endl;
@@ -252,21 +260,24 @@ void OrderSys::payRemainingBal(BookSys bookSys){
                     orderPointer->Installment_2 = CustCash;
                     orderPointer->Installment_2_change = orderPointer->Installment_2 - orderPointer->RemainingBal;
                     orderPointer->RemainingBal = 0;
+                    displayOrderByInstallmentReceipt(orderPointer,bookSys);
                 }else{
-                    cout<<"Insufficient Amount"<<endl;
+                    cout<<" -Insufficient Amount! Order Failed-"<<endl;
+                    system("pause");
                 }
                 break;
             }
             orderPointer = orderPointer->next;
-            cout << endl;
+        }
+        if(!isOrderFound){
+            cout<<" -Order Not Found!- "<<endl;
+            system("pause");
         }
     }else{
-        cout<<"No Pending Balance!"<<endl;
+        cout<<" -No Pending Balance!-"<<endl;
+        system("pause");
     }
 
-    system("pause");
-
-//fix this sht
 }
 
 //for displaying records
@@ -340,9 +351,11 @@ bool OrderSys::displayOrdersWithRemainingBal(){
     bool hasPendingBal = false;
     OrderByInstallment *displayPointer_2;
     displayPointer_2 = head_2;
+
     cout << endl;
-    cout << "\t\t\t User Records \t\t\n";
+    ui.textCenter("Customers with Remaining Balance",70);
     cout << endl;
+
     while (displayPointer_2)
     {
         if(displayPointer_2->RemainingBal != 0){
@@ -402,7 +415,7 @@ void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
 void OrderSys::displayOrderByInstallmentReceipt(OrderByInstallment *oc, BookSys bookSys){
     system("CLS");
     ui.TitleHeader();
-    ui.setTxtColor(8);
+    ui.setTxtColor(7);
     ui.PageTitle("Installment Receipt");
 
         cout << string(receiptWidth,'=')<<endl;
