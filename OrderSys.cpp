@@ -322,7 +322,6 @@ void OrderSys::displayOrderRecords(BookSys bookSys){
     ui.PageTitle("Order by Installment Records");
     while (displayPointer_2)
     {
-
         cout << string(receiptWidth,'=')<<endl;
         cout << "OrderID: " << displayPointer_2->OrderID << endl;
         cout << "CustomerName: " << displayPointer_2->CustomerName << endl;
