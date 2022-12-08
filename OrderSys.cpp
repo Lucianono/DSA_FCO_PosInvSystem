@@ -265,9 +265,8 @@ void OrderSys::payRemainingBal(BookSys bookSys){
     }
 
     system("pause");
-    orderMenu(bookSys);
 
-
+//fix this sht
 }
 
 //for displaying records
@@ -335,7 +334,6 @@ void OrderSys::displayOrderRecords(BookSys bookSys){
     }
 
     system("pause");
-    orderMenu(bookSys);
 }
 //for displaying Orders With Remaining Balance
 bool OrderSys::displayOrdersWithRemainingBal(){
@@ -398,7 +396,6 @@ void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
 
 
     system("pause");
-    orderMenu(bookSys);
 
 
 }
@@ -408,73 +405,76 @@ void OrderSys::displayOrderByInstallmentReceipt(OrderByInstallment *oc, BookSys 
     ui.setTxtColor(8);
     ui.PageTitle("Installment Receipt");
 
-        cout << "=========================================================================\n";
-        cout << "                               CICT BOOKSTORE" << endl;
-        cout << "                         Bulacan State University" << endl;
-        cout << "                              Malolos, Bulacan" << endl;
-        cout << "                               0999-123-4567" << endl;
-        cout << "=========================================================================\n"<< endl;
-        cout << "\tOrderID: " << oc->OrderID << endl;
-        cout << "\tCustomerName: " << oc->CustomerName << endl;
-        cout << "\tBooks Ordered: ";
+        cout << string(receiptWidth,'=')<<endl;
+        ui.textCenter("CICT BOOKSTORE",receiptWidth);
+        ui.textCenter("Bulacan State University",receiptWidth);
+        ui.textCenter("Malolos, Bulacan",receiptWidth);
+        ui.textCenter("(044) 919 7800",receiptWidth);
+        cout << string(receiptWidth,'=')<<endl<<endl;
+
+        cout << "OrderID: " << oc->OrderID << endl;
+        cout << "CustomerName: " << oc->CustomerName << endl;
+        cout << "Books Ordered: " << setw(receiptWidth-17) << "PHP" << endl;
         for(int i = 0; i<oc->OrderCtr; i++){
             Book *selectedBook = bookSys.getBook(oc->BksQty[i].BookID);
-            cout << oc->BksQty[i].BookID << endl << endl;
-            cout << "                                                          PHP\n";
-            cout << "\t" << selectedBook->getBookName() << "    x";
-            cout << oc->BksQty[i].QtyOrdered;
+            cout << "Book ID :"<<oc->BksQty[i].BookID << endl;
+            cout << "  "<<selectedBook->getBookName() << "   x" << oc->BksQty[i].QtyOrdered <<endl;
+            cout << string(receiptWidth/2,' ') << "@200 " << string((receiptWidth/2)-11,'-') <<" "<< oc->BksQty[i].QtyOrdered*200<<endl;
         }
-        cout << "                                               @" << oc->UnitPrice;
 
-        cout << "-------------------------------------------------------------------------\n" << endl;
-        cout << "\tAMOUNT                                                     " << oc->AmountPrice << endl;
-        cout << "\tVAT                                                        " << oc->VAT << endl;
-        cout << "\tDISC                                                       " << oc->Discount << endl;
-        cout << "\tTOTAL                                                      " << oc->TotalPrice << endl << endl;
-        cout << "-------------------------------------------------------------------------\n" << endl;
-        cout << "\t1st Installment: " << oc->Installment_1 << endl;
-        cout << "\t1st Installment Change: " << oc->Installment_1_change << endl;
-        cout << "\tRemainingBal: " << oc->RemainingBal << endl;
-        cout << "\t2nd Installment: " << oc->Installment_2 << endl;
-        cout << "\t2nd Installment Change: " << oc->Installment_2_change << endl;
+        cout<<endl;
+        cout << string(receiptWidth,'-')<<endl;
+        cout << "AMOUNT" << string(receiptWidth-11,' ')<< oc->AmountPrice << endl;
+        cout << "VAT" << string(receiptWidth-8,' ')<< oc->VAT << endl;
+        cout << "DISCOUNT" << string(receiptWidth-13,' ') << oc->Discount << endl;
+        cout << string(receiptWidth,'-')<<endl;
+        cout << "T O T A L" << string(receiptWidth-14,' ') << oc->TotalPrice<< endl;
+        cout << string(receiptWidth,'-')<<endl;
+        cout << "1ST INSTALLMENT" << string(receiptWidth-20,' ') << oc->Installment_1 << endl;
+        cout << "1ST INSTALLMENT CHANGE" << string(receiptWidth-27,' ') << oc->Installment_1_change << endl;
+        cout << "REMAINING BALANCE" << string(receiptWidth-22,' ') << oc->RemainingBal << endl;
+        cout << "2ND INSTALLMENT" << string(receiptWidth-20,' ') << oc->Installment_2 << endl;
+        cout << "2ND INSTALLMENT CHANGE" << string(receiptWidth-27,' ') << oc->Installment_2_change << endl;
+        cout << string(receiptWidth,'=')<<endl<<endl;
 
     cout << endl;
 
     system("pause");
-    orderMenu(bookSys);
 }
 
 
 //to display menu
 void OrderSys::orderMenu(BookSys bookSys){
 
-    system("CLS");
-    ui.TitleHeader();
-    ui.setTxtColor(7);
-    ui.PageTitle("Order Menu");
-    cout << "[1] Add Order" << endl;
-    cout << "[2] Pay Remaining Balance" << endl;
-    cout << "[3] Display All Order Records" << endl << endl;
-    cout << "[0] Back" << endl;
+    bool menu_active = true;
+    while(menu_active){
+        system("CLS");
+        ui.TitleHeader();
+        ui.setTxtColor(7);
+        ui.PageTitle("Order Menu");
+        cout << "[1] Add Order" << endl;
+        cout << "[2] Pay Remaining Balance" << endl;
+        cout << "[3] Display All Order Records" << endl << endl;
+        cout << "[0] Back" << endl;
 
-    int opt;
-    opt = ih.intHandlerInput("\n\nEnter Option: ", opt,3,0);
+        int opt;
+        opt = ih.intHandlerInput("\n\nEnter Option: ", opt,3,0);
 
-    switch (opt){
-        case 0:
-            //go back to main menu
-            break;
-        case 1:
-            getOrder(bookSys);
-            break;
-        case 2:
-            payRemainingBal(bookSys);
-            break;
-        case 3:
-            displayOrderRecords(bookSys);
-            break;
+        switch (opt){
+            case 0:
+                menu_active = false;
+                break;
+            case 1:
+                getOrder(bookSys);
+                break;
+            case 2:
+                payRemainingBal(bookSys);
+                break;
+            case 3:
+                displayOrderRecords(bookSys);
+                break;
+        }
     }
-
 
 }
 
@@ -514,4 +514,3 @@ void OrderSys::deleteOrderInstallment(int OrderID) {
     }
 }
 
-//stock issue when order failed
