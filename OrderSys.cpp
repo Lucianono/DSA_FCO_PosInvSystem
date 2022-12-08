@@ -367,38 +367,34 @@ void OrderSys::displayOrderByCashReceipt(OrderByCash *oc, BookSys bookSys){
     ui.PageTitle("Receipt");
 
 
-        cout << "=========================================================================\n";
-        cout << "                               CICT BOOKSTORE" << endl;
-        cout << "                         Bulacan State University" << endl;
-        cout << "                              Malolos, Bulacan" << endl;
-        cout << "                               0999-123-4567" << endl;
-        cout << "=========================================================================\n"<< endl;
-        cout << "\tOrderID: " << oc->OrderID << endl;
-        cout << "\tCustomerName: " << oc->CustomerName << endl;
-        cout << "\tBooks Ordered: ";
+        cout << string(receiptWidth,'=')<<endl;
+        ui.textCenter("CICT BOOKSTORE",receiptWidth);
+        ui.textCenter("Bulacan State University",receiptWidth);
+        ui.textCenter("Malolos, Bulacan",receiptWidth);
+        ui.textCenter("(044) 919 7800",receiptWidth);
+        cout << string(receiptWidth,'=')<<endl<<endl;
+
+        cout << "OrderID: " << oc->OrderID << endl;
+        cout << "CustomerName: " << oc->CustomerName << endl;
+        cout << "Books Ordered: " << setw(receiptWidth-17) << "PHP" << endl;
         for(int i = 0; i<oc->OrderCtr; i++){
             Book *selectedBook = bookSys.getBook(oc->BksQty[i].BookID);
-            cout << oc->BksQty[i].BookID << endl << endl;
-            cout << "                                                          PHP\n";
-            cout << "\t" << selectedBook->getBookName() << "    x";
-            cout << oc->BksQty[i].QtyOrdered;
+            cout << "Book ID :"<<oc->BksQty[i].BookID << endl;
+            cout << "  "<<selectedBook->getBookName() << "   x" << oc->BksQty[i].QtyOrdered <<endl;
+            cout << string(receiptWidth/2,' ') << "@200 " << string((receiptWidth/2)-11,'-') <<" "<< oc->BksQty[i].QtyOrdered*200<<endl;
         }
-        cout << "                                               @" << oc->UnitPrice;
 
-
-        cout << "-------------------------------------------------------------------------\n" << endl;
-        cout << "\tAMOUNT                                                     " << oc->AmountPrice << endl;
-        cout << "\tVAT                                                        " << oc->VAT << endl;
-        cout << "\tDISC                                                       " << oc->Discount << endl << endl;
-        cout << "-------------------------------------------------------------------------\n" << endl;
-        cout << "\tTOTAL                                                      " << oc->TotalPrice << endl << endl;
-        cout << "\tCASH                                                       " << oc->Cash << endl;
-        cout << "\tCHANGE                                                     " << oc->Change << endl;
-
-
-
-
-
+        cout<<endl;
+        cout << string(receiptWidth,'-')<<endl;
+        cout << "AMOUNT" << string(receiptWidth-11,' ')<< oc->AmountPrice << endl;
+        cout << "VAT" << string(receiptWidth-8,' ')<< oc->VAT << endl;
+        cout << "DISCOUNT" << string(receiptWidth-13,' ') << oc->Discount << endl;
+        cout << string(receiptWidth,'-')<<endl;
+        cout << "T O T A L" << string(receiptWidth-14,' ') << oc->TotalPrice<< endl;
+        cout << string(receiptWidth,'-')<<endl;
+        cout << "CASH" << string(receiptWidth-9,' ')<< oc->Cash  << endl;
+        cout << "CHANGE" << string(receiptWidth-11,' ')<< oc->Change  << endl;
+        cout << string(receiptWidth,'=')<<endl<<endl;
 
 
     system("pause");

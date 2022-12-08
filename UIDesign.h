@@ -7,14 +7,6 @@ class UIDesign
 {
     public:
         UIDesign();
-        void Login();
-        void MainMenu();
-        void AddBook();
-        void ViewBook();
-        void DeleteBook();
-        void SearchBook();
-        void OrderBook();
-        void PrintReceipt();
 
         void setTxtColor(int ColorValue);
         void TitleHeader();
@@ -22,6 +14,7 @@ class UIDesign
         bool sortAsc(string a, string b);
         bool sortDesc(string a, string b);
         int countDigit (long long n);
+        void textCenter(string title,int decorLength);
     protected:
 
     private:

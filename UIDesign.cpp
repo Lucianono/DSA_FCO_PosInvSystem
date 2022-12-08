@@ -69,7 +69,12 @@ int UIDesign::countDigit (long long n)
     }
     return count;
 }
-
+//text center-er
+void UIDesign::textCenter(string title,int decorLength){
+    int iterate = (decorLength - title.length())/2;
+    cout<< string(iterate,' ') << title;
+    cout << endl;
+}
 
 
 //constructor

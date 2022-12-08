@@ -92,6 +92,7 @@ int main()
     SetConsoleTitle("CICT Book Store");
 
 
+    order.getOrder(book);
 
     bool isUserAuthorized = security.Login();
     while(isUserAuthorized){

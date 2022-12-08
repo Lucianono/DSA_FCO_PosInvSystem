@@ -33,10 +33,12 @@ class OrderSys
         IntHandler ih;
         UIDesign ui;
         int OrderID = 0; //OrderID ctr
+        int receiptWidth = 50; //for receipt ui
 
         //head declaration
         OrderByCash *head = NULL;
         OrderByInstallment *head_2 = NULL;
+
 
 
 
