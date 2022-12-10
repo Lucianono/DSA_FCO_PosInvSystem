@@ -71,7 +71,7 @@ void BookSys::updateBook(int bookId, int _bookQuantity) {
     bookToUpdate->setBookQuantity(_bookQuantity);
     books.at(bookToUpdateIndex) = bookToUpdate;
 
-    if (_bookQuantity < bookToUpdate->getMaxQuantity() * 0.05) {
+    if (_bookQuantity <= bookToUpdate->getMaxQuantity() * 0.05) {
         std::cout << "\t\t -- Book with id \"" << bookId << "\" is low in stock! --" << std::endl;
     }
 }
