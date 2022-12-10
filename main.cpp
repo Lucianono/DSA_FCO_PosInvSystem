@@ -21,9 +21,6 @@ int main()
     OrderSys order;
 
 
-    cout << endl;
-    cout << "Hello Dataists!" << endl;
-
 
     return 0;
 }

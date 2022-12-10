@@ -29,6 +29,10 @@ void AboutUs::displayMembers()
 
 void AboutUs::displayAssignment()
 {
+
+    cout << "Project Assigned: Create a set of structures and algorithms to display and modify a CICT Bookstore's point of sales and inventory system. \n";
+    cout << "This will be done through object-oriented programming in C++ \n";
+
     cout << "ASSIGNMENT" << endl;
     cout << "UI Design" << endl;
     cout << "About Us" << endl;
@@ -53,9 +57,7 @@ void AboutUs::displayAssignment()
 void AboutUs::displayInstructor()
 {
     cout << "INSTRUCTOR \n" << endl;
-    cout << "Engr. Evelyn Santos - Professor of CICT and CS, currently instructing Data Structure and Algorithms and other programming-related subjects. \n" << endl;
-    cout << "Project Assigned: Create a set of structures and algorithms to display and modify a CICT Bookstore's point of sales and inventory system. \n";
-    cout << "This will be done through object-oriented programming in C++ \n";
+    cout << "Engr. Evelyn Santos - Faculty of CICT , currently instructing Data Structure and Algorithms and other computer-related subjects. \n" << endl;
 }
 
 
