@@ -6,6 +6,9 @@ class AboutUs
 {
     public:
         AboutUs();
+        void displayMembers();
+        void displayAssignment();
+        void displayInstructor();
 
     protected:
 
