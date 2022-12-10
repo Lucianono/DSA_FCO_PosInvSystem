@@ -28,6 +28,7 @@ class OrderSys
         void orderMenu(BookSys bookSys);
         void deleteOrder(int OrderID);
         void deleteOrderInstallment(int OrderId);
+        void deleteOrderMenu();
 
     private:
         IntHandler ih;

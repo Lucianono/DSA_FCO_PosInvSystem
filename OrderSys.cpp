@@ -473,11 +473,12 @@ void OrderSys::orderMenu(BookSys bookSys){
         ui.PageTitle("Order Menu");
         cout << "[1] Add Order" << endl;
         cout << "[2] Pay Remaining Balance" << endl;
-        cout << "[3] Display All Order Records" << endl << endl;
+        cout << "[3] Display All Order Records" << endl;
+        cout << "[4] Delete Order Records" << endl << endl;
         cout << "[0] Back" << endl;
 
         int opt;
-        opt = ih.intHandlerInput("\n\nEnter Option: ", opt,3,0);
+        opt = ih.intHandlerInput("\n\nEnter Option: ", opt,4,0);
 
         switch (opt){
             case 0:
@@ -492,6 +493,10 @@ void OrderSys::orderMenu(BookSys bookSys){
             case 3:
                 displayOrderRecords(bookSys);
                 break;
+            case 4:
+                deleteOrderMenu();
+                break;
+
         }
     }
 
@@ -530,6 +535,54 @@ void OrderSys::deleteOrderInstallment(int OrderID) {
         }
         previousOrder = orderIterator;
         orderIterator = orderIterator->next;
+    }
+}
+void OrderSys::deleteOrderMenu(){
+    system("CLS");
+    ui.TitleHeader();
+    ui.setTxtColor(7);
+    ui.PageTitle("Delete Order");
+    cout << "[1] Delete Faulty Records " << endl;
+    cout << "[2] Delete All Records" << endl << endl;
+    cout << "[0] Back" << endl;
+
+    int opt_del;
+    opt_del = ih.intHandlerInput("\n\nEnter Option: ", opt_del,2,0);
+
+    switch (opt_del){
+    case 0:
+        //go back
+        break;
+    case 1:
+        {
+        OrderByCash *orderIterator = head;
+        while (orderIterator) {
+            if (orderIterator->AmountPrice == 0) {
+                OrderByCash *toBeDelete = orderIterator;
+                orderIterator = orderIterator->next;
+                deleteOrder(toBeDelete->OrderID);
+            }else{
+                orderIterator = orderIterator->next;
+            }
+        }
+        OrderByInstallment *orderIterator_2 = head_2;
+        while (orderIterator_2) {
+            if (orderIterator_2->AmountPrice == 0) {
+                OrderByInstallment *toBeDelete = orderIterator_2;
+                orderIterator_2 = orderIterator_2->next;
+                deleteOrderInstallment(toBeDelete->OrderID);
+            }else{
+                orderIterator_2 = orderIterator_2->next;
+            }
+        }
+        break;
+        }
+    case 2:
+        {
+        head = NULL;
+        head_2 = NULL;
+        break;
+        }
     }
 }
 
