@@ -95,6 +95,7 @@ int OrderSys::getOrder(BookSys booksys){
                 break;
             }
 
+            cout<<"\t --Book ordered!--\n";
             booksys.updateBook(custBks[ctr].BookID,booksys.getBook(custBks[ctr].BookID)->getBookQuantity() - custBks[ctr].QtyOrdered);
             totalOrder += custBks[ctr].QtyOrdered;
             ctr++;
@@ -107,14 +108,8 @@ int OrderSys::getOrder(BookSys booksys){
         cout<<endl;
     }
 
-    //condition if total is discounted
-    if(totalOrder >= 3){
-        cout<<"\t Discounted!"<<endl;
-        totaldue = (totalOrder * 200) * 1.07;
-    }
-    else{
-        totaldue = (totalOrder * 200) * 1.12;
-    }
+    //display total
+    totaldue = (totalOrder * 200) * 1.12;
     cout<<"\t Total due : ||  "<<totaldue<<" ||"<<endl;
     cout<<endl;
 
@@ -122,6 +117,15 @@ int OrderSys::getOrder(BookSys booksys){
     user_input = ih.intHandlerInput("\t [1]Pay by Cash or [2]Pay by Installment : ",user_input,2,1);
     switch(user_input){
     case 1:{
+
+        //condition if total is discounted
+        if(totalOrder >= 3){
+            cout<<"\t Discounted!"<<endl;
+            totaldue = (totalOrder * 200) * 1.07;
+            cout<<"\t Total due : ||  "<<totaldue<<" ||"<<endl;
+            cout<<endl;
+        }
+
         float custCash;
         custCash = ih.intHandlerInput("\t Enter Cash : ", custCash);
         if (custCash >= totaldue){
