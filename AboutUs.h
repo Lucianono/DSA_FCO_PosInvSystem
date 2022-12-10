@@ -10,7 +10,9 @@ class AboutUs
         void displayMembers();
         void displayAssignment();
         void displayInstructor();
+        void displayMemberInformation();
         void displayAll();
+
 
     protected:
 
