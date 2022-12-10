@@ -64,7 +64,7 @@ void MainMenu()
             book.bookMenu();
             break;
         case 3:
-            //about func
+            abt_us.displayAll();
             break;
         case 4:
             security.securityMenu();

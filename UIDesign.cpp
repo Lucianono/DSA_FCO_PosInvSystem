@@ -46,16 +46,6 @@ void UIDesign::PageTitle(string title)
     cout << setw((155/2) + (PageTitleSize/2)) << PageTitle <<  endl;
     cout << setw(((155/2) + PageTitleSize/2) - 1) << std::string(PageTitleSize - 2, '*') << endl << endl;
 }
-//sort alphabetically in ascending order
-bool UIDesign::sortAsc(string a, string b)
-{
-    return a<b;
-}
-//sort alphabetically in descending order
-bool UIDesign::sortDesc(string a, string b)
-{
-    return a>b;
-}
 //count the length of the ID of a book
 //example: 20 will be counted as 2 digits
 int UIDesign::countDigit (long long n)
