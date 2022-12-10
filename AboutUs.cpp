@@ -3,14 +3,6 @@
 
 using namespace std;
 
-//this file is to store and display group information
-//information about members
-//information about professor
-//information about the project
-//text designs is not necessary
-//assigned to : Benjamin Senin
-
-
 AboutUs::AboutUs()
 {
 
@@ -18,8 +10,6 @@ AboutUs::AboutUs()
 
 void AboutUs::displayMembers()
 {
-    //cout here all members' information
-    //please refer guidelines
     cout << "ABOUT US\n" << endl;
 
     cout << "\tLeader: \n";
@@ -39,10 +29,6 @@ void AboutUs::displayMembers()
 
 void AboutUs::displayAssignment()
 {
-    //cout here all members' task given
-    //create a very short intro about how task was distributed and given (by git and github)
-    //LastName and the branch assigned
-    //please refer guidelines
     cout << "ASSIGNMENT" << endl;
     cout << "UI Design" << endl;
     cout << "About Us" << endl;
@@ -66,8 +52,6 @@ void AboutUs::displayAssignment()
 
 void AboutUs::displayInstructor()
 {
-    //cout here Mam evelyn
-    //please refer guidelines
     cout << "INSTRUCTOR \n" << endl;
     cout << "Engr. Evelyn Santos - Professor of CICT and CS, currently instructing Data Structure and Algorithms and other programming-related subjects. \n" << endl;
     cout << "Project Assigned: Create a set of structures and algorithms to display and modify a CICT Bookstore's point of sales and inventory system. \n";
