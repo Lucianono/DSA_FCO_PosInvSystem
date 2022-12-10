@@ -62,54 +62,54 @@ void AboutUs::displayInstructor()
 void AboutUs::displayMemberInformation()
 {
     cout <<"-> Alba, Darwin Inigo I. \n"
-        << "    - Address \n"
-        << "    - ContactNo \n"
-        << "    - BulsuEmail \n" <<endl;
+        << "    - Maysantol, Bulakan, Bulacan \n"
+        << "    - (+63)920-654-7790 \n"
+        << "    - darwininigo.alba.i@bulsu.edu.ph \n" <<endl;
 
     cout <<"-> Baculi, Liah Francheska C. \n"
-        << "    - Address \n"
-        << "    - ContactNo \n"
-        << "    - BulsuEmail \n" <<endl;
+        << "    - Prenza 1, Marilao, Bulacan \n"
+        << "    - (+63)939-736-0741 \n"
+        << "    - liahfrancheska.baculi.c@bulsu.edu.ph \n" <<endl;
 
     cout <<"-> Bernardo, Joel-Vincent G. \n"
-        << "    - Address \n"
-        << "    - ContactNo \n"
-        << "    - BulsuEmail \n" <<endl;
+        << "    - Poblacion, Norzagaray, Bulacan \n"
+        << "    - (+63)956-056-4142 \n"
+        << "    - joelvincent.bernardo.g@bulsu.edu.ph \n" <<endl;
 
     cout <<"-> Calulo, Bryan Jett T. \n"
         << "    - Lawa, Meycauayan, Bulacan \n"
-        << "    - 0915 112 0027 \n"
+        << "    - (+63)915-112-0027 \n"
         << "    - bryanjett.calulo.t@bulsu.edu.ph \n" <<endl;
 
     cout <<"-> De Guzman, Michaela Andrei S. \n"
-        << "    - Address \n"
-        << "    - ContactNo \n"
-        << "    - BulsuEmail \n" <<endl;
+        << "    - Poblacion, Baliuag, Bulacan \n"
+        << "    - (+63)967-594-2151 \n"
+        << "    - michaelaandrei.deguzman.s@bulsu.edu.ph \n" <<endl;
 
     cout <<"-> Hernandez, Vince G. \n"
-        << "    - Address \n"
-        << "    - ContactNo \n"
-        << "    - BulsuEmail \n" <<endl;
+        << "    - Tuktukan, Guiginto, Bulacan \n"
+        << "    - (+63)906-889-1508 \n"
+        << "    - vince.hernandez.g@bulsu.edu.ph \n" <<endl;
 
     cout <<"-> Pascual, Andrei \n"
-        << "    - Address \n"
-        << "    - ContactNo \n"
-        << "    - BulsuEmail \n" <<endl;
+        << "    - Sta. Rita, Guiginto, Bulacan \n"
+        << "    - (+63)935-350-5068 \n"
+        << "    - andrei.pascual.x@bulsu.edu.ph \n" <<endl;
 
     cout <<"-> Rebato, Jocelyn \n"
-        << "    - Address \n"
-        << "    - ContactNo \n"
-        << "    - BulsuEmail \n" <<endl;
+        << "    - Mojon, Malolos, Bulacan \n"
+        << "    - (+63)935-221-7533 \n"
+        << "    - jocelyn.rebato.x@bulsu.edu.ph \n" <<endl;
 
     cout <<"-> Rosal, Ramil Angelo Jan M. \n"
-        << "    - Address \n"
-        << "    - ContactNo \n"
-        << "    - BulsuEmail \n" <<endl;
+        << "    - Dakila, Malolos, Bulacan \n"
+        << "    - (+63)939-326-9501 \n"
+        << "    - ramilangelojan.rosal.m@bulsu.edu.ph \n" <<endl;
 
     cout <<"-> Senin, Benjamin B. \n"
-        << "    - Address \n"
-        << "    - ContactNo \n"
-        << "    - BulsuEmail \n" <<endl;
+        << "    - Taal, Malolos, Bulacan \n"
+        << "    - (+63)908-900-9407 \n"
+        << "    - benjamin.senin.b@bulsu.edu.ph \n" <<endl;
 
     cout<<endl;
 }
