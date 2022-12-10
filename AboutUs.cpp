@@ -44,7 +44,7 @@ void AboutUs::displayAssignment()
     cout << "SUMMARY OF TASK DISTRIBUTION \n"
         << " ->> Main branch: Calulo \n"
         << " ->> UIDesign and AboutUs branch: De Guzman \n"
-        << " ->> BookSystem and BookCRUD: Baculi, Bernardo, and Rebato \n"
+        << " ->> BookSystem and BookCRUD branch: Baculi, Bernardo, and Rebato \n"
         << " ->> SecuritySystem branch: Alba and Rosal \n"
         << " ->> OrderSystem and OrderCRUD branches: Hernandez and Pascual \n";
 
